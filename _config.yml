@@ -1,9 +1,7 @@
 # Where things are
 source:      .
 destination: ./_site
-plugins:     ./_plugins
 layouts:     ./_layouts
-data_source: ./_data
 collections: null
 
 # Handling Reading
@@ -20,9 +18,6 @@ limit_posts: 0
 future:      true
 unpublished: false
 
-# Plugins
-whitelist: []
-gems:      []
 
 # Conversion
 markdown:    kramdown
