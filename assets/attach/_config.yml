@@ -4,7 +4,6 @@ destination: ./_site        # 写入文件的目录
 plugins:     ./_plugins     # 存放插件的目录
 layouts:     ./_layouts     # 存放布局文件的目录
 data_source: ./_data        # 存放站点数据的目录
-paginate:     8				# 分页个数
 collections: null
 
 # Handling Reading
@@ -26,10 +25,10 @@ whitelist: []
 gems:      []
 
 # Conversion
-#markdown:    kramdown
-highlighter: pygments       # code高亮{% highlight ruby linenos %}{% endhighlight %}
+markdown:    kramdown
+highlighter: pygments 
 lsi:         false          # 是否为相关文章生成索引
-excerpt_separator: "\n\n"   # 从开头到第一次出现该标志的地方作为摘要{{post.excerpt}}
+excerpt_separator: "\n\n"
 
 # Serving
 detach:  false              # 是否从终端命令行中分离出来
@@ -67,19 +66,3 @@ coderay:
     coderay_tab_width:         4
     coderay_bold_every:        10
     coderay_css:               style
-    
-    
-#################################### global configure #######################################
-
-username: haojunyu
-#baseurl: /haojunyu.github.io
-markdown: redcarpet
-#safe: false
-#highlighter: pygments
-title: 雨过留声
-description: 人生到处知何似，应似飞鸿踏雪泥
-theme: merlot
-disqusname: haojunyu
-
-# theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
-# those themes are all come from GitHub Pages Themes

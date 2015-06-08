@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+　　	<title>markdown+jekyll+github搭建博客</title>
+    </head>
+
+    <body>
+	<header>
+	</header>
+
+	<aside>
+	</aside>
+
+	<article><h2>GitHub--数据存储</h2>
+
+<h3><a href="https://pages.github.com/">GitHub Page for Blog</a></h3>
+
+<ol>
+<li> 在GitHub上创建仓库(haojunyu.github.com)</li>
+<li><p>在本地克隆仓库</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/haojunyu/haojunyu.github.com
+</code></pre></div></li>
+<li><p>创建index.html文件</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">cd haojunyu.github.com
+echo &quot;hello world&quot;  &gt; index.html
+</code></pre></div></li>
+<li><p>同步到GitHub</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">git add --all
+git commit -, &quot;Initial commit&quot;
+git push -u origin master
+</code></pre></div></li>
+</ol>
+
+<h2>jekyll -- 博客管理</h2>
+
+<p>Jekyll是一种简单的、适用于博客的、静态网站生成引擎。它使用一个模板目录作为网站布局的基础框架，支持Markdown、Textile等标记语言的解析，提供了模板、变量、插件等功能，最终生成一个完整的静态Web站点。说白了就是，只要安装Jekyll的规范和结构，不用写html，就可以生成网站.</p>
+
+<h3><a href="https://help.github.com/articles/using-jekyll-with-pages/">安装jekyll</a></h3>
+
+<ol>
+<li><p>安装ruby(Jekyll的编写语言)
+<code>
+sudo apt-get install ruby2.0 ruby2.0-dev
+</code></p>
+
+<blockquote>
+<p><strong>注意:</strong>
+在安装ruby之前用下面命名检验一下是否已经安装过ruby.
+<code>
+ruby -v
+</code>
+ubuntukylin 14.04LTS默认是安装了ruby1.9.1的,所以需要更换默认版本到2.0
+<code>
+cd /usr/bin/
+ln -sf ruby2.0 ruby
+ln -sf gem2.0 gem
+ln -sf erb2.0 erb
+ln -sf irb2.0 irb
+ln -sf rake2.0 rake
+ln -sf rdoc2.0 rdoc
+ln -sf testrb2.0 testrb
+</code>
+虽说这样做法比较暴力,但是还是可以还原的,想要切换会1.9.3,只要运行下面的脚本
+<code>
+cd /usr/bin/
+ln -sf ruby1.9.1 ruby
+ln -sf gem1.9.1 gem
+ln -sf erb1.9.1 erb
+ln -sf irb1.9.1 irb
+ln -sf rake1.9.1 rake
+ln -sf rdoc1.9.1 rdoc
+ln -sf testrb1.9.1 testrb
+</code>
+2. 安装Bundler(管理Ruby软件的工具)</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo gem install bundler
+</code></pre></div>
+<ol>
+<li>安装jekyll</li>
+<li>在仓库的根目录创建Gemfile,并添加下面内容
+&gt; <strong>Gemfile</strong>
+&gt;&gt; source &#39;http://ruby.taobao.org&#39;
+gem &#39;github-pages&#39;
+gem &#39;execjs&#39;
+gem &#39;therubyracer&#39;</li>
+<li><p>通过bundler安装</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># bundle读取Gemfile里面的内容,并安装相关的ruby软件
+bundle install 
+</code></pre></div></li>
+<li><p>运行Jekyll</p></li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">bundle exec jekyll serve
+</code></pre></div>
+<blockquote>
+<p><strong>注意</strong>
+这里不用创建gh-pages分支. 是因为GitHub认为，一个GitHub账号对应一个用户或者一个组织，GitHub会 给这个用户分配一个域名：username.github.io，当用户访问这个域名时， GitHub会去解析username用户下，username.github.io项目的master分支， 这与我们之前的描述一致。</p>
+
+<p>另外，GitHub还为每个项目提供了域名，例如，你有一个项目名为blog， GitHub为这个项目提供的域名为username.github.io/blog， 当你访问这个域名时，GitHub会去解析username用户下，blog项目的gh-pages 分支。也就是说gh-pages是为该master项目作网页项目介绍的地方.</p>
+
+<p>所以，要搭建自己的博客，你可以选择建立名为 username.github.io的项目， 在master分支下存放网站源代码，也可以选择建立名为 blog 的项目，在 gh-pages分支下存放网站源代码。出于这是本人博客的主目录,所以选择前种方式.</p>
+</blockquote></li>
+</ol>
+
+<h3>配置jekyll</h3>
+
+<ol>
+<li> 在项目根目录下,创建jekyll的配置文件<a href="/assets/attach/_config.yml">_config.yml</a>.</li>
+<li> 在项目根目录下,创建_layout文件夹,用于存放模板文件<a href="">default.html</a>.</li>
+<li> 在项目根目录下,创建_post文件夹,用于存放blog文章.博文名称必须是这样的格式&quot;year-mouth-day-title.md&quot;
+&gt; <strong>2015-06-07-template.md</strong>
+&gt; &gt;---
+&gt; layout: default
+&gt; title: 模板文件
+&gt; ---
+&gt; &gt;
+&gt; 博文内容</li>
+</ol>
+</article>
+
+	<footer>
+	</footer>
+    </body>
+
+</html>
+
