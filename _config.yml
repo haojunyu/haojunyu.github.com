@@ -9,7 +9,7 @@ paginate:     8	            # 分页个数
 # Handling Reading
 safe:         false         # 是否禁用自定义插件
 include:      ["*.txt",".htaccess"] # 转换时强制包含某些文件夹或文件
-exclude:      [Gemfile,Gemfile.lock]            # 转换时排除某些文件夹或文件
+exclude:      [makefile,Gemfile,Gemfile.lock]            # 转换时排除某些文件夹或文件
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"       # 设置文件编码
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
