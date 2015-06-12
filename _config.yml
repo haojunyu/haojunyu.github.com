@@ -34,7 +34,7 @@ ASSET_PATH: false
 detach:  false              # 是否从终端命令行中分离出来
 port:    4000               # 端口
 host:    127.0.0.1          # 主机
-baseurl: "haojunyu.github.io"                 # 网站根目录
+baseurl: ""                 # 网站根目录
 
 # Outputting
 permalink:     date
