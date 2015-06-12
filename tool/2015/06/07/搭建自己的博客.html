@@ -247,12 +247,10 @@ git push origin master
 
 <p>这里主要克隆github上plasticboy提供的vim-markdown插件.ubuntu上操作如下:</p>
 
-<pre><code>```bash
-git clone https://github.com/plasticboy/vim-markdown.git
+<pre><code class="bash">git clone https://github.com/plasticboy/vim-markdown.git
 cd vim-markdown
 sudo make install
 vim-addon-manager install mkd
-```
 </code></pre>
 
 <h3>配置~/.vim/vimrc</h3>
@@ -260,10 +258,10 @@ vim-addon-manager install mkd
 <p>在~/.vim/vimrc文件的末尾添加下面的markdown设置</p>
 
 <blockquote><p>"-- markdown --
-let g:vim_markdown_folding_disabled=1 "取消代码折叠
-let g:vim_markdown_no_default_key_mappings=1  "取消默认的键对应
-let g:vim_markdown_math=1     "使用数学符号
-let g:vim_markdown_frontmatter=1  "高亮YMAL frontmatter</p></blockquote>
+  let g:vim_markdown_folding_disabled=1 "取消代码折叠
+  let g:vim_markdown_no_default_key_mappings=1  "取消默认的键对应
+  let g:vim_markdown_math=1     "使用数学符号
+  let g:vim_markdown_frontmatter=1  "高亮YMAL frontmatter</p></blockquote>
 
 <h2>后记</h2>
 
