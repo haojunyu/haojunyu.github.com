@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{{site.title}}</title>
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/styles.css">
+
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="http://lib.sinaapp.com/js/jquery/1.7/jquery.min.js"></script>
+    <script src="{{site.baseurl}}/themes/{{site.theme}}/javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1><a href="{{site.baseurl}}/">{{site.title}}</a></h1>
+        <p>{{site.description}}</p>
+      </header>
+
+      <div id="banner">
+		<div id="banleft">  
+			<span id="logo"></span>
+		</div>
+		<div id="bancenter">
+			<nav id="nav">
+				<ul>
+					{% for link in site.nav %}
+					{% assign active = nil %}
+					{% if page.url == link.url%}
+					  {% assign active = 'nav-item-active' %}
+					{% endif %}
+					<li class="nav-item {{ active }}">
+						<a class="ali" href="{{ site.baseurl }}/{{ link.url }}">
+							{{ link.text }}
+						</a>
+						{{ indicator }}
+					</li>
+					{% endfor %}
+				</ul>
+			</nav>
+		</div>
+		
+		<div id="banright">
+			<div class="follow">
+				{% for link in site.follow %}
+				<a href="{{ link.url }}" target="_blank"><i class="{{ link.class }}"></i></a>
+				{% endfor %}
+            </div>
+        </div>        
+     </div>
+     
+     <div class="contain">
+			<div class="container">
+				<nav id="navleft">
+					<ul></ul>
+				</nav>
+				<div  id="contents" class="main">
+					{{ content }}
+					{% if page.comments %}
+						{% include comments.ext %}
+					{% endif %}
+				</div>
+				<div class="aside">
+					<div class="aside-contact">
+						<h4 class="title">About me</h4>
+						<div class="det fn-clear">
+							<div class="det-image">
+								<img src="{{ site.author.imageLink }}" />
+							</div>
+							<div class="det-text">
+								<p>{{ site.author.simpleIntro }}</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="aside-item">
+						<h4 class="title">Recent Posts</h4>
+						<ul class="list">
+							{% for rpost in site.posts limit:6  %}
+								<li><a href="{{ site.baseurl }}{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					<div class="aside-item">
+						<h4 class="title">Links</h4>
+						<ul class="list">
+							{% for i in site.customLinks %}
+								{% if i.message == "Friends" %}
+									{% for link in i.item %}
+									<li><a href="{{ link.url }}" title="{{ link.text }}" target="_blank">{{ link.text }}</a></li>
+									{% endfor %}
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>   
+     
+	<footer>
+		<p>Project maintained by <a href="https://github.com/{{site.username}}">{{site.username}}</a></p>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/mattgraham">mattgraham</a></small></p>
+	</footer>
+    
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
