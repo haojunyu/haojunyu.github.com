@@ -7,7 +7,7 @@ title: Categories
     <ul class="categories">
     {% assign categories_list = site.categories %}
     {% for category in categories_list %}
-        <li class="categories-item"><a href="{{ site.baseurl }}/navigations/categories.html/#{{ category[0] }}">
+        <li class="categories-item"><a href="{{ site.baseurl }}/navigations/categories.html#{{ category[0] }}">
             {{ category[0] | join: "/" }}
         </a></li>
     {% endfor %}
