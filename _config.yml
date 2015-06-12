@@ -4,13 +4,12 @@ destination: ./_site        # 写入文件的目录
 plugins:     ./_plugins     # 存放插件的目录
 layouts:     ./_layouts     # 存放布局文件的目录
 data_source: ./_data        # 存放站点数据的目录
-paginate:     8				# 分页个数
-collections: null
+paginate:     8	            # 分页个数
 
 # Handling Reading
 safe:         false         # 是否禁用自定义插件
-include:      [".htaccess"] # 转换时强制包含某些文件夹或文件
-exclude:      []            # 转换时排除某些文件夹或文件
+include:      ["*.txt",".htaccess"] # 转换时强制包含某些文件夹或文件
+exclude:      [Gemfile,Gemfile.lock]            # 转换时排除某些文件夹或文件
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"       # 设置文件编码
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
@@ -22,63 +21,106 @@ future:      true
 unpublished: false
 
 # Plugins
-whitelist: []
-gems:      []
 
 # Conversion
-#markdown:    kramdown
+markdown:    rdiscount 
 highlighter: pygments       # code高亮{% highlight ruby linenos %}{% endhighlight %}
 lsi:         false          # 是否为相关文章生成索引
 excerpt_separator: "\n\n"   # 从开头到第一次出现该标志的地方作为摘要{{post.excerpt}}
+ASSET_PATH: false
+
 
 # Serving
 detach:  false              # 是否从终端命令行中分离出来
 port:    4000               # 端口
 host:    127.0.0.1          # 主机
-baseurl: ""                 # 网站根目录
+baseurl: "/haojunyu.github.com"                 # 网站根目录
 
 # Outputting
 permalink:     date
 paginate_path: /page:num
 timezone:      null         # 设置时区
 
-quiet:    false
-defaults: []
 
 # Markdown Processors
-rdiscount:
-    extensions: []
 
-redcarpet:
-    extensions: []
+# Site config
+keywords: 日,fuck
+url: /haojunyu
+feed:  /atom.xml
+favicon: http://jekyllrb.com/favicon.png
 
-kramdown:
-    auto_ids:       true
-    footnote_nr:    1
-    entity_output:  as_char
-    toc_levels:     1..6
-    smart_quotes:   lsquo,rsquo,ldquo,rdquo
-    enable_coderay: false
 
-coderay:
-    coderay_wrap:              div
-    coderay_line_numbers:      inline
-    coderay_line_number_start: 1
-    coderay_tab_width:         4
-    coderay_bold_every:        10
-    coderay_css:               style
+# Nav config
+nav:
+  - text: 首页
+    url: index.html
+  - text: 分类目录
+    url: navigations/categories.html
+  - text: 文章归档
+    url: navigations/archives.html
+  - text: 联系我
+    url: navigations/contact.html
+  - text: 友情链接
+    url: navigations/links.html
     
+
+# author config
+author:
+  name: 郝俊禹
+  email: haojunyu2012@gmail.com
+  imageLink: https://avatars.githubusercontent.com/minixalpha
+  simpleIntro: 郝俊禹</br></br>专注coding一百年
+  detailIntro: 
+    情不知何起,一往而深,生者可以死;死可以生,生而不可与死,死而不可复生者,皆非情之至也.
+
+
+# Follow me, you can choose your icon by http://fortawesome.github.io/Font-Awesome/icons/#brand
+follow:
+  - class: icon-rss
+    url: /navigations/atom.xml
+  - class: icon-weibo
+    url: http://weibo.com
+  - class: icon-github-alt
+    url: http://github.com
+  - class: icon-twitter
+    url: http://twitter.com
+  - class: icon-google-plus
+    url: http://google.com
+
+
+# LInks
+customLinks:
+  - item:
+    - text: 掌心
+      url: http://www.zhanxin.info
+    - text: Jekyll
+      url: http://jekyllrb.com
+    - text: Jekyll Theme
+      url: http://www.zhanxin.info/themes.html
+    message: Friends
+  - item:
+    - text: Font Awesome
+      url: http://fontawesome.github.io/Font-Awesome/
+    - text: Google Font
+      url: http://www.google.com/fonts.
+    - text: jQuery
+      url: http://jquery.com/
+    message: 其他相关链接
+
+
+#comment config
+disqus:
+    config: false
+    id: haojunyu
     
 #################################### global configure #######################################
 
 username: haojunyu
-#baseurl: /haojunyu.github.io
-markdown: redcarpet
-#safe: false
-#highlighter: pygments
 title: 雨过留声
 description: 人生到处知何似，应似飞鸿踏雪泥
-theme: merlot
+#theme: merlot_extend
+theme: jmq
 disqusname: haojunyu
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
