@@ -110,91 +110,91 @@
 <p>打开回显或关闭请求回显功能，或显示消息。如果没有任何参数，echo 命令将显示当前回显设置。</p>
 
 <p>Usage：</p>
-
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="lineno">1</span> <span class="k">echo</span> [{<span class="k">on</span>　<span class="k">off</span>}] [message]</code></pre></div>
-
-
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> [{<span class="k">on</span>　<span class="k">off</span>}] [message]
+</code></pre></div>
 <p>Sample：</p>
-
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="lineno">1</span> <span class="p">@</span><span class="k">echo</span> <span class="k">off</span> / <span class="k">echo</span> hello world</code></pre></div>
-
-
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span> / <span class="k">echo</span> hello world
+</code></pre></div>
 <h2>rem命令</h2>
 
-<p>注释命令，类似于在C语言中的/<em>--------</em>/，它并不会被执行，只是起一个注释的作用，只有在编辑批处理时才会被看到，主要用于方便修改。</p>
+<p>注释命令，类似于在C语言中的/*--------*/，它并不会被执行，只是起一个注释的作用，只有在编辑批处理时才会被看到，主要用于方便修改。</p>
 
 <p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem [context]</span>
+</code></pre></div>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem 注释内容</span>
+</code></pre></div>
+<blockquote>
+<p><strong>注意</strong></br>
+:: 也具有rem的功能，区别如下：</br>
+当关闭回显时,rem和::都不显示注释内容;</br>
+当打开回显时,rem会显示注释内容,而::却不显示注释内容</br></p>
+</blockquote>
 
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="lineno">1</span> <span class="c">rem [context]</span></code></pre></div>
+<h2>pause命令</h2>
 
+<p>暂停命令。运行 Pause 命令时，将显示下面的消息：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">Press any key to continue. . .（或：请按任意键继续. . .)
+</code></pre></div>
+<h2>call 命令</h2>
 
-<p>Sample:
-rem 注释内容
-注意点：</p>
+<p><em>从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序</em>.call命令接受用作调用目标的标签。如果在脚本或批处理文件外使用Call，它将不会在命令行起作用。</p>
 
-<p>:: 也具有rem的功能，区别如下：</p>
+<p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">call</span> [[Drive:][Path] FileName [BatchParameters]]
+[<span class="nl">:label</span> [arguments]]
+</code></pre></div>
+<p>Sample：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">call</span> file.bat
+</code></pre></div>
+<h2>start 命令</h2>
 
-<p>回显<br/>
-rem</p>
+<p>调用外部程序，所有的DOS命令和命令行程序都可以由start命令来调用。</p>
 
-<p>::</p>
-
-<p>关闭  不显示注释内容   不显示注释内容
-打开  显示注释内容  不显示注释内容</p>
-
-<p>pause命令
-暂停命令。运行 Pause 命令时，将显示下面的消息：</p>
-
-<p>Press any key to continue. . .（或：请按任意键继续. . .)</p>
-
-<p>call 命令
-从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序。call命令接受用作调用目标的标签。如果在脚本或批处理文件外使用Call，它将不会在命令行起作用。</p>
-
-<p>Usage：
-call [[Drive:][Path] FileName [BatchParameters]]
-[:label [arguments]]</p>
-
-<p>Sample：
-call file.bat
-start 命令
-调用外部程序，所有的DOS命令和命令行程序都可以由start命令来调用。</p>
-
-<p>Usage：
-start FileName [BatchParameters]</p>
-
-<p>Parameters:
-MIN        开始时窗口最小化
-SEPARATE   在分开的空间内开始 16 位 Windows 程序
-HIGH       在HIGH 优先级类别开始应用程序
-REALTIME   在 REALTIME 优先级类别开始应用程序
+<p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">start FileName [BatchParameters]
+</code></pre></div>
+<blockquote>
+<p><strong>Parameters:</strong></br>
+MIN        开始时窗口最小化</br>
+SEPARATE   在分开的空间内开始 16 位 Windows 程序</br>
+HIGH       在HIGH 优先级类别开始应用程序</br>
+REALTIME   在 REALTIME 优先级类别开始应用程序</br>
 WAIT       启动应用程序并等候它结束</p>
+</blockquote>
 
-<p>Sample:
-start calc.exe
-goto命令
-跳转命令。程序指针跳转到指定的标签，从标签后的第一条命令开始继续执行批处理程序。</p>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">start calc.exe
+</code></pre></div>
+<h2>goto命令</h2>
 
-<p>Usage:
-goto label</p>
+<p>跳转命令。程序指针跳转到指定的标签，从标签后的第一条命令开始继续执行批处理程序。</p>
 
-<p>Sample:
-:label
-start
-goto label
-set命令
-显示、设置或删除变量。</p>
+<p>Usage:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">goto</span> <span class="nl">label</span>
+</code></pre></div>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="nl">:label</span>
+start a.exe
+<span class="k">goto</span> <span class="nl">label</span>
+</code></pre></div>
+<h2>set命令</h2>
 
-<p>Sample:
-显示变量
-set    显示批处理当前已定义的所有变量及其值
-set s    显示所有以s开头的变量及其值</p>
+<p>显示、设置或删除变量。</p>
 
-<p>设置变量
-set a=hjy    把变量a定义为hjy。用echo %a%来回显</p>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem 把变量a定义为hjy。用echo %a%来回显</span>
+<span class="k">set</span> <span class="nv">a</span><span class="o">=</span>hjy 
 
-<p>删除变量
-set a=    删除变量a</p>
+<span class="c">rem 删除变量a</span>
+<span class="k">set</span> <span class="nv">a</span><span class="o">=</span>
 
+<span class="c">rem 显示所有以s开头的变量及其值</span>
+<span class="k">set</span> <span class="nv">s</span>    
+<span class="c">rem 显示批处理当前已定义的所有变量及其值</span>
+<span class="k">set</span> 
+</code></pre></div>
 					
 				</div>
 				<div class="aside">
@@ -218,7 +218,13 @@ set a=    删除变量a</p>
 							
 								<li><a href="/tool/2015/06/07/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html" title="markdown+jekyll+github搭建博客" rel="bookmark">markdown+jekyll+github搭建博客</a></li>
 							
-								<li><a href="/batch/2013/09/08/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理内部命令" rel="bookmark">简单批处理内部命令</a></li>
+								<li><a href="/batch/2013/09/12/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html" title="简单批处理字符串处理" rel="bookmark">简单批处理字符串处理</a></li>
+							
+								<li><a href="/batch/2013/09/11/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html" title="简单批处理语法结构" rel="bookmark">简单批处理语法结构</a></li>
+							
+								<li><a href="/batch/2013/09/10/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理常用命令" rel="bookmark">简单批处理常用命令</a></li>
+							
+								<li><a href="/batch/2013/09/09/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E7%AC%A6%E5%8F%B7%E7%AE%80%E4%BB%8B.html" title="简单批处理符号简介" rel="bookmark">简单批处理符号简介</a></li>
 							
 						</ul>
 					</div>

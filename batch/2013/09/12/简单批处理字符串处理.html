@@ -103,10 +103,64 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>房子需要装修,博客也需要装修.而通过<strong>markdown</strong>+<strong>jekyll</strong>+<strong>github</strong>搭建的博客是支持自定义自己的主题的.不过这需要对<strong>html</strong>,<strong>javascript</strong>,<strong>css</strong>有一定的了解.当然,要想自己的博客漂亮美观,自己的审美要好,显然我不具备(嘻嘻).</p>
+					<p>本文主要介绍批处理中字符串的处理.</p>
 
-<h2>jekyll的工作流程</h2>
+<h2>截取字符串</h2>
 
+<p>实现截取字符串中的特定位置的一个或多个字符
+Usage:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> <span class="nv">%var:begin</span><span class="p">,</span>lenth%
+</code></pre></div>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem 截取前5个字符：</span>
+<span class="k">echo</span> <span class="nv">%var:~0</span><span class="p">,</span><span class="m">5</span>%
+
+<span class="c">rem 截取最后5个字符:</span>
+<span class="k">echo</span> <span class="nv">%var:~</span><span class="m">-5</span>%
+</code></pre></div>
+<h2>替换字符串</h2>
+
+<p>将某一字符串中的特定字符或字符串替换为给定的字符串
+Usage:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">set</span> <span class="s2">&quot;var=%var:replaced=new%&quot;</span>
+</code></pre></div>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> test<span class="o">=</span><span class="m">1232</span>
+<span class="k">set</span> <span class="s2">&quot;test=%test:2=k%&quot;</span>
+<span class="c">rem 结果test=1k3k</span>
+</code></pre></div>
+<h2>字符串合并</h2>
+
+<p>将两个字符串放在一起
+Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> <span class="nv">%var1%%var2%</span>
+</code></pre></div>
+<h2>扩充字符串</h2>
+
+<p>对表示文件路径的字符串进行特殊的处理</p>
+
+<blockquote>
+<p>~I    删除任何引号（&quot;)，扩充 %I
+%~fI    将 %I 扩充到一个完全合格的路径名
+%~dI    仅将 %I 扩充到一个驱动器号
+%~pI     仅将 %I 扩充到一个路径
+%~nI     仅将 %I 扩充到一个文件名
+%~xI     仅将 %I 扩充到一个文件扩展名
+%~sI     扩充的路径只含有短名
+%~aI     将 %I 扩充到文件的文件属性
+%~tI     将 %I 扩充到文件的日期/时间
+%~zI     将 %I 扩充到文件的大小
+%~$PATH:I      查找列在路径环境变量的目录，并将 %I 扩充</p>
+</blockquote>
+
+<h2>附:数值计算</h2>
+
+<p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">set</span> <span class="n">/a</span> expression
+</code></pre></div>
+<p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">set</span> <span class="n">/a</span> var<span class="o">=</span><span class="m">123</span>+<span class="m">0123</span>+<span class="m">0</span>x<span class="m">123</span>
+</code></pre></div>
 					
 				</div>
 				<div class="aside">

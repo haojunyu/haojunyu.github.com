@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#contents  h1, #contents  h2").each(function(){
-    $("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g,'') + "'>" + $(this).text() + "</a></li>");
-    $(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g,''));
+    $("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text() + "</a></li>");
+    $(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
     $("#navleft ul li:first-child a").parent().addClass("active");
   });
   
