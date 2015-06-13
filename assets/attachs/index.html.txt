@@ -10,4 +10,6 @@
 　　　　
 　　　　　　<li>07 Jun 2015 <a href="/tool/2015/06/07/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html">markdown+jekyll+github搭建博客</a></li>
 　　　　
+　　　　　　<li>08 Sep 2013 <a href="/batch/2013/09/08/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4.html">简单批处理内部命令</a></li>
+　　　　
 　　</ul>
