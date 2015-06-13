@@ -238,25 +238,58 @@ git push origin master
 
 <p>由于比较喜欢vim的风格,所以要为vim增加了markdown的插件,以方便后面更好的用vim写博文.</p>
 
-<h3><a href="://github.com/plasticboy/vim-markdown">安装vim-markdown插件</a></h3>
+<h3>安装vim-markdown插件</h3>
 
-<p>这里主要克隆github上plasticboy提供的vim-markdown插件.ubuntu上操作如下:</p>
+<ol>
+<li><p><a href="https://github.com/plasticboy/vim-markdown">安装</a></p>
+
+<p>这里主要是克隆github上plasticboy提供的vim-markdown插件.ubuntu上操作如下:</p>
 
 <pre><code class="bash">git clone https://github.com/plasticboy/vim-markdown.git
 cd vim-markdown
 sudo make install
 vim-addon-manager install mkd
-</code></pre>
+</code></pre></li>
+<li><p>配置~/.vim/vimrc</p>
 
-<h3>配置~/.vim/vimrc</h3>
-
-<p>在~/.vim/vimrc文件的末尾添加下面的markdown设置</p>
+<p> 在~/.vim/vimrc文件的末尾添加下面的markdown设置</p>
 
 <blockquote><p>"-- markdown --</br>
 let g:vim_markdown_folding_disabled=1 "取消代码折叠</br>
 let g:vim_markdown_no_default_key_mappings=1  "取消默认的键对应</br>
 let g:vim_markdown_math=1     "使用数学符号</br>
-let g:vim_markdown_frontmatter=1  "高亮YMAL frontmatter</p></blockquote>
+let g:vim_markdown_frontmatter=1  "高亮YMAL frontmatter</p></blockquote></li>
+</ol>
+
+
+<h3>安装实时预览插件vim-instant-markdown</h3>
+
+<p>当使用vim打开markdown文件时会自动打开一个浏览器窗口展示编辑成网页的markdown文件,网页内容会随你的编辑自动更新.
+1.  <a href="https://github.com/suan/vim-instant-markdown">安装</a></p>
+
+<pre><code>```bash
+# 安装前准备工作
+sudo apt-get install npm
+sudo gem install redcarpet pygments.rb
+# 安装instant-markdown-d
+sudo npm -g install instant-markdown-d
+```
+</code></pre>
+
+<ol>
+<li><p>配置vim-instant-markdown</p>
+
+<pre><code class="bash">git clone https://github.com/suan/vim-instant-markdown.git
+cd vim-instant-markdown
+cp -r after/ftplugin/markdown ~/.vim/after/ftplugin/
+</code></pre></li>
+<li><p>配置~/.vim/vimrc</p>
+
+<p>在~/.vim/vimrc文件的末尾添加下面设置,使vim能识别<em>.md为</em>.markdown</p>
+
+<blockquote><p>  autocmd BufNewFile,BufReadPost *.md set filetype=markdown</p></blockquote></li>
+</ol>
+
 
 <h2>后记</h2>
 
