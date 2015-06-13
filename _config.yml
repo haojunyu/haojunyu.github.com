@@ -23,7 +23,10 @@ unpublished: false
 # Plugins
 
 # Conversion
-markdown:    rdiscount 
+#markdown:    rdiscount
+markdown:    redcarpet
+redcarpet:
+    extensions:  ["fenced_code_blocks","tables","highlight","strikethrough"]
 highlighter: pygments       # code高亮{% highlight ruby linenos %}{% endhighlight %}
 lsi:         false          # 是否为相关文章生成索引
 excerpt_separator: "\n\n"   # 从开头到第一次出现该标志的地方作为摘要{{post.excerpt}}
