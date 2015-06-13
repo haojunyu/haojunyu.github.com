@@ -4,7 +4,7 @@ destination: ./_site        # 写入文件的目录
 plugins:     ./_plugins     # 存放插件的目录
 layouts:     ./_layouts     # 存放布局文件的目录
 data_source: ./_data        # 存放站点数据的目录
-paginate:     8	            # 分页个数
+paginate:    5 	            # 分页个数
 
 # Handling Reading
 safe:         false         # 是否禁用自定义插件
