@@ -103,39 +103,42 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本文主要介绍在批处理中常用的符号.</p>
+					<p>批处理能够很便利的处理一些特定的任务,但是这些都是由基本的脚本片段构成的,所以对这些脚本片段的积累将有利于今后的任务处理.</p>
 
-<h2>回显@</h2>
+<h2>ACM</h2>
 
-<p>表示不显示@后面的命令</p>
-
-<p>Sample：</p>
+<ol>
+<li><p>用测试数据检验程序正确与否</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="p">@</span><span class="k">echo</span> Now initializing the program<span class="p">,</span>please wait a minite...
-</code></pre></div>
-<h2>重定向&gt;与&gt;&gt;</h2>
+<span class="nl">:again</span>
+<span class="c">rem r.exe生成测试案例</span>
+r.exe <span class="p">&gt;</span> <span class="n">input</span>
+<span class="c">rem a.exe生成结果output.a</span>
+a.exe <span class="p">&lt;</span> <span class="n">input</span> <span class="p">&gt;</span> <span class="n">output</span>.a
+<span class="c">rem b.exe生成结果output.b</span>
+b.exe <span class="p">&lt;</span> <span class="n">input</span> <span class="p">&gt;</span> <span class="n">output</span>.b
+<span class="c">rem 检验output.a和output.b是否一致</span>
+fc output.a output.b <span class="p">&gt;</span> <span class="n">null</span>
+<span class="k">if</span> not <span class="k">errorlevel</span> <span class="m">1</span> <span class="k">goto</span> <span class="nl">again</span>
+</code></pre></div></li>
+</ol>
 
-<p>将输出信息重定向到指定的设备或文件。系统默认输出到显示器。</p>
+					
+						<div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'haojunyugithubio'; // required: replace example with your forum shortname
 
-<h2>重定向&lt;</h2>
-
-<p>将输入信息来源重定向为指定的设备或文件。系统默认从显示器读取输入信息。</p>
-
-<h2>管道|</h2>
-
-<p>将管道符号前面命令的输出结果重定向输出到管道符号后面的命令中去，作为后面命令的输入。</p>
-
-<h2>转义符^</h2>
-
-<p>将特殊符号转化为一般符号，即剥离特殊符号的特殊地位。特殊符号指：| &amp; &gt; &lt;</p>
-
-<h2>逻辑命令符&amp;/&amp;&amp;/||</h2>
-
-<ul>
-<li>&amp; -- 它的作用是用来连接n个DOS命令，并把这些命令按顺序执行，而不管是否有命令执行失败</li>
-<li>&amp;&amp; -- 当&amp;&amp;前面的命令成功执行时，执行&amp;&amp;后面的命令，否则不执行</li>
-<li>|| -- 当||前面的命令失败时，执行||后面的命令，否则不执行</li>
-</ul>
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
 
 					
 				</div>
@@ -160,13 +163,21 @@
 							
 								<li><a href="/tool/2015/06/07/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html" title="markdown+jekyll+github搭建博客" rel="bookmark">markdown+jekyll+github搭建博客</a></li>
 							
-								<li><a href="/batch/2013/09/12/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html" title="简单批处理字符串处理" rel="bookmark">简单批处理字符串处理</a></li>
+								<li><a href="/shell/2014/02/26/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9.html" title="shell编程之基本内容" rel="bookmark">shell编程之基本内容</a></li>
 							
-								<li><a href="/batch/2013/09/11/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html" title="简单批处理语法结构" rel="bookmark">简单批处理语法结构</a></li>
+								<li><a href="/batch/2013/09/15/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%AE%9E%E7%94%A8%E8%84%9A%E6%9C%AC%E7%89%87%E6%AE%B5.html" title="简单批处理之实用脚本片段" rel="bookmark">简单批处理之实用脚本片段</a></li>
 							
-								<li><a href="/batch/2013/09/10/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理常用命令" rel="bookmark">简单批处理常用命令</a></li>
+								<li><a href="/batch/2013/09/14/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E4%BC%97%E9%87%8Cfind%E5%AE%83%E4%B8%80%E6%AC%A1%E5%BA%A6.html" title="简单批处理之众里find它一次度" rel="bookmark">简单批处理之众里find它一次度</a></li>
 							
-								<li><a href="/batch/2013/09/09/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E7%AC%A6%E5%8F%B7%E7%AE%80%E4%BB%8B.html" title="简单批处理符号简介" rel="bookmark">简单批处理符号简介</a></li>
+								<li><a href="/batch/2013/09/13/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E4%B8%80%E5%88%87%E5%B0%BD%E5%9C%A8at%E4%B8%AD.html" title="简单批处理之一切尽在at中" rel="bookmark">简单批处理之一切尽在at中</a></li>
+							
+								<li><a href="/batch/2013/09/12/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html" title="简单批处理之字符串处理" rel="bookmark">简单批处理之字符串处理</a></li>
+							
+								<li><a href="/batch/2013/09/11/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html" title="简单批处理之语法结构" rel="bookmark">简单批处理之语法结构</a></li>
+							
+								<li><a href="/batch/2013/09/10/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理之常用命令" rel="bookmark">简单批处理之常用命令</a></li>
+							
+								<li><a href="/batch/2013/09/09/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E7%AC%A6%E5%8F%B7%E7%AE%80%E4%BB%8B.html" title="简单批处理之符号简介" rel="bookmark">简单批处理之符号简介</a></li>
 							
 						</ul>
 					</div>

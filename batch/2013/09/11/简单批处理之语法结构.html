@@ -109,113 +109,135 @@
 
 <h3>字符串比较</h3>
 
-<p>仅能够对两个字符（串）是否相同、先后顺序进行判断等
-Usage：</p>
+<p>仅能够对两个字符（串）是否相同、先后顺序进行判断等  </p>
+
+<ul>
+<li><p>Usage：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">if</span> [not] string<span class="m">1</span> compare-op string<span class="m">2</span> command<span class="m">1</span> [<span class="k">else</span> command<span class="m">2</span>]
 </code></pre></div>
 <blockquote>
-<p><strong>Compare-op：</strong></br>
-==    等于</br>
-EQU    等于</br>
-NEQ    不等于</br>
-LSS    小于</br>
-LEQ    小于或等于</br>
-GTR    大于</br>
-GEQ    大于或等于</br></p>
-</blockquote>
-
-<p>Sample：</p>
+<p><strong>Compare-op：</strong><br>
+==    等于<br>
+EQU    等于<br>
+NEQ    不等于<br>
+LSS    小于<br>
+LEQ    小于或等于<br>
+GTR    大于<br>
+GEQ    大于或等于  </p>
+</blockquote></li>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">set</span> <span class="n">/p</span> <span class="k">choice</span><span class="o">=</span>是否显示当前时间？（y<span class="n">/n)</span>
 <span class="k">if</span> <span class="n">/i</span> not <span class="nv">%choice%</span> <span class="o">EQU</span> n <span class="k">echo</span> 当前时间是：<span class="nv">%date%</span> <span class="nv">%time%</span>
 <span class="k">pause</span><span class="p">&gt;</span><span class="n">nul</span>
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h3>存在判断</h3>
 
-<p>存在判断的功能是判断文件或文件夹是否存在</p>
+<p>存在判断的功能是判断文件或文件夹是否存在  </p>
 
-<p>Usage：</p>
+<ul>
+<li><p>Usage：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">if</span>  [not] <span class="k">exist</span>  filename command<span class="m">1</span> [<span class="k">else</span> command<span class="m">2</span>]
-</code></pre></div>
-<p>Sample：</p>
+</code></pre></div></li>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">if</span> not <span class="k">exist</span> <span class="nv">%~df0</span> (
     <span class="k">echo</span> 文件夹<span class="nv">%~df0</span>不存在！
-    ) <span class="k">else</span> <span class="k">echo</span> 文件夹<span class="nv">%~df0</span>存在！
+) <span class="k">else</span> <span class="k">echo</span> 文件夹<span class="nv">%~df0</span>存在！
 </code></pre></div>
 <blockquote>
-<p><strong>注意：</strong></br>
+<p><strong>注意：</strong><br>
 if语句的多行书写: 多行书写要求command1的左括号必须和if在同一行、else必须和command1的右括号同行、command2的左括号必须与else同行、command1和command2都可以有任意多行，即command可以是命令集。</p>
-</blockquote>
+</blockquote></li>
+</ul>
 
 <h3>定义判断</h3>
 
-<p>定义判断的功能是判断变量是否存在，即是否已被定义
-Usage：</p>
+<p>定义判断的功能是判断变量是否存在，即是否已被定义  </p>
+
+<ul>
+<li><p>Usage：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">if</span> [not] <span class="k">defined</span> variable command<span class="m">1</span> [<span class="k">else</span> command<span class="m">2</span>]
-</code></pre></div>
-<p>Sample：</p>
+</code></pre></div></li>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">if</span> not <span class="k">defined</span> var （<span class="k">echo</span> var<span class="o">=</span><span class="m">11</span>）
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h3>结果判断</h3>
 
-<p>对上一个命令运行的结果进行判断处理，而上一个命令运行的结果放在errorlevel变量中
-Sample：</p>
+<p>对上一个命令运行的结果进行判断处理，而上一个命令运行的结果放在errorlevel变量中  </p>
+
+<ul>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch">masm <span class="nv">%1</span>.asm
 <span class="c">rem 错误码为1</span>
 <span class="k">if</span> <span class="k">errorlevel</span> <span class="m">1</span> <span class="k">pause</span> &amp; edit <span class="nv">%1</span>.asm
 link <span class="nv">%1</span>.obj
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h2>循环语句</h2>
 
 <h3>无开关</h3>
 
 <p>无开关的for语句能够对设定的范围内进行循环，是最基本的for循环语句</p>
 
-<p>Usage：</p>
+<ul>
+<li><p>Usage：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">for</span> <span class="nv">%%variable</span> in (<span class="k">set</span>) <span class="k">do</span> command
-</code></pre></div>
-<p>Sample：</p>
+</code></pre></div></li>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
 <span class="k">for</span> <span class="nv">%%i</span> in (a<span class="p">,</span><span class="s2">&quot;b c&quot;</span><span class="p">,</span>d) <span class="k">do</span> <span class="k">echo</span> <span class="nv">%%i</span>
 <span class="k">pause</span><span class="p">&gt;</span><span class="n">nul</span>
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h3>开关/L</h3>
 
-<p>含开关/L的for语句，可以根据set里面的设置进行循环，从而实现对循环次数的直接控制</p>
+<p>含开关/L的for语句，可以根据set里面的设置进行循环，从而实现对循环次数的直接控制  </p>
 
-<p>Usage:</p>
+<ul>
+<li><p>Usage:</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">for</span> <span class="n">/l</span> <span class="nv">%%variable</span> in (start<span class="p">,</span>step<span class="p">,</span>end) <span class="k">do</span> command
-</code></pre></div>
-<p>Sample:</p>
+</code></pre></div></li>
+<li><p>Sample:</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
 <span class="k">for</span> <span class="n">/l</span> <span class="nv">%%i</span> in (<span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">10</span>) <span class="k">do</span> <span class="k">md</span> <span class="nv">%%i</span>
 <span class="k">pause</span>
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h3>开关/F</h3>
 
-<p>含开关/F的for语句具有最强大的功能，它能够对字符串进行操作，也能够对命令的返回值进行操作，还可以访问硬盘上的ASCII码文件，比如txt文档等</p>
+<p>含开关/F的for语句具有最强大的功能，它能够对字符串进行操作，也能够对命令的返回值进行操作，还可以访问硬盘上的ASCII码文件，比如txt文档等  </p>
 
-<p>Usage:</p>
+<ul>
+<li><p>Usage:</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">for</span> <span class="n">/f</span> [<span class="s2">&quot;options&quot;</span>] <span class="nv">%%variable</span> in (<span class="k">set</span>) <span class="k">do</span> command
 </code></pre></div>
 <blockquote>
-<p><strong>Parameters:</strong></br>
-options是（eol=c、skip=n、delims=xxx、tokens=x,y,m-n、usebackq）中的一个或多个的组合</br>
+<p><strong>Parameters:</strong><br>
+options是（eol=c、skip=n、delims=xxx、tokens=x,y,m-n、usebackq）中的一个或多个的组合<br>
 set为（&quot;string&quot;、&#39;command&#39;、file-set）中的一个</p>
-</blockquote>
-
-<p>Sample:</p>
+</blockquote></li>
+<li><p>Sample:</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
 <span class="k">echo</span> 本文件夹里面的文件有：
 <span class="k">for</span> <span class="n">/f</span> <span class="s2">&quot;skip=5 tokens=3* delims= &quot;</span> <span class="nv">%%a</span> in (<span class="s1">&#39;dir&#39;</span>) <span class="k">do</span> (
     <span class="k">if</span> not <span class="s2">&quot;%%a&quot;</span><span class="o">==</span><span class="s2">&quot;&lt;DIR&gt;&quot;</span> <span class="k">if</span> not <span class="s2">&quot;%%b&quot;</span><span class="o">==</span><span class="s2">&quot;字节&quot;</span> <span class="k">if</span> not <span class="s2">&quot;%%b&quot;</span><span class="o">==</span><span class="s2">&quot;可用字节&quot;</span> <span class="k">echo</span> <span class="nv">%%b</span>
 )
 <span class="k">pause</span>
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+
 <h3>开关/D或/R</h3>
 
-<p>含开关/D或/R的for语句是与目录或文件有关的命令，一般情况下很少使用。含开关/R的命令有时候被用于通过遍历文件夹来查找某一个文件或文件夹</p>
+<p>含开关/D或/R的for语句是与目录或文件有关的命令，一般情况下很少使用。含开关/R的命令有时候被用于通过遍历文件夹来查找某一个文件或文件夹  </p>
 
-<p>Sample：</p>
+<ul>
+<li><p>Sample：</p>
 <div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
 <span class="k">set</span> <span class="nv">local</span> enabledelayedexpansion
 <span class="k">for</span> <span class="n">/r</span> d: <span class="nv">%%i</span> in (.) <span class="k">do</span> (
@@ -226,9 +248,27 @@ set为（&quot;string&quot;、&#39;command&#39;、file-set）中的一个</p>
 <span class="k">pause</span>
 </code></pre></div>
 <blockquote>
-<p><strong>注意：</strong></br>
+<p><strong>注意：</strong><br>
 感叹号其实就是变量百分号(%)的强化版。之所以要用!而不用%，是因为在for循环中，当一个变量被多次赋值时，%dd%所获取的仅仅是dd第一次被赋予的值；要想刷新dd的值，就必须首先通过命令&quot;setlocal enabledelayedexpansion&quot;来开启延迟变量开关，然后用!dd!来获取dd的值。</p>
-</blockquote>
+</blockquote></li>
+</ul>
+
+					
+						<div id="disqus_thread"></div>
+ <script type="text/javascript">
+     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+     var disqus_shortname = 'haojunyugithubio'; // required: replace example with your forum shortname
+
+     /* * * DON'T EDIT BELOW THIS LINE * * */
+     (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
 
 					
 				</div>
@@ -253,13 +293,21 @@ set为（&quot;string&quot;、&#39;command&#39;、file-set）中的一个</p>
 							
 								<li><a href="/tool/2015/06/07/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html" title="markdown+jekyll+github搭建博客" rel="bookmark">markdown+jekyll+github搭建博客</a></li>
 							
-								<li><a href="/batch/2013/09/12/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html" title="简单批处理字符串处理" rel="bookmark">简单批处理字符串处理</a></li>
+								<li><a href="/shell/2014/02/26/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9.html" title="shell编程之基本内容" rel="bookmark">shell编程之基本内容</a></li>
 							
-								<li><a href="/batch/2013/09/11/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html" title="简单批处理语法结构" rel="bookmark">简单批处理语法结构</a></li>
+								<li><a href="/batch/2013/09/15/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%AE%9E%E7%94%A8%E8%84%9A%E6%9C%AC%E7%89%87%E6%AE%B5.html" title="简单批处理之实用脚本片段" rel="bookmark">简单批处理之实用脚本片段</a></li>
 							
-								<li><a href="/batch/2013/09/10/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理常用命令" rel="bookmark">简单批处理常用命令</a></li>
+								<li><a href="/batch/2013/09/14/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E4%BC%97%E9%87%8Cfind%E5%AE%83%E4%B8%80%E6%AC%A1%E5%BA%A6.html" title="简单批处理之众里find它一次度" rel="bookmark">简单批处理之众里find它一次度</a></li>
 							
-								<li><a href="/batch/2013/09/09/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E7%AC%A6%E5%8F%B7%E7%AE%80%E4%BB%8B.html" title="简单批处理符号简介" rel="bookmark">简单批处理符号简介</a></li>
+								<li><a href="/batch/2013/09/13/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E4%B8%80%E5%88%87%E5%B0%BD%E5%9C%A8at%E4%B8%AD.html" title="简单批处理之一切尽在at中" rel="bookmark">简单批处理之一切尽在at中</a></li>
+							
+								<li><a href="/batch/2013/09/12/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86.html" title="简单批处理之字符串处理" rel="bookmark">简单批处理之字符串处理</a></li>
+							
+								<li><a href="/batch/2013/09/11/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html" title="简单批处理之语法结构" rel="bookmark">简单批处理之语法结构</a></li>
+							
+								<li><a href="/batch/2013/09/10/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html" title="简单批处理之常用命令" rel="bookmark">简单批处理之常用命令</a></li>
+							
+								<li><a href="/batch/2013/09/09/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E7%AC%A6%E5%8F%B7%E7%AE%80%E4%BB%8B.html" title="简单批处理之符号简介" rel="bookmark">简单批处理之符号简介</a></li>
 							
 						</ul>
 					</div>
