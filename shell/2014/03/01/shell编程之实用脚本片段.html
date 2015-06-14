@@ -103,42 +103,82 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本文主要介绍在批处理中常用的符号.</p>
+					<p>现在编程都讲究面向对象,处理的对象不再是最底层的变量,结构等.所以在日常也要注意实用脚本片段的积累.</p>
 
-<h2>回显@</h2>
+<h2>校验参数</h2>
 
-<p>表示不显示@后面的命令</p>
-
-<ul>
-<li><p>Sample：</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="p">@</span><span class="k">echo</span> Now initializing the program<span class="p">,</span>please wait a minite...
+<ol>
+<li>情景描述
+有些脚本文件需要传入一些参数,那么就需要在脚本里对参数进行预处理,使得用户更好的使用该脚本.</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$#&quot;</span> -ne <span class="m">1</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;Incorrect number of arguments&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;Usage: command arg1&quot;</span>
+<span class="nb">exit </span>1
+<span class="k">fi</span>
 </code></pre></div></li>
-</ul>
+</ol>
 
-<h2>重定向&gt;与&gt;&gt;</h2>
+<h2>等待后台程序执行</h2>
 
-<p>将输出信息重定向到指定的设备或文件。系统默认输出到显示器。</p>
+<ol>
+<li>情景描述
+编程中有些命令执行需要很耗时间和资源,需要提早运行.但是有时还需要等待该命令,对其结果进行进一步处理,此时就需要这样的代码段.</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">prog1 <span class="p">&amp;</span>
+<span class="c"># 获取prog1的pid</span>
+<span class="nv">pid</span> <span class="o">=</span> <span class="nv">$1</span>
+<span class="c"># 等待后台prog1执行完继续脚本</span>
+<span class="nb">wait</span> <span class="nv">$pid</span>
+...
+</code></pre></div></li>
+</ol>
 
-<h2>重定向&lt;</h2>
+<h2>提示用户输入参数</h2>
 
-<p>将输入信息来源重定向为指定的设备或文件。系统默认从显示器读取输入信息。</p>
+<ol>
+<li>情景描述
+智能提示,让shell脚本更加人性化.</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash </span>
+<span class="nb">read</span> -p <span class="s2">&quot;please type the password:&quot;</span> PW
+<span class="nb">echo</span> <span class="nv">$PW</span>
+</code></pre></div></li>
+</ol>
 
-<h2>管道|</h2>
+<h2>更改登录用户密码</h2>
 
-<p>将管道符号前面命令的输出结果重定向输出到管道符号后面的命令中去，作为后面命令的输入。</p>
+<ol>
+<li>情景描述
+更改登录用户密码,懒得每次输入新旧密码</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+<span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;curpw&quot;</span><span class="p">;</span> sleep 1<span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;newpw&quot;</span><span class="p">;</span> sleep 1<span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;newpw&quot;</span><span class="o">)</span> <span class="p">|</span> passwd
+</code></pre></div></li>
+</ol>
 
-<h2>转义符^</h2>
+<h2>ACM检验程序</h2>
 
-<p>将特殊符号转化为一般符号，即剥离特殊符号的特殊地位。特殊符号指：| &amp; &gt; &lt;</p>
-
-<h2>逻辑命令符&amp;/&amp;&amp;/||</h2>
-
-<ul>
-<li>&amp; -- 它的作用是用来连接n个DOS命令，并把这些命令按顺序执行，而不管是否有命令执行失败</li>
-<li>&amp;&amp; -- 当&amp;&amp;前面的命令成功执行时，执行&amp;&amp;后面的命令，否则不执行</li>
-<li>|| -- 当||前面的命令失败时，执行||后面的命令，否则不执行</li>
-</ul>
+<ol>
+<li>情景描述
+ACM中需要对代码的测试数据进行验证.</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#！/bin/bash</span>
+<span class="k">while</span> <span class="nb">true</span>
+<span class="k">do</span>
+    <span class="c">#生成随机变量到input文件中,r可以是生成脚本</span>
+    ./r &gt; input
+    ./a &lt; input &gt; output.a
+    ./b &lt; input &gt; output.b
+    diff output.a output.b
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]</span>
+    <span class="k">then</span>
+        <span class="nb">break</span>
+<span class="nb">    </span><span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>

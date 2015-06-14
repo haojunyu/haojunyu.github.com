@@ -103,41 +103,47 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本文主要介绍在批处理中常用的符号.</p>
+					<p>常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.</p>
 
-<h2>回显@</h2>
-
-<p>表示不显示@后面的命令</p>
+<h2>准备工作</h2>
 
 <ul>
-<li><p>Sample：</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="p">@</span><span class="k">echo</span> Now initializing the program<span class="p">,</span>please wait a minite...
+<li>u盘</li>
+<li>ISO镜像文件 -- <a href="http://www.ubuntukylin.com/downloads/download.php?id=38">ubuntukylin-14.04.2-desktop-amd64.iso</a></li>
+<li><p>烧盘软件 -- unetbootin-linux-583</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install unetbootin
 </code></pre></div></li>
 </ul>
 
-<h2>重定向&gt;与&gt;&gt;</h2>
-
-<p>将输出信息重定向到指定的设备或文件。系统默认输出到显示器。</p>
-
-<h2>重定向&lt;</h2>
-
-<p>将输入信息来源重定向为指定的设备或文件。系统默认从显示器读取输入信息。</p>
-
-<h2>管道|</h2>
-
-<p>将管道符号前面命令的输出结果重定向输出到管道符号后面的命令中去，作为后面命令的输入。</p>
-
-<h2>转义符^</h2>
-
-<p>将特殊符号转化为一般符号，即剥离特殊符号的特殊地位。特殊符号指：| &amp; &gt; &lt;</p>
-
-<h2>逻辑命令符&amp;/&amp;&amp;/||</h2>
+<h2>格式化u盘</h2>
 
 <ul>
-<li>&amp; -- 它的作用是用来连接n个DOS命令，并把这些命令按顺序执行，而不管是否有命令执行失败</li>
-<li>&amp;&amp; -- 当&amp;&amp;前面的命令成功执行时，执行&amp;&amp;后面的命令，否则不执行</li>
-<li>|| -- 当||前面的命令失败时，执行||后面的命令，否则不执行</li>
+<li><p>查看u盘信息</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount
+</code></pre></div>
+<blockquote>
+<p>u盘信息:<br>
+/dev/sdb1 on /media/KINGSTON type vfat (rw,nosuid,nodev,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,showexec,flush,uhelper=udisks)</p>
+</blockquote></li>
+<li><p>卸载u盘</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount /media/KINGSTON
+</code></pre></div></li>
+<li><p>格式化</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs -t vfat /dev/sdb1 
+</code></pre></div></li>
+</ul>
+
+<h2>启动并设置unetbootin-linux-583参数</h2>
+
+<ul>
+<li><p>参数设置</p>
+
+<p><img src="/assets/images/ubuntu_unetbootin_set.png" alt="图片"></p>
+
+<blockquote>
+<p><strong>注意：</strong><br>
+软件能够识别u盘--u盘一定要插在电脑上</p>
+</blockquote></li>
 </ul>
 
 					

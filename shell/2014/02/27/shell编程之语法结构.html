@@ -103,41 +103,62 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本文主要介绍在批处理中常用的符号.</p>
+					<p>前一篇博文介绍了shell编程的基本内容,主要介绍了变量,数值计算以及字符串.这些相当于食材,而本文介绍的语法结构就相当于食谱,二者组合方能做出美食.</p>
 
-<h2>回显@</h2>
-
-<p>表示不显示@后面的命令</p>
+<h2>判断语句</h2>
 
 <ul>
-<li><p>Sample：</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="p">@</span><span class="k">echo</span> Now initializing the program<span class="p">,</span>please wait a minite...
+<li><p>条件判断</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">test </span>expression
+<span class="o">[</span> expression <span class="o">]</span>
+</code></pre></div></li>
+<li><p>条件表达式中常用的判断</p>
+
+<ol>
+<li>数值       <code>-eq</code> <code>-ne</code> <code>-gt</code> <code>-lt</code> <code>-ge</code> <code>-le</code> [<strong>e</strong>qual <strong>n</strong>ot <strong>g</strong>reater <strong>t</strong>han <strong>l</strong>ess]</li>
+<li>字符串    <code>=:</code> <code>!=</code> <code>-z</code> <code>-n</code> [<strong>z</strong>ero <strong>n</strong>ozero]</li>
+<li>文件       <code>-e</code> <code>-r</code> <code>-w</code> <code>-x</code> <code>-s</code> <code>-d</code> <code>-f</code> <code>-c</code> <code>-b</code>    [<strong>e</strong>xist <strong>r</strong>ead <strong>w</strong>rite <strong>e</strong>xecute <strong>s</strong>ize <strong>d</strong>irectory <strong>f</strong>ile <strong>c</strong>har <strong>b</strong>lock]</li>
+</ol></li>
+<li><p>语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="nv">$mark</span> -le <span class="m">80</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Average.&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$mark</span> -gt <span class="m">80</span> -a <span class="nv">$mark</span> -le <span class="m">90</span> <span class="o">]</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Good.&quot;</span>
+<span class="k">else</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Outstanding.&quot;</span>
+<span class="k">fi</span>
 </code></pre></div></li>
 </ul>
 
-<h2>重定向&gt;与&gt;&gt;</h2>
-
-<p>将输出信息重定向到指定的设备或文件。系统默认输出到显示器。</p>
-
-<h2>重定向&lt;</h2>
-
-<p>将输入信息来源重定向为指定的设备或文件。系统默认从显示器读取输入信息。</p>
-
-<h2>管道|</h2>
-
-<p>将管道符号前面命令的输出结果重定向输出到管道符号后面的命令中去，作为后面命令的输入。</p>
-
-<h2>转义符^</h2>
-
-<p>将特殊符号转化为一般符号，即剥离特殊符号的特殊地位。特殊符号指：| &amp; &gt; &lt;</p>
-
-<h2>逻辑命令符&amp;/&amp;&amp;/||</h2>
+<h2>case分支</h2>
 
 <ul>
-<li>&amp; -- 它的作用是用来连接n个DOS命令，并把这些命令按顺序执行，而不管是否有命令执行失败</li>
-<li>&amp;&amp; -- 当&amp;&amp;前面的命令成功执行时，执行&amp;&amp;后面的命令，否则不执行</li>
-<li>|| -- 当||前面的命令失败时，执行||后面的命令，否则不执行</li>
+<li><p>语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">case</span> <span class="nv">$choice</span> in
+1<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;choice1&quot;</span><span class="p">;;</span>
+2<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;choice2&quot;</span><span class="p">;;</span>
+*<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;out of choice&quot;</span>
+</code></pre></div></li>
+</ul>
+
+<h2>循环语句</h2>
+
+<ul>
+<li><p>for循环语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> val in vals
+<span class="k">do</span>
+...
+<span class="k">done</span>
+</code></pre></div></li>
+<li><p>while循环语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">i</span><span class="o">=</span>0
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> -le <span class="m">100</span> <span class="o">]</span>
+<span class="k">do</span>
+...
+<span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1<span class="o">))</span>
+<span class="k">done</span>
+</code></pre></div></li>
 </ul>
 
 					

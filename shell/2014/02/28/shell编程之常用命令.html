@@ -103,41 +103,101 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本文主要介绍在批处理中常用的符号.</p>
+					<p>shell编程说白了就是常用命令和语法结构的自由组合.所以本文将粗略介绍一下常用的命令以及其用法.</p>
 
-<h2>回显@</h2>
+<h2>正则表达式</h2>
 
-<p>表示不显示@后面的命令</p>
+<p>符号和用法<br>
+    * <code>.</code>   匹配任何单个字符[shell用的是?]<br>
+    * <code>^</code>   跟行首匹配<br>
+    * <code>$</code>   跟行尾匹配<br>
+    * <code>*</code>   匹配0或若干个紧靠在星号前的字符[shell是0或若干跟字符]<br>
+    * <code>[]</code>  匹配字符组,^表示除外[shell用!表示]<br>
+    * <code>{min,max}</code>   匹配min-max个重复的字符串<br>
+    * <code>{...}</code>   将小括号中匹配的字符串存储到一个寄存器中</p>
+
+<h2>cut命令</h2>
+
+<p>从文件中吸取各种各样的数据域  </p>
+
+<ol>
+<li><p>取第2-10个字符串</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cut -c2-10 file
+</code></pre></div></li>
+<li><p>以:为分割符分割file,取第2个数据域</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cut -d: -f2 file
+</code></pre></div></li>
+</ol>
+
+<h2>paste命令</h2>
+
+<p>paste与cut相反，把多行合并在一起[行对行]  </p>
+
+<ol>
+<li><p>以:为分割符,将两个文件行对行合并起来</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">paste -d:  file1 file2
+</code></pre></div>
+<h2>tr命令</h2>
+
+<p>tr可以转换来自标准输入中的字符</p></li>
+<li><p>将file里面from-chars替换成to-chars</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">tr ‘from-chars’ <span class="s1">&#39;to-chars&#39;</span> &lt; file
+</code></pre></div></li>
+</ol>
+
+<h2>grep命令</h2>
+
+<p>grep查找多个文件中包含的单词或短语</p>
 
 <ul>
-<li><p>Sample：</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="p">@</span><span class="k">echo</span> Now initializing the program<span class="p">,</span>please wait a minite...
+<li><p>用法 -- 支持正则表达式</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep ‘patten’ filespatten
 </code></pre></div></li>
+<li><p>参数</p>
+
+<ul>
+<li><code>-i</code>  忽略大小写</li>
+<li><code>-n</code>  显示行号</li>
+<li><code>-v</code>  显示不包含指定模式的行</li>
+<li><code>-l</code>  显示包含指定模式的文件列表</li>
+</ul></li>
 </ul>
 
-<h2>重定向&gt;与&gt;&gt;</h2>
+<h2>awk命令</h2>
 
-<p>将输出信息重定向到指定的设备或文件。系统默认输出到显示器。</p>
-
-<h2>重定向&lt;</h2>
-
-<p>将输入信息来源重定向为指定的设备或文件。系统默认从显示器读取输入信息。</p>
-
-<h2>管道|</h2>
-
-<p>将管道符号前面命令的输出结果重定向输出到管道符号后面的命令中去，作为后面命令的输入。</p>
-
-<h2>转义符^</h2>
-
-<p>将特殊符号转化为一般符号，即剥离特殊符号的特殊地位。特殊符号指：| &amp; &gt; &lt;</p>
-
-<h2>逻辑命令符&amp;/&amp;&amp;/||</h2>
+<p>awk强大的文本编辑利器之一，方便于列处理</p>
 
 <ul>
-<li>&amp; -- 它的作用是用来连接n个DOS命令，并把这些命令按顺序执行，而不管是否有命令执行失败</li>
-<li>&amp;&amp; -- 当&amp;&amp;前面的命令成功执行时，执行&amp;&amp;后面的命令，否则不执行</li>
-<li>|| -- 当||前面的命令失败时，执行||后面的命令，否则不执行</li>
+<li><p>用法</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk ‘模式<span class="o">{</span>操作<span class="o">}</span>’ files
+</code></pre></div></li>
+<li><p>参数</p>
+
+<ul>
+<li><code>NR</code>  当期处理行的行号</li>
+<li><code>FS</code>  字段分割符，缺省为空格或tab</li>
+<li><code>$n</code>  当前行的第n个字段</li>
+<li><code>$0</code>  当前行的所有文本</li>
+</ul></li>
+</ul>
+
+<h2>sed命令</h2>
+
+<p>sed强大的文本编辑利器之一，方便于行处理</p>
+
+<ul>
+<li><p>用法</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sed ‘<span class="o">[</span>地址1<span class="o">[</span>,地址2<span class="o">]]</span>操作’ file
+</code></pre></div></li>
+<li><p>参数</p>
+
+<ul>
+<li><code>p</code>   打印</li>
+<li><code>n</code>   转到下一行</li>
+<li><code>d</code>   删除</li>
+<li><code>s</code>   替换字符串</li>
+<li><code>a</code>   追加新的文本</li>
+</ul></li>
 </ul>
 
 					
