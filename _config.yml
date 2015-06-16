@@ -92,24 +92,36 @@ follow:
     url: http://google.com
 
 
-# LInks
+# Links
 customLinks:
   - item:
-    - text: 掌心
-      url: http://www.zhanxin.info
-    - text: Jekyll
-      url: http://jekyllrb.com
-    - text: Jekyll Theme
-      url: http://www.zhanxin.info/themes.html
-    message: Friends
+    - text: 刘未鹏
+      url: http://mindhacks.cn/
+#    - text: Jekyll
+#      url: http://jekyllrb.com
+#    - text: Jekyll Theme
+#      url: http://www.zhanxin.info/themes.html
+    message: Big Fishes
   - item:
-    - text: Font Awesome
-      url: http://fontawesome.github.io/Font-Awesome/
-    - text: Google Font
-      url: http://www.google.com/fonts.
-    - text: jQuery
-      url: http://jquery.com/
-    message: 其他相关链接
+    - text: 我爱自然语言处理
+      url: www.52nlp.cn
+    - text: DL for NLP
+      url: http://nlp.stanford.edu/courses/NAACL2013/
+    - text: UFLDL Tutorial
+      url: http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Tutorial
+    message: Meachine Learning
+  - item:
+    - text: USACO
+      url: www.wzoi.org/usaco
+    - text: HDU
+      url: acm.hdu.edu.cn
+    - text: hihocoder
+      url: www.hihocoder.com
+    - text: Judge
+      url: ac.jobdu.com/hhtproblems.php
+    message: ACM
+
+
 
 
 #comment config
