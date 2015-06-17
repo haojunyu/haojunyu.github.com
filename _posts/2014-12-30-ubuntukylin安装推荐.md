@@ -136,6 +136,6 @@ UbuntuKylin是Ubuntu社区中面向中文用户的Ubuntu衍生版本，与麒麟
 			sudo apt-get -f install
 			```
 
-
+## 待续
 	
 		 
