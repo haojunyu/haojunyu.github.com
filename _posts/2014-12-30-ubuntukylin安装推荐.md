@@ -30,34 +30,112 @@ UbuntuKylin是Ubuntu社区中面向中文用户的Ubuntu衍生版本，与麒麟
 	常用软件可以直接在软件中心中查找安装,不过建议是用shell脚本[ubuntukylin_install.sh]({{ site.baseurl }}/assets/attachs/ubuntukylin_install.sh.txt)安装.
 	
 	1. 浏览器 -- chrome
-		（登陆并同步书签&扩展应用等）
-在线视频播放插件—adobe flash plugin（配合firefox/chrome浏览器）
-64bit系统必备库文件--ia32-libs（让64bit系统支持32应用[必须在安装qq之前安装]）,build-essential(为编译debian包准备-包含很多必备的库文件)
-		sudo apt-get install ia32-libs build-essential
-		聊天工具—longene QQ
-		rhythmbox显歌词--osdlyrics（rhythmbox是系统自带的音乐播放器）
-		字典--starDict（stardict添加字典）
-		制作u盘启动盘--unetbootin
-		压缩工具—7zip
-		ftp客户端软件—FileZilla
-		文本编辑器--Geany（功能强大）
-		视频播放器—VLC media player/SMPlayer（系统自带）
-		位图图像处理--Gimp（等价于photoshop）
-		矢量图像处理—inkscape
-		排版工具—Texmaker(texmaker只是编辑客户端，还需安装texlive-full)
+
+		```bash
+		# 安装chrome浏览器
+		sudo apt-get install chromium-browser
+		# 安装在线视频播放插件
+		sudo apt-get install pepperflashplugin-nonfree
+		```
+		
+		> **注意:**   
+		> 安装完成后,需要登陆google帐号,可以同步书签并扩展应用
+	2. 安装gcc编译环境
+
+		```bash
+		sudo apt-get install build-essential
+		```
+	3. 安装osdlyrics,以方便rhythmbox显示歌词
+		
+		```bash
+		sudo apt-get install osdlyrics
+		```
+		
+		> **注意:**  
+		> 安装完成,需要启动osdlyrics并设置其自动启动的播放器
+	4. 安装starDict字典
+		
+		```bash
+		sudo apt-get install stardict
+		```
+		
+		> **安装软件所需要的字典和发音包**  
+		> 
+		> 1. [下载](http://share.weiyun.com/39678cb7bef4a4ad0be537f10578be2d)字典和发音包
+		> 2. 命令安装
+		>
+		>	```bash
+		>	cd stardict
+		>	chmod 755 installDicts.sh installPron.sh
+		>	sudo ./installDicts.sh
+		>	sudo ./installPron.sh
+		>	```
+	5. 安装压缩工具p7zip
+		
+		```bash
+		sudo apt-get install p7zip-full
+		```
+	6. 安装文本编辑器geany
+		
+		```bash
+		sudo apt-get install geany
+		```
+	7. 安装视频播放器VLC
+		
+		```bash
+		sudo apt-get install vlc
+		```
+	8. 安装位图图像处理软件gimp
+
+		```bash
+		sudo apt-get install gimp
+		```
+	9. 安装专业画图软件dia
+		
+		```bash
+		sudo apt-get install dia
+		sudo apt-get install dia-gnome
+		```
+	10. 安装tex软件
+		
+		```bash
 		sudo apt-get install texlive-full
 		sudo apt-get install texlive-fonts-recommended
-		飞信--
-		阿里旺旺--
-		网络电视--
-		写博客--blogilo（具体安装配置过程）
-		大型游戏平台--steam
-		编程软件
-		c/c++集成环境--code：blocks
-		java集成环境—Eclipse
-		python集成环境—Idle
-		文本编辑器--Vi增强版
-		矩阵操作--matlab
-		文档管理--doxygen（具体使用方法）
-		版本控制--git（具体安装配置过程）
+		sudo apt-get install texmaker
+		```
+
+		> **安装win下的字体**  
+		> 
+		> 1. [下载](http://share.weiyun.com/b298e1e21a18cf7278b4d8005aecfe7d)win字体和安装脚本
+		> 2. 命令安装
+		>
+		>	```bash
+		>	cd addWinFonts
+		>	chmod 755 addWinFonts.sh
+		>	sudo ./addWinFonts.sh
+		>	```
+	11. 安装java集成环境Eclipse
+		
+		```bash
+		sudo apt-get install eclipse
+		sudo apt-get install eclipse-jdt
+		sudo apt-get install eclipse-pde
+		```
+	12. 安装python集成环境idle
+
+		```bash
+		sudo apt-get install idle-python2.7
+		```
+	13. 安装longene QQ
+		
+		* [下载](http://share.weiyun.com/c5367cd7a608d8737770356a70a7f393)deb包
+		* 命令安装
+		
+			```bash
+			sudo dpkg -i wine-qqintl_0.1.3-2_i386.deb
+			sudo apt-get -f install
+			```
+
+
+	
 		 
