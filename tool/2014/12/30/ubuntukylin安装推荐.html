@@ -130,38 +130,91 @@
 常用软件可以直接在软件中心中查找安装,不过建议是用shell脚本<a href="/assets/attachs/ubuntukylin_install.sh.txt">ubuntukylin_install.sh</a>安装.</p>
 
 <ol>
-<li>浏览器 -- chrome
-（登陆并同步书签&amp;扩展应用等）
-在线视频播放插件—adobe flash plugin（配合firefox/chrome浏览器）
-64bit系统必备库文件--ia32-libs（让64bit系统支持32应用[必须在安装qq之前安装]）,build-essential(为编译debian包准备-包含很多必备的库文件)
-sudo apt-get install ia32-libs build-essential
-聊天工具—longene QQ
-rhythmbox显歌词--osdlyrics（rhythmbox是系统自带的音乐播放器）
-字典--starDict（stardict添加字典）
-制作u盘启动盘--unetbootin
-压缩工具—7zip
-ftp客户端软件—FileZilla
-文本编辑器--Geany（功能强大）
-视频播放器—VLC media player/SMPlayer（系统自带）
-位图图像处理--Gimp（等价于photoshop）
-矢量图像处理—inkscape
-排版工具—Texmaker(texmaker只是编辑客户端，还需安装texlive-full)
-sudo apt-get install texlive-full
+<li><p>浏览器 -- chrome</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 安装chrome浏览器</span>
+sudo apt-get install chromium-browser
+<span class="c"># 安装在线视频播放插件</span>
+sudo apt-get install pepperflashplugin-nonfree
+</code></pre></div>
+<blockquote>
+<p><strong>注意:</strong><br>
+安装完成后,需要登陆google帐号,可以同步书签并扩展应用</p>
+</blockquote></li>
+<li><p>安装gcc编译环境</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install build-essential
+</code></pre></div></li>
+<li><p>安装osdlyrics,以方便rhythmbox显示歌词</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install osdlyrics
+</code></pre></div>
+<blockquote>
+<p><strong>注意:</strong><br>
+安装完成,需要启动osdlyrics并设置其自动启动的播放器</p>
+</blockquote></li>
+<li><p>安装starDict字典</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install stardict
+</code></pre></div>
+<blockquote>
+<p><strong>安装软件所需要的字典和发音包</strong>  </p>
+
+<ol>
+<li><a href="http://share.weiyun.com/39678cb7bef4a4ad0be537f10578be2d">下载</a>字典和发音包</li>
+<li>命令安装</li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">  <span class="nb">cd </span>stardict
+  chmod <span class="m">755</span> installDicts.sh installPron.sh
+  sudo ./installDicts.sh
+  sudo ./installPron.sh
+</code></pre></div></blockquote></li>
+<li><p>安装压缩工具p7zip</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install p7zip-full
+</code></pre></div></li>
+<li><p>安装文本编辑器geany</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install geany
+</code></pre></div></li>
+<li><p>安装视频播放器VLC</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install vlc
+</code></pre></div></li>
+<li><p>安装位图图像处理软件gimp</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gimp
+</code></pre></div></li>
+<li><p>安装专业画图软件dia</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install dia
+sudo apt-get install dia-gnome
+</code></pre></div></li>
+<li><p>安装tex软件</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install texlive-full
 sudo apt-get install texlive-fonts-recommended
-飞信--
-阿里旺旺--
-网络电视--
-写博客--blogilo（具体安装配置过程）
-大型游戏平台--steam
-编程软件
-c/c++集成环境--code：blocks
-java集成环境—Eclipse
-python集成环境—Idle
-文本编辑器--Vi增强版
-矩阵操作--matlab
-文档管理--doxygen（具体使用方法）
-版本控制--git（具体安装配置过程）</li>
-</ol></li>
+sudo apt-get install texmaker
+</code></pre></div>
+<blockquote>
+<p><strong>安装win下的字体</strong>  </p>
+
+<ol>
+<li><a href="http://share.weiyun.com/b298e1e21a18cf7278b4d8005aecfe7d">下载</a>win字体和安装脚本</li>
+<li>命令安装</li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">  <span class="nb">cd </span>addWinFonts
+  chmod <span class="m">755</span> addWinFonts.sh
+  sudo ./addWinFonts.sh
+</code></pre></div></blockquote></li>
+<li><p>安装java集成环境Eclipse</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install eclipse
+sudo apt-get install eclipse-jdt
+sudo apt-get install eclipse-pde
+</code></pre></div></li>
+<li><p>安装python集成环境idle</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install idle-python2.7
+</code></pre></div></li>
+<li><p>安装longene QQ</p></li>
+</ol>
+<div class="highlight"><pre><code class="language-text" data-lang="text">* [下载](http://share.weiyun.com/c5367cd7a608d8737770356a70a7f393)deb包
+* 命令安装
+
+    ```bash
+    sudo dpkg -i wine-qqintl_0.1.3-2_i386.deb
+    sudo apt-get -f install
+    ```
+</code></pre></div></li>
 </ol>
 
 					
@@ -229,12 +282,10 @@ python集成环境—Idle
 							
 								
 									
-									<li><a href="http://www.zhanxin.info" title="掌心" target="_blank">掌心</a></li>
+									<li><a href="http://mindhacks.cn/" title="刘未鹏" target="_blank">刘未鹏</a></li>
 									
-									<li><a href="http://jekyllrb.com" title="Jekyll" target="_blank">Jekyll</a></li>
-									
-									<li><a href="http://www.zhanxin.info/themes.html" title="Jekyll Theme" target="_blank">Jekyll Theme</a></li>
-									
+								
+							
 								
 							
 								
