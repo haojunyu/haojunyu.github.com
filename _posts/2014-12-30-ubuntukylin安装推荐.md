@@ -1,7 +1,7 @@
 ---
 layout:	default
 title:	ubuntukylin(64bit)安装推荐
-category:	tool
+category:	ubuntu
 comments:	true
 ---
 在网上经常会看到[安装ubuntu后必做的n件事](http://www.linuxidc.com/Linux/2014-04/100411.htm),不过这些事情都是大众通用的,并不是完全适合自己的.所以本文就是对自己使用ubuntukylin这些年来的记录总结.
@@ -127,7 +127,6 @@ UbuntuKylin是Ubuntu社区中面向中文用户的Ubuntu衍生版本，与麒麟
 		sudo apt-get install idle-python2.7
 		```
 	13. 安装longene QQ
-		
 		* [下载](http://share.weiyun.com/c5367cd7a608d8737770356a70a7f393)deb包
 		* 命令安装
 		
