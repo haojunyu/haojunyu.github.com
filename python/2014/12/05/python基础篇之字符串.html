@@ -103,47 +103,71 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.</p>
+					<p>个人感觉python对字符串的处理是非常强的,所以掌握一些python对字符串的基本操作是非常有必要的.</p>
 
-<h2>准备工作</h2>
+<h2>字符串表示</h2>
 
 <ul>
-<li>u盘</li>
-<li>ISO镜像文件 -- <a href="http://www.ubuntukylin.com/downloads/download.php?id=38">ubuntukylin-14.04.2-desktop-amd64.iso</a></li>
-<li><p>烧盘软件 -- unetbootin-linux-583</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install unetbootin
+<li><p>赋值</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;hello&#39;</span>
 </code></pre></div></li>
-</ul>
-
-<h2>格式化u盘</h2>
-
-<ul>
-<li><p>查看u盘信息</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount
+<li><p>填字符串</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> little pigs come out or I&#39;ll </span><span class="si">%s</span><span class="s"> and </span><span class="si">%s</span><span class="s"> and </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;huff&#39;</span><span class="p">,</span> <span class="s">&#39;puff&#39;</span><span class="p">,</span> <span class="s">&#39;blow down&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>转换</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="k">print</span> <span class="s">&#39;pi = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
 </code></pre></div>
-<blockquote>
-<p>u盘信息:<br>
-/dev/sdb1 on /media/KINGSTON type vfat (rw,nosuid,nodev,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,showexec,flush,uhelper=udisks)</p>
-</blockquote></li>
-<li><p>卸载u盘</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount /media/KINGSTON
+<h2>常用方法</h2></li>
+<li><p>大小写转换</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 </code></pre></div></li>
-<li><p>格式化</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs -t vfat /dev/sdb1 
+<li><p>去除首尾空格</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</code></pre></div></li>
+<li><p>判断字符里所有的字符是不是字母/数字/空格</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span>
+</code></pre></div></li>
+<li><p>判断字符串是不是以某个子串开头/结尾</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">()</span>
+</code></pre></div></li>
+<li><p>查找子串在字符串中的位置,没找到返回-1</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;th&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>字符串的替换</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;old&#39;</span><span class="p">,</span><span class="s">&#39;new&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>字符串的分割,返回list</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;delim&#39;</span><span class="p">)</span>
+<span class="s">&#39;delim&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 </code></pre></div></li>
 </ul>
 
-<h2>启动并设置unetbootin-linux-583参数</h2>
+<h2>编码问题</h2>
+
+<p>在python里面默认都是用unicode编码的,而windows里面的文件默认是gbk编码,而linux里面的文件默认的是utf8编码,所以编码之间的转换是必不可少的.</p>
 
 <ul>
-<li><p>参数设置</p>
+<li><p>定义unicode字符串</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">ustr</span> <span class="o">=</span> <span class="s">u&#39;A unicode </span><span class="se">\u018e</span><span class="s"> string </span><span class="se">\xf1</span><span class="s">&#39;</span>
+</code></pre></div></li>
+<li><p>转换utf-8编码</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">utfstr</span> <span class="o">=</span> <span class="n">ustr</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>转换会unicode编码</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">unistr</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">utfstr</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></div></li>
+</ul>
 
-<p><img src="/assets/images/ubuntu_unetbootin_set.png" alt="图片"></p>
+<h2>课后练习</h2>
 
-<blockquote>
-<p><strong>注意：</strong><br>
-软件能够识别u盘--u盘一定要插在电脑上</p>
-</blockquote></li>
+<ul>
+<li>基础题: <a href="/assets/attachs/string1.py.txt">string1.py</a><br></li>
+<li>提升题: <a href="/assets/attachs/string2.py.txt">string2.py</a></li>
 </ul>
 
 					

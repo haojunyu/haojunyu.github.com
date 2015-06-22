@@ -103,47 +103,51 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.</p>
+					<p>在基本的概念和数据结构了解完后,再了解一下基本语法来将这些零件合理的组合起来,这样就可以用python干一下复杂的任务了.</p>
 
-<h2>准备工作</h2>
+<h2>条件语句</h2>
 
 <ul>
-<li>u盘</li>
-<li>ISO镜像文件 -- <a href="http://www.ubuntukylin.com/downloads/download.php?id=38">ubuntukylin-14.04.2-desktop-amd64.iso</a></li>
-<li><p>烧盘软件 -- unetbootin-linux-583</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install unetbootin
+<li><p>代码演示</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">score</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;the score is out of range.&#39;</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">60</span> <span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;your score is from 60 to 100.&#39;</span>
+<span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;your score is from 0 to 60.&#39;</span>
+<span class="k">else</span> <span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;the score is out of range.&#39;</span>
 </code></pre></div></li>
 </ul>
 
-<h2>格式化u盘</h2>
+<h2>for循环语句</h2>
 
 <ul>
-<li><p>查看u盘信息</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount
-</code></pre></div>
-<blockquote>
-<p>u盘信息:<br>
-/dev/sdb1 on /media/KINGSTON type vfat (rw,nosuid,nodev,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,showexec,flush,uhelper=udisks)</p>
-</blockquote></li>
-<li><p>卸载u盘</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount /media/KINGSTON
-</code></pre></div></li>
-<li><p>格式化</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs -t vfat /dev/sdb1 
+<li><p>代码演示</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="s">&#39;green&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">colors</span>
+    <span class="k">print</span> <span class="s">&#39;color is &#39;</span> <span class="o">+</span> <span class="n">color</span>
+</code></pre></div><div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># print the numbers from 0 through 99</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span>
 </code></pre></div></li>
 </ul>
 
-<h2>启动并设置unetbootin-linux-583参数</h2>
+<h2>while循环语句</h2>
 
 <ul>
-<li><p>参数设置</p>
-
-<p><img src="/assets/images/ubuntu_unetbootin_set.png" alt="图片"></p>
-
-<blockquote>
-<p><strong>注意：</strong><br>
-软件能够识别u盘--u盘一定要插在电脑上</p>
-</blockquote></li>
+<li><p>代码演示</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># list中元素a在哪个位置</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">a</span> <span class="p">:</span>
+        <span class="k">print</span> <span class="n">i</span>
+        <span class="k">break</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></li>
 </ul>
 
 					

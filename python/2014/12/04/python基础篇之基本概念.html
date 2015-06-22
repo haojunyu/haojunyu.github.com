@@ -103,52 +103,109 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>python基础篇是以Google for Education上面的<a href="https://developers.google.com/edu/python/?csw=1">Google&#39;s Python Class课程</a>为主.这是一门非常适合初学者的课程.</p>
+					<p>python里面有一些基本的概念,像模块,函数之类的,理解这些基本概念有利于对python程序的理解和编写.</p>
 
-<h2>英文介绍</h2>
-
-<p>Welcome to Google&#39;s Python Class -- this is a free class for people with a little bit of programming experience who want to learn Python. The class includes written materials, lecture videos, and lots of code exercises to practice Python coding. These materials are used within Google to introduce Python to people who have just a little programming experience. The first exercises work on basic Python concepts like strings and lists, building up to the later exercises which are full programs dealing with text files, processes, and http connections. The class is geared for people who have a little bit of programming experience in some language, enough to know what a &quot;variable&quot; or &quot;if statement&quot; is. Beyond that, you do not need to be an expert programmer to use this material.</p>
-
-<p>To get started, the Python sections are linked at the left -- Python Set Up to get Python installed on your machine, Python Introduction for an introduction to the language, and then Python Strings starts the coding material, leading to the first exercise. The end of each written section includes a link to the code exercise for that section&#39;s material. The lecture videos parallel the written materials, introducing Python, then strings, then first exercises, and so on. At Google, all this material makes up an intensive 2-day class, so the videos are organized as the day-1 and day-2 sections.</p>
-
-<p>This material was created by Nick Parlante working in the engEDU group at Google. Special thanks for the help from my Google colleagues John Cox, Steve Glassman, Piotr Kaminksi, and Antoine Picard. And finally thanks to Google and my director Maggie Johnson for the enlightened generosity to put these materials out on the internet for free under the under the Creative Commons Attribution 2.5 license -- share and enjoy!</p>
-
-<h2>课程结构</h2>
-
-<p>该课程主要包含以下三大模块,当然最重要的莫过于课程后面的练习了. </p>
-
-<ol>
-<li>文档</li>
-<li>视频</li>
-<li>练习
-<img src="/assets/images/python_struct.png" alt="课程结构"></li>
-</ol>
-
-<h2>简单python样例</h2>
-
-<p>就像刚刚学习c语言接触第一个&quot;Hello world!&quot;程序一样,下面就是一个简单的python版的&quot;Hello world!&quot;程序.</p>
+<h2>模块</h2>
 
 <ul>
+<li> 定义
+模块（类比java中包里面的类）是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。这也是使用python标准库的方法。</li>
 <li><p>代码示例</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python</span>
 
-<span class="c"># 导入所用模块 -- sys 是常用的模块 </span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<ul>
+<li><p>自己定义的模块</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># coding=utf-8</span>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># Filename: mymodule.py</span>
+
+<span class="c"># 模块中定义的函数</span>
+<span class="k">def</span> <span class="nf">sayhi</span><span class="p">():</span>   
+    <span class="k">print</span> <span class="s">&#39;模块就是这样建造的.&#39;</span>
+
+<span class="c"># 模块中定义的变量</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s">&#39;0.1&#39;</span>
+</code></pre></div></li>
+<li><p>引用自己定义好的模块</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># coding=utf-8</span>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># Filename: mymodule_demo.py</span>
+
+<span class="c"># 导入所写模块</span>
+<span class="kn">import</span> <span class="nn">mymodule</span>
 
 <span class="c"># 代码写在main()里面</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&#39;Hello World!&#39;</span>
-    <span class="c"># 命令行的参数在 sys.argv[1], sys.argv[2] ...</span>
-    <span class="c"># sys.argv[0] 表示脚本名称</span>
+    <span class="c"># 显示mymodule中定义的函数和变量</span>
+    <span class="k">print</span> <span class="s">&quot;mymodule中定义的函数和变量：&quot;</span> <span class="o">+</span> <span class="s">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">mymodule</span><span class="p">))</span>
+
+    <span class="c"># 显示当前main函数中定义的函数的变量</span>
+    <span class="k">print</span> <span class="s">&quot;main函数中定义的函数和变量：&quot;</span> <span class="o">+</span> <span class="s">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+
+    <span class="c"># 显示__name__的值</span>
+    <span class="k">print</span> <span class="s">&quot;main函数中__name__变量的值：&quot;</span> <span class="o">+</span> <span class="n">__name__</span>
 
 <span class="c"># 调用main()函数来启动程序的样板</span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
+
+    <span class="c"># 显示当前模块中定义的函数的变量</span>
+    <span class="k">print</span> <span class="s">&quot;当前模块中定义的函数和变量：&quot;</span> <span class="o">+</span> <span class="s">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">())</span>
+
+    <span class="c"># 显示__name__的值</span>
+    <span class="k">print</span> <span class="s">&quot;当前模块中__name__变量的值：&quot;</span> <span class="o">+</span> <span class="n">__name__</span>
 </code></pre></div>
-<blockquote>
-<p><strong>注意:</strong><br>
-代码第一行<code>#!/usr/bin/python</code>是当使用./scrpt.py执行该段程序时指定解释器的路径. 显然这里是linux的路径,windows可以换成<code>#!C:\Python2.7</code></p>
-</blockquote></li>
+<h2>函数</h2></li>
+</ul></li>
+<li><p>定义<br>
+函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。函数定义注意点</p>
+
+<ol>
+<li>以def关键字开头，后面接函数名称和参数以及冒号</li>
+<li>以return [expression]结束函数</li>
+<li>参数类型有多个
+
+<ul>
+<li>必备参数--一般定义的参数</li>
+<li>命名参数--复制语句作为参数</li>
+<li>缺省参数--参数有默认值</li>
+<li>不定长参数--用*标记，类似指针</li>
+</ul></li>
+</ol></li>
+<li><p>代码示例</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># coding=utf-8</span>
+<span class="c">#!/usr/bin/python</span>
+<span class="c"># Filename: function_demo.py</span>
+
+<span class="c"># 导入所写模块</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c"># 自定义函数</span>
+<span class="c"># 打印输入的参数和本函数名</span>
+<span class="k">def</span> <span class="nf">printStr</span><span class="p">(</span> <span class="nb">str</span> <span class="p">):</span>
+    <span class="c"># sys._getframe().f_code.co_name 能够获得当前函数的名称</span>
+    <span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span> <span class="p">,</span> <span class="s">&quot;:&quot;</span> <span class="p">,</span> <span class="nb">str</span> 
+    <span class="k">return</span>
+
+<span class="c"># 打印输入的不定长参数和本函数名</span>
+<span class="k">def</span> <span class="nf">printChangePar</span><span class="p">(</span> <span class="n">argc</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span> <span class="p">):</span>
+    <span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span> <span class="p">,</span> <span class="s">&quot;:&quot;</span> <span class="p">,</span> <span class="n">argc</span>
+    <span class="nb">vars</span> <span class="o">=</span><span class="s">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">argv</span><span class="p">:</span>
+        <span class="nb">vars</span> <span class="o">=</span> <span class="nb">vars</span> <span class="o">+</span> <span class="n">var</span> <span class="o">+</span> <span class="s">&quot; &quot;</span>
+        <span class="k">return</span> <span class="nb">vars</span>
+
+<span class="c"># 代码写在main()里面</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># 传入命名参数</span>
+    <span class="n">printStr</span><span class="p">(</span> <span class="nb">str</span> <span class="o">=</span> <span class="s">&quot;I am here .&quot;</span> <span class="p">)</span>
+
+    <span class="c"># 传入不定长参数</span>
+    <span class="k">print</span> <span class="n">printChangePar</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s">&quot;I&quot;</span><span class="p">,</span><span class="s">&quot;am&quot;</span><span class="p">,</span><span class="s">&quot;here&quot;</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+
+<span class="c"># 调用main()函数来启动程序的样板</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></li>
 </ul>
 
 					

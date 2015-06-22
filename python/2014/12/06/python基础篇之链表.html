@@ -103,127 +103,90 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>在批处理的过程中,经常需要查找文件以及在文件中查找相关字符串.在linux中有<code>grep</code>,<code>awk</code>,<code>sed</code>等命令,不过windows里面也有类似的命令,如这次介绍的<code>find</code>,<code>findstr</code>.</p>
+					<p>链表是python里面一个很重要的数据结构,也是非常常用的一个数据结构.</p>
 
-<h2>find</h2>
-
-<h3>用法</h3>
+<h2>链表的表示</h2>
 
 <ul>
-<li>Usage:
-<code>batch
-rem command:
-find [/v][/c][/n][/i] &quot;string&quot; [[drive:][path]filename]
-</code></li>
-<li><p>Parameter:  </p>
-
-<blockquote>
-<p><code>/v</code>    显示所有未包含指定字符串的行。<br>
-<code>/c</code>    仅显示包含字符串的行数。<br>
-<code>/n</code>    显示行号。<br>
-<code>/i</code>    搜索字符串时忽略大小写。 </p>
-</blockquote></li>
+<li><p>初始化</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">]</span>
+</code></pre></div></li>
+<li><p>扩展</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># 选择链表fruits中包含字符&#39;a&#39;，并全部转换成大写</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;apple&#39;</span><span class="p">,</span> <span class="s">&#39;cherry&#39;</span><span class="p">,</span> <span class="s">&#39;bannana&#39;</span><span class="p">,</span> <span class="s">&#39;lemon&#39;</span><span class="p">]</span>
+<span class="c"># [&#39;APPLE&#39;, &#39;BANNANA&#39;]</span>
+<span class="n">afruits</span> <span class="o">=</span> <span class="p">[</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">fruits</span> <span class="k">if</span> <span class="s">&#39;a&#39;</span> <span class="ow">in</span> <span class="n">s</span> <span class="p">]</span>
+</code></pre></div></li>
 </ul>
 
-<h3>案例</h3>
-
-<ol>
-<li><p>在文本test.txt中查找包含&quot;Abc”的整行，并显示(不区分大小写)</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">find <span class="n">/i</span> “Abc” test.txt
-</code></pre></div></li>
-<li><p>在文本test.txt中查找不包含&quot;Abc&quot;的整行，并显示  </p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">find <span class="n">/v</span> <span class="s2">&quot;Abc&quot;</span> test.txt
-</code></pre></div></li>
-<li><p>在文本test.txt中查找&quot;Abc&quot;出现的次数  </p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">find <span class="n">/n</span> <span class="s2">&quot;Abc&quot;</span> test.txt
-</code></pre></div></li>
-<li><p>在字符串&quot;abcdef”中查找&quot;abc&quot;(支持管道用法)  </p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> abcdef <span class="p">|</span> <span class="n">find</span> <span class="s2">&quot;abc&quot;</span>
-</code></pre></div></li>
-</ol>
-
-<h2>findstr--find的扩展</h2>
-
-<h3>用法</h3>
+<h2>list常用方法</h2>
 
 <ul>
-<li><p>Usage:</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem Command:</span>
-find [<span class="n">/v][/c][/n][/i]</span> strings [[drive:][path]filename]
+<li><p>添加元素</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
 </code></pre></div></li>
-<li><p>Parameter:  </p>
-
-<blockquote>
-<p><code>/b</code>    在一行的开始配对模式。(就是指以字符串开头，begin 这样就方便了记忆)<br>
-<code>/e</code>    在一行的结尾配对模式。（就是指以字符串结尾，end 这样就方便记忆）<br>
-<code>/l</code>    按字使用搜索字符串。就是将后面的&quot;&quot;里的当成一个字符<br>
-<code>/r</code>    将搜索字符串作为一般表达式使用。<br>
-<code>/s</code>    在当前目录和所有子目录中搜索匹配文件。<br>
-<code>/i</code>    指定搜索不分大小写。（英文：ignore 忽略）<br>
-<code>/x</code>    打印完全匹配的行。/x 是指完全匹配,就是说整行匹配,而不是含有关键字.<br>
-<code>/v</code>    只打印不包含匹配的行。（就是找出不包含字符串的）<br>
-<code>/n</code>    在匹配的每行前打印行数。（就是在输出行的前面加上原文件中的行数--number）<br>
-<code>/m</code>    如果文件含有匹配项，只打印其文件名。（指定文件中输出含有字符串的文件名）<br>
-<code>/o</code>    在每个匹配行前打印字符偏移量。o开关的作用是告诉你每行第一个字符前的位置是该文件中的第几个字节<br>
-<code>/C:string</code> 使用指定字符串作为文字搜索字符串<br>
-<code>/G:file</code> 从指定的文件获得搜索字符串。(/代表控制台)<br>
-<code>/F:file</code> 从指定文件读文件列表 (/ 代表控制台)。<br>
-<code>/D:dir</code> 查找以分号为分隔符的目录列表<br>
-<strong>Sign:</strong><br>
-<code>.</code>   通配符: 任何字符<br>
-<code>*</code>   重复: 以前字符或类别出现零或零以上次数<br>
-<code>^</code>   行位置: 行的开始<br>
-<code>$</code>   行位置: 行的终点<br>
-<code>[class]</code> 字符类别: 任何在字符集中的字符<br>
-<code>[^class]</code>    补字符类别: 任何不在字符集中的字符<br>
-<code>[x-y]</code>   范围: 在指定范围内的任何字符<br>
-<code>\x</code>  Escape: 元字符 x 的文字用法<br>
-<code>\&lt;xyz</code>   字位置: 字的开始<br>
-<code>xyz\&gt;</code>   字位置: 字的结束<br>
-<code>\&lt;</code>和<code>\&gt;</code>   是单词锚定 ^是行首 $是行尾  </p>
-</blockquote></li>
+<li><p>在i位置添加元素elem</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">elem</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>将list2中的元素添加到list中</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>获取元素elem的索引号</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>删除第一个出现的元素elem</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>删除第i个元素</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></li>
+<li><p>给list排序</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</code></pre></div></li>
+<li><p>颠倒list</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">list</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</code></pre></div></li>
 </ul>
 
-<h3>案例</h3>
+<h2>链表排序</h2>
 
-<ol>
-<li><p>在文件x.y中搜索&quot;hello&quot;或&quot;there&quot;</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="s2">&quot;hello there&quot;</span>  x.y
+<ul>
+<li><p>sorted基本方法</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c">## [1, 3, 4, 5]</span>
+<span class="k">print</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c">##[5, 4, 3, 1]</span>
+<span class="k">print</span> <span class="n">a</span>           <span class="c">## [5, 1, 4, 3]</span>
 </code></pre></div></li>
-<li><p>在文件x.y中搜索&quot;hello there&quot;</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="n">/c:&quot;hello</span> there&quot; x.y
-</code></pre></div></li>
-<li><p>把1.txt中含有2.txt中任何一行内容的行输出来</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="n">/g:2.txt</span> <span class="m">1</span>.txt
-<span class="c">rem 等价于:</span>
-<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
-<span class="k">for</span> <span class="n">/f</span> <span class="s2">&quot;delims=&quot;</span> <span class="nv">%%a</span> in (<span class="m">2</span>.txt) <span class="k">do</span> (
-    findstr <span class="s2">&quot;%%a&quot;</span> <span class="m">1</span>.txt
-)
-<span class="k">pause</span>
-</code></pre></div></li>
-<li><p>行开始/结束与字开始结束</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="s2">&quot;cd\&gt;&quot;</span> <span class="m">1</span>.txt
-<span class="c">rem 1.txt中两行&quot;abcd&quot;和&quot;abcd e&quot;都会出现</span>
-</code></pre></div></li>
-<li><p>从文件2.txt中查找包括数字0-9的字符串或行</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="s2">&quot;[0-9]&quot;</span> <span class="m">2</span>.txt
-</code></pre></div></li>
-<li><p>匹配找到纯数字,如233432或匹配找到纯字母,如sdfsd</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr <span class="s2">&quot;^[0-9]*$&quot;</span> <span class="m">2</span>.txt
-findstr “^[a-z]*$&quot; <span class="m">2</span>.txt
-</code></pre></div></li>
-<li><p>把1.txt文档中超过10个字符的行输入到2.txt中</p>
-<div class="highlight"><pre><code class="language-batch" data-lang="batch">findstr .......... <span class="m">1</span>.txt <span class="p">&gt;</span> <span class="n">2</span>.txt
-</code></pre></div></li>
-</ol>
+<li><p>sorted按关键字排序</p>
 
-<h2>find和findstr的比较</h2>
+<ul>
+<li><p>以字符串的长度排序</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">strs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ccc&#39;</span><span class="p">,</span> <span class="s">&#39;aaaa&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;bb&#39;</span><span class="p">]</span>
+<span class="k">print</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">strs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>  <span class="c">## [&#39;d&#39;, &#39;bb&#39;, &#39;ccc&#39;, &#39;aaaa&#39;]</span>
+<span class="c">#len代表len()这个函数</span>
+</code></pre></div>
+<p>其函数处理细节见下图<br>
+<img src="/assets/images/sorted_key.png" alt="sorted-key.png"></p></li>
+<li><p>以自定义关键字函数排序</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># 根据字符串最后一个字符来排序</span>
+<span class="n">strs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;xc&#39;</span><span class="p">,</span> <span class="s">&#39;zb&#39;</span><span class="p">,</span> <span class="s">&#39;yd&#39;</span> <span class="p">,</span><span class="s">&#39;wa&#39;</span><span class="p">]</span>
 
-<ol>
-<li>统计含指定字符串的总行数。<code>find /c &quot;abc&quot; test.txt</code>可以统计test.txt中含有字符串abc的总行数，而findstr则没有直接提供该功能，需要配合for语句才能实现<br></li>
-<li>find可以读取Unicode格式的文本，而findstr则不行</li>
-</ol>
+<span class="c"># 定义一个函数，输入是一个字符串，返回最后一个字符</span>
+<span class="k">def</span> <span class="nf">MyFn</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c"># 传递key=MyFn作为参数</span>
+<span class="k">print</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">strs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">MyFn</span><span class="p">)</span>  <span class="c">## [&#39;wa&#39;, &#39;zb&#39;, &#39;xc&#39;, &#39;yd&#39;]</span>
+</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h2>课后习题</h2>
+
+<ul>
+<li>基础题: <a href="/assets/attachs/list1.py.txt">list1.py</a></li>
+<li>提升题: <a href="/assets/attachs/list2.py.txt">list2.py</a></li>
+</ul>
 
 					
 						<div id="disqus_thread"></div>

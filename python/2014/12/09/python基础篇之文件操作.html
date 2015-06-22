@@ -103,47 +103,54 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.</p>
+					<p>python处理文件也是有一手的,所以熟练掌握文件操作对日后的任务操作非常有利.</p>
 
-<h2>准备工作</h2>
+<h2>打开/关闭文件</h2>
 
 <ul>
-<li>u盘</li>
-<li>ISO镜像文件 -- <a href="http://www.ubuntukylin.com/downloads/download.php?id=38">ubuntukylin-14.04.2-desktop-amd64.iso</a></li>
-<li><p>烧盘软件 -- unetbootin-linux-583</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install unetbootin
+<li><p>代码演示</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># 显示文本</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span>     <span class="c">## r/w/a同c里面的意义，U代表通用，最终的结尾符转换成&#39;\n&#39;</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>     <span class="c"># 遍历文件的每一行</span>
+    <span class="k">print</span> <span class="n">line</span><span class="p">,</span>    <span class="c"># 紧跟 ,这样print就不会输出换行符，因为line里面就有换行符</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></li>
 </ul>
 
-<h2>格式化u盘</h2>
+<h2>读写文本</h2>
 
 <ul>
-<li><p>查看u盘信息</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount
-</code></pre></div>
-<blockquote>
-<p>u盘信息:<br>
-/dev/sdb1 on /media/KINGSTON type vfat (rw,nosuid,nodev,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,showexec,flush,uhelper=udisks)</p>
-</blockquote></li>
-<li><p>卸载u盘</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount /media/KINGSTON
+<li><p>读文本到内存,返回一个list</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 </code></pre></div></li>
-<li><p>格式化</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs -t vfat /dev/sdb1 
+<li><p>读文本到字符串,返回字符串(配合正则表达式)</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre></div></li>
+<li><p>写数据到输出文件</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">f</span> <span class="p">,</span><span class="n">string</span>
+<span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
 </code></pre></div></li>
 </ul>
 
-<h2>启动并设置unetbootin-linux-583参数</h2>
+<h2>unicode文本操作</h2>
 
 <ul>
-<li><p>参数设置</p>
+<li><p>codecs模块支持</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">codecs</span>
 
-<p><img src="/assets/images/ubuntu_unetbootin_set.png" alt="图片"></p>
+<span class="n">f</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+  <span class="c"># here line is a *unicode* string</span>
 
-<blockquote>
-<p><strong>注意：</strong><br>
-软件能够识别u盘--u盘一定要插在电脑上</p>
-</blockquote></li>
+<span class="c"># 用f.write()写文件，print不完全支持unicode</span>
+</code></pre></div></li>
+</ul>
+
+<h2>课后习题</h2>
+
+<ul>
+<li>练习题: <a href="/assets/attachs/wordcount.py.txt">wordcount.py</a></li>
 </ul>
 
 					

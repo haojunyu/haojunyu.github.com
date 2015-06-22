@@ -103,47 +103,52 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.</p>
+					<p>初学Python，对Python的文字处理能力有很深的印象，除了str对象自带的一些方法外，就是正则表达式这个强大的模块了。关于python里面正则表达式的使用网上有很多博文,如<a href="http://blog.csdn.net/whycadi/article/details/2011046">python正则式学习笔记</a>等,这里做一下自己的总结.</p>
 
-<h2>准备工作</h2>
+<h2>基本使用</h2>
 
 <ul>
-<li>u盘</li>
-<li>ISO镜像文件 -- <a href="http://www.ubuntukylin.com/downloads/download.php?id=38">ubuntukylin-14.04.2-desktop-amd64.iso</a></li>
-<li><p>烧盘软件 -- unetbootin-linux-583</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install unetbootin
+<li><p>match方法</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;an example word:cat!!&#39;</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&#39;word:\w\w\w&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+<span class="c"># If语句紧跟来检验search()是否成功</span>
+<span class="k">if</span> <span class="n">match</span><span class="p">:</span>                      
+    <span class="k">print</span> <span class="s">&#39;found&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>  <span class="c">## 找到cat</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;did not find&#39;</span>
+</code></pre></div></li>
+<li><p>findall方法</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c"># 在字符串中查找</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;purple alice@google.com, blah monkey bob@abc.com blah dishwasher&#39;</span>
+
+<span class="c"># 找出str中所有的正规的邮箱</span>
+<span class="n">emails</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&#39;[\w\.-]+@[\w\.-]+&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="c">## [&#39;alice@google.com&#39;, &#39;bob@abc.com&#39;]</span>
+<span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">email</span>
+
+<span class="c"># 在文件中查找</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="err">（</span><span class="s">&#39;test.txt&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="err">）</span>
+
+<span class="n">strings</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&#39;pattern&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div></li>
 </ul>
 
-<h2>格式化u盘</h2>
+<h2>基本模式</h2>
 
 <ul>
-<li><p>查看u盘信息</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount
-</code></pre></div>
-<blockquote>
-<p>u盘信息:<br>
-/dev/sdb1 on /media/KINGSTON type vfat (rw,nosuid,nodev,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,showexec,flush,uhelper=udisks)</p>
-</blockquote></li>
-<li><p>卸载u盘</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount /media/KINGSTON
-</code></pre></div></li>
-<li><p>格式化</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs -t vfat /dev/sdb1 
-</code></pre></div></li>
-</ul>
-
-<h2>启动并设置unetbootin-linux-583参数</h2>
-
-<ul>
-<li><p>参数设置</p>
-
-<p><img src="/assets/images/ubuntu_unetbootin_set.png" alt="图片"></p>
-
-<blockquote>
-<p><strong>注意：</strong><br>
-软件能够识别u盘--u盘一定要插在电脑上</p>
-</blockquote></li>
+<li><code>普通字符</code>    a-z,A-Z,0-9</li>
+<li><code>.</code>           匹配任何一个单字符,除了换行符<code>\n</code></li>
+<li><code>\w</code>          匹配字母/数字/下划线,等价于[a-zA-Z0-9],<code>\W</code>与<code>\w</code>互为补集</li>
+<li><code>\b</code>          匹配词和非词的分隔界限</li>
+<li><code>\s</code>          匹配单个空格字符,等价于[ \n\r\t\f\v].<code>\S</code>和<code>\s</code>互为补集</li>
+<li><code>\t\n\r</code>      匹配制表符,换行符,回车符</li>
+<li><code>\d</code>          匹配数字,等价于[0-9]</li>
+<li><code>^ $</code>         <code>^</code>匹配开头,<code>$</code>匹配结尾</li>
 </ul>
 
 					
