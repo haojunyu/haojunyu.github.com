@@ -103,72 +103,75 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>个人感觉python对字符串的处理是非常强的,所以掌握一些python对字符串的基本操作是非常有必要的.</p>
+					<p><code>find</code>命令是用来搜索指定目录下面符合搜索选项的文件.它跟<code>awk</code>,<code>sed</code>,<code>grep</code>的区别是它搜索到的对象是文件,而后三者是文件里的字符或字符串.</p>
 
-<h2>字符串表示</h2>
+<h2>用法</h2>
 
 <ul>
-<li><p>赋值</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;hello&#39;</span>
+<li><p>命令格式</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find path -option
 </code></pre></div></li>
-<li><p>填字符串</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> little pigs come out or I&#39;ll </span><span class="si">%s</span><span class="s"> and </span><span class="si">%s</span><span class="s"> and </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;huff&#39;</span><span class="p">,</span> <span class="s">&#39;puff&#39;</span><span class="p">,</span> <span class="s">&#39;blow down&#39;</span><span class="p">)</span>
-</code></pre></div></li>
-<li><p>转换</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="k">print</span> <span class="s">&#39;pi = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<li><p>参数说明</p>
+
+<ul>
+<li>`-name &#39;pattern&#39;  根据名称来查找</li>
+<li><code>-user &#39;pattern&#39;</code> 根据所属用户</li>
+<li><code>-size n</code>     根据文件大小<br></li>
+<li><code>-type [fdbl]</code>    根据文件类型</li>
+<li><code>-empty</code>      是否时空文件</li>
+<li><code>-exec command {} \;</code> 对查找到的文件进一步命令处理</li>
+<li><code>-mtime n</code>    根据文件内容修改时间(单位是天)</li>
+<li><code>-ctime n</code>    根据文件属性改变[<code>chmod</code>]时间(单位时天)</li>
+<li><code>-atime n</code>    根据文件访问[<code>cat</code>]时间(单位是天)</li>
+</ul>
+
+<blockquote>
+<p><strong><em>注意:</em></strong><br>
+<code>-mmin n</code>/<code>-cmin n</code>/<code>-amin n</code>和上面三个区别是单位是分钟<br>
+对于n,<code>n</code>是指正好n天前的当天,<code>+n</code>是指所有n天前,<code>-n</code>是指所有n天内 </p>
+</blockquote></li>
+</ul>
+
+<h2>案例</h2>
+
+<ol>
+<li><p>查找_posts/目录下面文件名包含shell字符串的文件</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -name <span class="s1">&#39;*shell*&#39;</span>
 </code></pre></div>
-<h2>常用方法</h2></li>
-<li><p>大小写转换</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-</code></pre></div></li>
-<li><p>去除首尾空格</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</code></pre></div></li>
-<li><p>判断字符里所有的字符是不是字母/数字/空格</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
-<span class="nb">str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
-<span class="nb">str</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span>
-</code></pre></div></li>
-<li><p>判断字符串是不是以某个子串开头/结尾</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
-<span class="nb">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">()</span>
-</code></pre></div></li>
-<li><p>查找子串在字符串中的位置,没找到返回-1</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;th&#39;</span><span class="p">)</span>
-</code></pre></div></li>
-<li><p>字符串的替换</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;old&#39;</span><span class="p">,</span><span class="s">&#39;new&#39;</span><span class="p">)</span>
-</code></pre></div></li>
-<li><p>字符串的分割,返回list</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;delim&#39;</span><span class="p">)</span>
-<span class="s">&#39;delim&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</code></pre></div></li>
-</ul>
+<p>结果显示如下:
+<img src="/assets/images/shell.png" alt="shell"></p></li>
+<li><p>查找_posts/目录下面文件名包含shell字符串的文件,并统计每个文件有多少行</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -name <span class="s1">&#39;*shell*&#39;</span> -exec wc -l <span class="o">{}</span> <span class="se">\;</span>
+</code></pre></div>
+<p>结果显示如下:
+<img src="/assets/images/findwc.png" alt="findwc"></p></li>
+<li><p>下面根据文件内容修改时间(单位是分钟)进行查找
+目前_posts中的文件显示如下,以时间先后排序,其中swp的文件的修改时间为7月1号18:12,而原文件是17:59,其他的都是6月30号的文件.
+<img src="/assets/images/states.png" alt="shell"></p>
 
-<h2>编码问题</h2>
-
-<p>在python里面默认都是用unicode编码的,而windows里面的文件默认是gbk编码,而linux里面的文件默认的是utf8编码,所以编码之间的转换是必不可少的.</p>
-
-<ul>
-<li><p>定义unicode字符串</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">ustr</span> <span class="o">=</span> <span class="s">u&#39;A unicode </span><span class="se">\u018e</span><span class="s"> string </span><span class="se">\xf1</span><span class="s">&#39;</span>
-</code></pre></div></li>
-<li><p>转换utf-8编码</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">utfstr</span> <span class="o">=</span> <span class="n">ustr</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></div></li>
-<li><p>转换会unicode编码</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">unistr</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">utfstr</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></div></li>
-</ul>
-
-<h2>课后练习</h2>
-
-<ul>
-<li>基础题: <a href="/assets/attachs/string1.py.txt">string1.py</a><br></li>
-<li>提升题: <a href="/assets/attachs/string2.py.txt">string2.py</a></li>
-</ul>
+<ol>
+<li>查询19分钟之前那一分中哪些文件被修改了</li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -mmin 19
+</code></pre></div>
+<p>结果显示如下:
+<img src="/assets/images/19.png" alt="19">
+2. 查询前19分钟之前所有被修改了的文件</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -mmin +19
+</code></pre></div>
+<p>结果显示如下:
+<img src="/assets/images/+19.png" alt="+19">
+3. 查询前19分钟以内所有被修改了的文件</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -mmin -19
+</code></pre></div>
+<p>结果显示如下:
+<img src="/assets/images/-19.png" alt="-19"></p></li>
+<li><p>查询_posts/目录下面文件大小大于3k的文件</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">find _posts/ -size +3k
+</code></pre></div>
+<p>结果显示如下:
+<img src="/assets/images/10k.png" alt="10k"></p></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>

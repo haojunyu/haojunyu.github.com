@@ -103,119 +103,62 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>shell编程说白了就是常用命令和语法结构的自由组合.所以本文将粗略介绍一下常用的命令以及其用法.</p>
-
-<h2>正则表达式</h2>
-
-<p>符号和用法<br>
-    * <code>.</code>   匹配任何单个字符[shell用的是?]<br>
-    * <code>^</code>   跟行首匹配<br>
-    * <code>$</code>   跟行尾匹配<br>
-    * <code>*</code>   匹配0或若干个紧靠在星号前的字符[shell是0或若干跟字符]<br>
-    * <code>[]</code>  匹配字符组,^表示除外[shell用!表示]<br>
-    * <code>{min,max}</code>   匹配min-max个重复的字符串<br>
-    * <code>{...}</code>   将小括号中匹配的字符串存储到一个寄存器中</p>
-
-<h2>cut命令</h2>
-
-<p>从文件中吸取各种各样的数据域  </p>
-
-<ol>
-<li><p>取第2-10个字符串</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">cut -c2-10 file
-</code></pre></div></li>
-<li><p>以:为分割符分割file,取第2个数据域</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">cut -d: -f2 file
-</code></pre></div></li>
-</ol>
-
-<h2>paste命令</h2>
-
-<p>paste与cut相反，把多行合并在一起[行对行]  </p>
-
-<ol>
-<li><p>以:为分割符,将两个文件行对行合并起来</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">paste -d:  file1 file2
-</code></pre></div>
-<h2>tr命令</h2>
-
-<p>tr可以转换来自标准输入中的字符</p></li>
-<li><p>将file里面from-chars替换成to-chars</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">tr ‘from-chars’ <span class="s1">&#39;to-chars&#39;</span> &lt; file
-</code></pre></div></li>
-</ol>
-
-<h2>grep命令</h2>
-
-<p>grep查找多个文件中包含的单词或短语</p>
-
-<ul>
-<li><p>用法 -- 支持正则表达式</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">grep ‘patten’ filespatten
-</code></pre></div></li>
-<li><p>参数</p>
-
-<ul>
-<li><code>-i</code>  忽略大小写</li>
-<li><code>-n</code>  显示行号</li>
-<li><code>-v</code>  显示不包含指定模式的行</li>
-<li><code>-l</code>  显示包含指定模式的文件列表</li>
-</ul></li>
-</ul>
-
-<h2>awk命令</h2>
-
-<p>awk强大的文本编辑利器之一，方便于列处理</p>
-
-<ul>
-<li><p>用法</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk ‘模式<span class="o">{</span>操作<span class="o">}</span>’ files
-</code></pre></div></li>
-<li><p>参数</p>
-
-<ul>
-<li><code>NR</code>  当期处理行的行号</li>
-<li><code>FS</code>  字段分割符，缺省为空格或tab</li>
-<li><code>$n</code>  当前行的第n个字段</li>
-<li><code>$0</code>  当前行的所有文本</li>
-</ul></li>
-</ul>
-
-<h2>sed命令</h2>
-
-<p>sed强大的文本编辑利器之一，方便于行处理</p>
-
-<ul>
-<li><p>用法</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sed ‘<span class="o">[</span>地址1<span class="o">[</span>,地址2<span class="o">]]</span>操作’ file
-</code></pre></div></li>
-<li><p>参数</p>
-
-<ul>
-<li><code>p</code>   打印</li>
-<li><code>n</code>   转到下一行</li>
-<li><code>d</code>   删除</li>
-<li><code>s</code>   替换字符串</li>
-<li><code>a</code>   追加新的文本</li>
-</ul></li>
-</ul>
-
 					
-						<div id="disqus_thread"></div>
- <script type="text/javascript">
-     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-     var disqus_shortname = 'haojunyugithubio'; // required: replace example with your forum shortname
+	
+    <div class="article">
+        <h3 class="title"><a href="/gimp/2013/06/18/%E4%BB%A5Gimp%E4%B8%BA%E6%89%8BK%E5%A4%A9P%E5%9C%B0%E4%B9%8B%E7%AE%80%E4%BB%8B.html" title="以Gimp为手K天P地之简介">以Gimp为手K天P地之简介</a></h3>
+        <article class="rexp">
+            <p><p>随着大学生活的告一段落,新的征途已经开始了.由于比较喜欢旅游,比较喜欢拍照,比较喜欢处理图片,所以打算在照片处理上下点功夫.在windows里面,提到专业的图像处理软件当属Photoshop了,而另外一款强大的专业的跨平台的位图处理软件Gimp知道的并不多,而且其性能不下于Photoshop.</p>
+</p>
+        </article>
+        <a href="/gimp/2013/06/18/%E4%BB%A5Gimp%E4%B8%BA%E6%89%8BK%E5%A4%A9P%E5%9C%B0%E4%B9%8B%E7%AE%80%E4%BB%8B.html" class="more"><i class="icon-link"></i></a>
+        <div class="info">
+            <span class="info-title"><i class="icon-calendar"></i> Published: </span>
+            <span class="info-date">18 Jun 2013</span>
+             <span class="info-title"><i class="icon-folder-open"></i> Category: </span>
+            <span class="info-link"><a href="/navigations/categories.html#Gimp-ref" >Gimp</a></span>
+        </div>
+    </div>
 
-     /* * * DON'T EDIT BELOW THIS LINE * * */
-     (function() {
-         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-     })();
- </script>
- <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    
+
+    <nav class="pagination fn-clear">
+        <span class="pagination-icon"><i class=" icon-copy"></i></span>
+        <ul class="pagination-list">
+            
+                
+                    <li><a href="/">1</a></li>
+                
+            
+                
+                    <li><a href="/page2/">2</a></li>
+                
+            
+                
+                    <li><a href="/page3/">3</a></li>
+                
+            
+                
+                    <li><a href="/page4/">4</a></li>
+                
+            
+                
+                    <li><a href="/page5/">5</a></li>
+                
+            
+                
+                    <li><a href="/page6/">6</a></li>
+                
+            
+                
+                    <li class="current"><a href="javascript:void(0);">7</a></li>
+                
+            
+        </ul>
+    </nav>
+
+
+
+
 
 					
 				</div>
