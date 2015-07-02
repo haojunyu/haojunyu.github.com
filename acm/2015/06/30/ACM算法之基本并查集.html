@@ -103,7 +103,117 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>sllllldfadf</p>
+					<p>并查集是一种用途广泛的数据结构，能够快速地处理集合的合并和查询问题，并且实现起来非常方便，在很多场合中都有着非常巧妙的应用。本文首先介绍并查集的定义、原理及具体实现，然后结合hihocoder以及poj上的题目做一些具体实践。</p>
+
+<h2>定义和原理</h2>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集</a>(Union-Find Set)是一种树型的数据结构，其保持着用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。有一个联合-查找算法（union-find algorithm）定义了两个操作用于此数据结构：</p>
+
+<ul>
+<li><code>Find</code>            确定元素属于哪一个子集。它可以被用来确定两个元素是否属于同一子集。<br></li>
+<li><code>Union</code>   将两个子集合并成同一个集合。<br></li>
+</ul>
+
+<p>因为它支持这两种操作，一个不相交集也常被称为联合-查找数据结构（union-find data structure）或合并-查找集合（merge-find set）。其他的重要方法，<code>MakeSet</code>，用于建立单元素集合。有了这些方法，许多经典的划分问题可以被解决。</p>
+
+<p>网络上有两篇帮助理解的博文，博主用通俗易懂的语言，图文并茂的方式将并查集生动形象得阐释了。特附上博文链接：   </p>
+
+<ul>
+<li><a href="http://www.cnblogs.com/ACShiryu/archive/2011/11/24/unionset.html">通俗易懂的诠释并查集</a></li>
+<li><a href="http://www.cnblogs.com/cyjb/p/UnionFindSets.html">图文并茂的解释并查集</a></li>
+</ul>
+
+<h2>代码实现</h2>
+
+<ul>
+<li><p>并查集的数据存储[<mark>O(n)</mark>]</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define LENMAX 1000000</span>
+<span class="kt">int</span> <span class="n">father</span><span class="p">[</span><span class="n">LENMAX</span><span class="p">]</span>
+</code></pre></div>
+<p>虽然并查集是树型的数据结构，但是实际的存储是用数组，就跟堆排序一样。</p></li>
+<li><p>并查集的初始化<code>MakeSet</code></p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">MakeSet</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">LENMAX</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">father</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>MakeSet</code>是并查集的初始化函数，这里采用<code>father[i]==i</code>来判定该i是否是某个集合的代表。</p></li>
+<li><p>并查集的查找操作[<mark>O(alpha(n)) alpha(n)&lt;n</mark>]</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 查找操作--未压缩路径</span>
+<span class="kt">int</span> <span class="nf">Find</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+      <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="n">Find</span><span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 查找操作--压缩路径</span>
+<span class="kt">int</span> <span class="nf">Find</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+      <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">Find</span><span class="p">(</span><span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="n">father</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>压缩路径可以避免重复查找，其实际的意义是将树的深度由n变成1。就是将层层的等级制度变成全部向皇帝/代表负责。</p></li>
+<li><p>并查集的合并操作[<mark>O(alpha(n))  alpha(n)&lt;n</mark>]</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 合并操作</span>
+<span class="kt">void</span> <span class="nf">Union</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fatherX</span> <span class="o">=</span> <span class="n">Find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">fatherY</span> <span class="o">=</span> <span class="n">Find</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+    <span class="c1">// fatherY归fatherX管了</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">fatherX</span><span class="o">!=</span><span class="n">fatherY</span><span class="p">)</span>
+      <span class="n">father</span><span class="p">[</span><span class="n">fatherY</span><span class="p">]</span><span class="o">=</span><span class="n">fatherX</span><span class="p">;</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    // 合并的时候取小的数值</span>
+<span class="cm">    if(fatherX&lt;fatherY)</span>
+<span class="cm">        father[fatherY]=fatherX;</span>
+<span class="cm">    else</span>
+<span class="cm">        father[fatherX]=fatherY;</span>
+<span class="cm">    */</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<h2>解题报告</h2>
+
+<ul>
+<li><p>HihoCoder</p>
+
+<ol>
+<li><p>第十四周：<a href="http://hihocoder.com/contest/hiho14/problem/1">无间道之并查集</a>    |   <a href="/assets/attachs/hiho_14_main.cpp.txt">源码</a></p>
+
+<p>注意点：</p>
+
+<ol>
+<li>通过map将名称转化为int标号</li>
+<li>最后一步判定两个名称是否是同一个集合时用<code>Find(mapName[nameX])==Find(mapName[nameY])</code>,不能用<code>father[mapName[nameX]]==father[mapName[nameY]]</code>。</li>
+</ol></li>
+</ol></li>
+<li><p>POJ</p>
+
+<ol>
+<li><p>1611: <a href="http://poj.org/problem?id=1611">The Suspects</a> |   <a href="/assets/attachs/poj_1611_main.cpp.txt">源码</a></p>
+
+<p>注意点:</p>
+
+<ol>
+<li> 判定i是否和0同一类必须得通过<code>Find</code>找到最高的根节点是相同[代码实现可以添加<code>rank[LENMAX]</code>来记录同集合的元素个数]</li>
+</ol></li>
+<li><p>2524: <a href="http://poj.org/problem?id=2524">Ubiquitous Religions</a> |   <a href="/assets/attachs/poj_2524_main.cpp.txt">源码</a></p>
+
+<p>注意点：</p>
+
+<ol>
+<li>通过<code>i=father[i]</code>判断是否是根节点,也就是说是否是一个集合</li>
+</ol></li>
+</ol></li>
+</ul>
 
 					
 						<div id="disqus_thread"></div>
