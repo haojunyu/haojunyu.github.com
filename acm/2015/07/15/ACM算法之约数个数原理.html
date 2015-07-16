@@ -10,7 +10,14 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="/themes/jmq/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="/themes/jmq/javascripts/main.js"></script>
-    <!--[if lt IE 9]>
+	<!--数学公式用mathjax编辑-->
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+	});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -103,7 +110,7 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>here</p>
+					<p>在数论里面除了老生常谈的素数问题，还有一个就是约数个数问题。对于这个问题的解法可能还停留在用n除以 $1,\cdots,\sqrt n$，然后统计能够整除的个数。其时间复杂度为 $O(\sqrt n)$。本文主要介绍约数个数定理以及它在实际题目中的应用。</p>
 
 					
 						<div id="disqus_thread"></div>

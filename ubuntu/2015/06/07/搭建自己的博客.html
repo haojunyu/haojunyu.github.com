@@ -10,7 +10,14 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="/themes/jmq/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="/themes/jmq/javascripts/main.js"></script>
-    <!--[if lt IE 9]>
+	<!--数学公式用mathjax编辑-->
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+	});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -253,14 +260,12 @@ vim-addon-manager install mkd
 <li><p>配置~/.vim/vimrc</p>
 
 <p>在~/.vim/vimrc文件的末尾添加下面的markdown设置</p>
-
-<blockquote>
-<p>&quot;-- markdown --<br>
-let g:vim<em>markdown</em>folding<em>disabled=1 &quot;取消代码折叠<br>
-let g:vim</em>markdown<em>no</em>default<em>key</em>mappings=1  &quot;取消默认的键对应<br>
-let g:vim<em>markdown</em>math=1     &quot;使用数学符号<br>
-let g:vim<em>markdown</em>frontmatter=1  &quot;高亮YMAL frontmatter</p>
-</blockquote></li>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="s2">&quot;-- markdown --  </span>
+<span class="s2">let g:vim_markdown_folding_disabled=1   &quot;</span>取消代码折叠  
+<span class="nb">let </span>g:vim_markdown_no_default_key_mappings<span class="o">=</span><span class="m">1</span>    <span class="s2">&quot;取消默认的键对应  </span>
+<span class="s2">let g:vim_markdown_math=1       &quot;</span>使用数学符号  
+<span class="nb">let </span>g:vim_markdown_frontmatter<span class="o">=</span><span class="m">1</span>    <span class="err">&quot;</span>高亮YMAL frontmatter
+</code></pre></div></li>
 </ol>
 
 <h3>安装实时预览插件vim-instant-markdown</h3>
