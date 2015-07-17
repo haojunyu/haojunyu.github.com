@@ -101,6 +101,8 @@ customLinks:
       url: http://blog.csdn.net/zouxy09
     - text: CodingLabs
       url: http://blog.codinglabs.org
+    - text: ilz
+      url: http://ilz.me
     message: Big Fishes
   - item:
     - text: 我爱自然语言处理
