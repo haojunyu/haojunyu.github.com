@@ -110,54 +110,76 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>ACM编程也是需要一些通用的代码片段的.熟练掌握这些代码片段可以在后面的编程中更加方便.</p>
+					<p>在数论里面除了老生常谈的素数问题，还有一个就是约数个数问题。对于这个问题的解法可能还停留在用n除以 $1,\cdots,\sqrt n$，然后统计能够整除的个数。其时间复杂度为 $O(\sqrt n)$。本文主要介绍约数个数定理以及它在实际题目中的应用。</p>
 
-<h2>验证完全平方数</h2>
+<h2>约数个数原理</h2>
+
+<ul>
+<li><p>原理<br>
+对于一个大于1的正整数n，n可以因式分解为
+$$
+n = \prod _{ i = 1 } ^k p _i ^{ a _i } = p _1 ^{ a _1 } * \cdots * p _k ^{ a _k } 
+$$,
+其中$ p _i $是质数，$ a _i \in N $，那么n的约数个数就是
+$$
+f ( n ) = \prod _{ i = 1 } ^k ( a _i + 1) = ( a _i + 1) * \cdots *( a _k + 1 )
+$$</p></li>
+<li><p>简证<br>
+因为$ p _i $都是质数，无法再进行因式分解，所以任意$ p _i $的组合都可以构成一个约数，对于质数$ p _i $有$ (a _i+1) $种可能，分别是 $ 0,1,\cdots,a _i $，那么对于k个$ p _i $共有 $ \prod _{i=1}^k (a _i +1) $种可能的组合。</p></li>
+</ul>
+
+<h2>代码实现</h2>
+
+<ul>
+<li><p>思路<br>
+要求解一个整数n的约数个数$ f(n) $，其关键就是通过因式分解获取各个质数的指数。不过通常情况下，我们无法获取比n小的质数有哪些（$ 10^{16} $以内的质数有个，所以数目还是可观的。）这里我们通过n不断除以除数m，$ m \in {2,3,5,7,9,\cdots} $，如果能够整除的话，就更新n为$ n/m $，这样虽然除数里面有9这样的合数，但经过除以2次3后，9将会不被更新后的n整除，所以实际的情况还是除以质数。</p></li>
+<li><p>c++代码  </p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">// 快速计算n的约数个数</span>
+<span class="kt">int</span> <span class="nf">NumOfFac</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">m</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+                    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">/</span> <span class="n">i</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">*</span><span class="n">k</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="c1">// 2,3,5,7,11...避开2-&gt;3之间差1</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<h2>解题报告</h2>
+
+<ul>
+<li><p>HihoCoder</p>
 
 <ol>
-<li>情景描述<br>
-验证整数n是否是完全平方数</li>
-<li><p>代码片段  </p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include&lt;math.h&gt;</span>
-<span class="kt">double</span> <span class="n">m</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d是完全平方数。</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">m</span><span class="p">);</span>
-</code></pre></div></li>
-<li><p>亮点<br>
-    函数<code>floor(x)</code>返回x的整数部分，但浮点数的运算（<code>sqrt</code>）有可能存在误差[不经常，但一定会有]。若由于误差影响，整数1变成0.99999,那么<code>floor(m)==m</code>就会产生误差。</p></li>
-</ol>
+<li><p>divisors: <a href="http://hihocoder.com/contest/mstest2015july1/problem/2">divisors</a> | <a href="/assets/attachs/hiho_divisors.cpp.txt">源码</a> | <a href="/acm_report/2015/07/23/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E5%A4%A7%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0.html">报告细节</a></p>
 
-<h2>计算程序所花时间</h2>
+<p>注意点：</p>
 
 <ol>
-<li>情景描述
-计算程序片段所花的时间</li>
-<li><p>代码片段</p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include&lt;time.h&gt;</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Time used=%.2lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,(</span><span class="kt">double</span><span class="p">)</span><span class="n">clock</span><span class="p">()</span><span class="o">/</span><span class="n">CLOCK</span><span class="o">+</span><span class="n">PRE_SEC</span><span class="p">);</span>
-</code></pre></div></li>
-<li><p>优势<br>
-能够清楚的检验程序是否满足比赛时间要求</p></li>
-</ol>
+<li>暴力求解(<mark>遍历比n小的数，依次求解每个数的约数个数</mark>)是行不通的。</li>
+<li><p>合理利用约数个数原理，并对其进行优化求解。</p>
 
-<h2>输入输出重定向</h2>
-
-<ol>
-<li>情景描述<br>
-本机测试时用文件重定向，一旦提交到比赛，就自动“删除”重定向语句</li>
-<li><p>代码片段</p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#ifdef LOCAL</span>
-    <span class="n">freopen</span><span class="p">(</span><span class="s">&quot;data.in&quot;</span><span class="p">,</span><span class="s">&quot;r&quot;</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-    <span class="n">freopen</span><span class="p">(</span><span class="s">&quot;data.out&quot;</span><span class="p">,</span><span class="s">&quot;w&quot;</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
-<span class="cp">#endif</span>
-</code></pre></div></li>
-<li><p>编译命令<br>
-            将上面代码置于main函数最上面。编译时用下面的命令[命令中定义了LOCAL]</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">gcc main.c -o main -DLOCAL
-</code></pre></div></li>
-<li><p>亮点<br>
-            本机测试时，因为定义了LOCAL变量而使用了重定向，而上传后因为比赛编译命令里没有-DLOCAL选项而不会使用重定向。</p></li>
-</ol>
+<blockquote>
+<p><strong>TIPS:</strong><br>
+最终求解的拥有最大约数个数的数一定满足下面的推论：<br>
+若$p _1 &lt; p _2 &lt;  \cdots &lt; p _k$,则$a _1 &gt; a _2 &gt; \cdots &gt; a _k$</p>
+</blockquote></li>
+</ol></li>
+</ol></li>
+</ul>
 
 					
 						<div id="disqus_thread"></div>
@@ -195,13 +217,15 @@
 						<h4 class="title">Recent Posts</h4>
 						<ul class="list">
 							
-								<li><a href="/acm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html" title="ACM算法之约数个数原理" rel="bookmark">ACM算法之约数个数原理</a></li>
+								<li><a href="/acm_report/2015/07/23/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E5%A4%A7%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0.html" title="ACM解题报告之最大约数个数" rel="bookmark">ACM解题报告之最大约数个数</a></li>
+							
+								<li><a href="/acm_algorithm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html" title="ACM算法之约数个数原理" rel="bookmark">ACM算法之约数个数原理</a></li>
 							
 								<li><a href="/shell/2015/07/06/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%BD%AF%E7%A1%AC%E9%93%BE%E6%8E%A5ln.html" title="shell编程之软硬链接ln" rel="bookmark">shell编程之软硬链接ln</a></li>
 							
 								<li><a href="/shell/2015/07/01/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A3%80%E7%B4%A2find.html" title="shell编程之文件检索find" rel="bookmark">shell编程之文件检索find</a></li>
 							
-								<li><a href="/acm/2015/06/30/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%B9%B6%E6%9F%A5%E9%9B%86.html" title="ACM算法之基本并查集" rel="bookmark">ACM算法之基本并查集</a></li>
+								<li><a href="/acm_algorithm/2015/06/30/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%B9%B6%E6%9F%A5%E9%9B%86.html" title="ACM算法之基本并查集" rel="bookmark">ACM算法之基本并查集</a></li>
 							
 								<li><a href="/ubuntu/2015/06/13/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98.html" title="自定义博客主题" rel="bookmark">自定义博客主题</a></li>
 							
@@ -212,8 +236,6 @@
 								<li><a href="/ubuntu/2015/05/31/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%A5%9E%E5%99%A8git.html" title="版本控制神器git" rel="bookmark">版本控制神器git</a></li>
 							
 								<li><a href="/ubuntu/2015/05/31/ubuntu%E4%B8%8Blamp%E7%9A%84%E6%9E%84%E5%BB%BA.html" title="ubuntu下lamp的构建" rel="bookmark">ubuntu下lamp的构建</a></li>
-							
-								<li><a href="/shell/2015/05/22/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7.html" title="shell编程之系统进程监控" rel="bookmark">shell编程之系统进程监控</a></li>
 							
 						</ul>
 					</div>
