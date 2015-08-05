@@ -110,53 +110,76 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>python基础篇是以Google for Education上面的<a href="https://developers.google.com/edu/python/?csw=1">Google&#39;s Python Class课程</a>为主.这是一门非常适合初学者的课程.</p>
+					<p>日志分析系统ELK是三个开源软件的缩写，分别是Elasticsearch，Logstash，Kibana。其中Elasticsearch是用来实现索引和搜索功能的目的，Logstash是一个很灵活的日志收集和处理工具。Kibana是和Elasticsearch配套的图形展示界面，用于方便的展示数据和分析数据。本文对整个套件的安装配置过程作了记录，并写了一键安装配置的脚本。</p>
 
-<h2>英文介绍</h2>
-
-<p>Welcome to Google&#39;s Python Class -- this is a free class for people with a little bit of programming experience who want to learn Python. The class includes written materials, lecture videos, and lots of code exercises to practice Python coding. These materials are used within Google to introduce Python to people who have just a little programming experience. The first exercises work on basic Python concepts like strings and lists, building up to the later exercises which are full programs dealing with text files, processes, and http connections. The class is geared for people who have a little bit of programming experience in some language, enough to know what a &quot;variable&quot; or &quot;if statement&quot; is. Beyond that, you do not need to be an expert programmer to use this material.</p>
-
-<p>To get started, the Python sections are linked at the left -- Python Set Up to get Python installed on your machine, Python Introduction for an introduction to the language, and then Python Strings starts the coding material, leading to the first exercise. The end of each written section includes a link to the code exercise for that section&#39;s material. The lecture videos parallel the written materials, introducing Python, then strings, then first exercises, and so on. At Google, all this material makes up an intensive 2-day class, so the videos are organized as the day-1 and day-2 sections.</p>
-
-<p>This material was created by Nick Parlante working in the engEDU group at Google. Special thanks for the help from my Google colleagues John Cox, Steve Glassman, Piotr Kaminksi, and Antoine Picard. And finally thanks to Google and my director Maggie Johnson for the enlightened generosity to put these materials out on the internet for free under the under the Creative Commons Attribution 2.5 license -- share and enjoy!</p>
-
-<h2>课程结构</h2>
-
-<p>该课程主要包含以下三大模块,当然最重要的莫过于课程后面的练习了. </p>
-
-<ol>
-<li>文档</li>
-<li>视频</li>
-<li>练习
-<img src="/assets/images/python_struct.png" alt="课程结构"></li>
-</ol>
-
-<h2>简单python样例</h2>
-
-<p>就像刚刚学习c语言接触第一个&quot;Hello world!&quot;程序一样,下面就是一个简单的python版的&quot;Hello world!&quot;程序.</p>
+<h2>环境信息</h2>
 
 <ul>
-<li><p>代码示例</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python</span>
+<li>操作系统 Ubuntu 14.04 64bit</li>
+<li><p>依赖环境 </p>
 
-<span class="c"># 导入所用模块 -- sys 是常用的模块 </span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="c"># 代码写在main()里面</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&#39;Hello World!&#39;</span>
-    <span class="c"># 命令行的参数在 sys.argv[1], sys.argv[2] ...</span>
-    <span class="c"># sys.argv[0] 表示脚本名称</span>
-
-<span class="c"># 调用main()函数来启动程序的样板</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
-<blockquote>
-<p><strong>注意:</strong><br>
-代码第一行<code>#!/usr/bin/python</code>是当使用./scrpt.py执行该段程序时指定解释器的路径. 显然这里是linux的路径,windows可以换成<code>#!C:\Python2.7</code></p>
-</blockquote></li>
+<ol>
+<li><p>java环境</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install openjdk-7-jdk
+</code></pre></div></li>
+<li><p>redis[<mark>单机时不用安装,CS模式中充当缓存队列</mark>]</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install redis-server
+</code></pre></div></li>
+</ol></li>
 </ul>
+
+<h2>Elasticsearch安装与配置</h2>
+
+<ol>
+<li><p>导入GPG key</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch <span class="p">|</span> sudo apt-key add -
+</code></pre></div></li>
+<li><p>添加elasticsearch到源（source list）中</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main&#39;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/elasticsearch.list
+</code></pre></div></li>
+<li><p>更新软件包数据库</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get update
+</code></pre></div></li>
+<li><p>安装elasticsearch</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get -y install <span class="nv">elasticsearch</span><span class="o">=</span>1.4.4
+</code></pre></div></li>
+<li><p>配置elasticsearch[/etc/elasticsearch/elasticsearch.yml]
+....</p></li>
+<li><p>启动elasticsearch服务</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo service elasticsearch restart
+</code></pre></div></li>
+<li><p>设置elasticsearch开机启动</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo update-rc.d elasticsearch defaults <span class="m">95</span> 10
+</code></pre></div></li>
+</ol>
+
+<h2>Logstash的安装和配置</h2>
+
+<ol>
+<li><p>添加logstash到源中</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;deb http://packages.elasticsearch.org/logstash/1.5/debian stable main&#39;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/logstash.list
+</code></pre></div></li>
+<li><p>更新软件包数据库</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get update
+</code></pre></div></li>
+<li><p>安装logstash</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install logstash
+</code></pre></div></li>
+<li><p>配置logstash[向/etc/logstash/conf.d/文件夹中添加配置文件]</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 单机配置</span>
+sudo cp ./single.conf /etc/logstash/conf.d
+<span class="c"># 服务端配置</span>
+sudo cp ./center.conf /etc/logstach/conf.d
+<span class="c"># 客户端配置</span>
+sudo cp ./shipper.conf /etc/logstash/conf.d
+</code></pre></div></li>
+<li><p>启动logstash服务</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo service logstash restart
+</code></pre></div></li>
+<li><p>设置logstash开机启动，比elasticsearch启动快，关闭慢</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo update-rc.d logstash defaults <span class="m">94</span> 11
+</code></pre></div></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>
