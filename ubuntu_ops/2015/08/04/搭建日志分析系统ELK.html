@@ -128,7 +128,7 @@
 </ol></li>
 </ul>
 
-<h2>Elasticsearch安装与配置</h2>
+<h2>Elasticsearch安装</h2>
 
 <ol>
 <li><p>导入GPG key</p>
@@ -153,7 +153,7 @@
 </code></pre></div></li>
 </ol>
 
-<h2>Logstash的安装和配置</h2>
+<h2>Logstash的安装</h2>
 
 <ol>
 <li><p>添加logstash到源中</p>
@@ -203,7 +203,36 @@ sudo cp ./kibana4 /etc/init.d/
 </code></pre></div></li>
 </ol>
 
-<h2>安装反向代理工具Nginx</h2>
+<h2>反向代理工具Nginx</h2>
+
+<ol>
+<li><p>安装nginx和apache2-utils[有apache的web服务器内置工具，如htpasswd]</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get -y install nginx apache2-utils
+</code></pre></div></li>
+<li><p>创建kibanaadmin用户来访问kibana网络接口，密码为kibanaadmin</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo htpasswd -bc /etc/nginx/htpasswd.users kibanaadmin kibanaadmin
+</code></pre></div></li>
+<li><p>配置nginx[/etc/nginx/sites-available/default]</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo cp ./default /etc/nginx/sites-available/
+</code></pre></div></li>
+<li><p>重启nginx服务</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo service nginx restart
+</code></pre></div></li>
+</ol>
+
+<h2>构建SSL证书</h2>
+
+<p>目前还没有走通。</p>
+
+<h2>一键安装脚本</h2>
+
+<ol>
+<li>多台机器协作
+
+<ul>
+<li>服务端脚本<a href="/assets/attachs/indexer.sh.txt">indexer.sh</a></li>
+</ul></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>
