@@ -166,10 +166,17 @@
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install logstash
 </code></pre></div></li>
 <li><p>配置logstash[向/etc/logstash/conf.d/文件夹中添加配置文件]</p>
+
+<ul>
+<li>单机配置<a href="/assets/attachs/single.conf.txt">single.conf</a></li>
+<li>服务器端配置<a href="/assets/attachs/indexer.conf.txt">indexer.conf</a></li>
+<li>客户端配置<a href="/assets/attachs/shipper.conf.txt">shipper.conf</a></li>
+<li>其他配置 <a href="/assets/attachs/inputs.conf.txt">inputs.conf</a> | <a href="/assets/attachs/filters.conf.txt">filters.conf</a> | <a href="/assets/attachs/outputs.conf.txt">outputs.conf</a> | <a href="/assets/attachs/nginxlog_json.conf.txt">nginxlog_json.conf</a> &amp; <a href="/assets/attachs/ifo_nginx.conf.txt">ifo_nginx.conf</a> | <a href="/assets/attachs/ifo_collectd.conf.txt">ifo_collectd.conf</a> | <a href="/assets/attachs/ifo_syslog.conf.txt">ifo_syslog.conf</a></li>
+</ul>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 单机配置</span>
 sudo cp ./single.conf /etc/logstash/conf.d
 <span class="c"># 服务端配置</span>
-sudo cp ./center.conf /etc/logstach/conf.d
+sudo cp ./shipper.conf /etc/logstach/conf.d
 <span class="c"># 客户端配置</span>
 sudo cp ./shipper.conf /etc/logstash/conf.d
 </code></pre></div></li>
@@ -231,6 +238,12 @@ sudo cp ./kibana4 /etc/init.d/
 
 <ul>
 <li>服务端脚本<a href="/assets/attachs/indexer.sh.txt">indexer.sh</a></li>
+<li>客户端脚本<a href="/assets/attachs/shipper.sh.txt">shipper.sh</a></li>
+</ul></li>
+<li>单机独立运行
+
+<ul>
+<li>独立脚本<a href="/assets/attachs/single.sh.txt">single.sh</a></li>
 </ul></li>
 </ol>
 
