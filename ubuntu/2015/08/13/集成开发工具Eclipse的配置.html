@@ -110,89 +110,58 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>AWK是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说<mark>awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</mark>。</p>
+					<p>Eclipse是个强大的集成工具，写JAVA程序的人基本都会首选该工具，然而它的强大并不仅仅体现在对JAVA的支持上，实际上用Eclipse可以写C/C++程序以及Python代码等。当然这一切都需要安装一些插件并进行一些配置。这里就对其配置进行一些记录。</p>
 
-<h2>简介</h2>
+<h2>基础配置</h2>
 
-<p>AWK其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序<strong>读取输入文件</strong>、<strong>为数据排序</strong>、<strong>处理数据</strong>、<strong>对输入执行计算</strong>以及<strong>生成报表</strong>，还有无数其他的功能。</p>
+<h3>使用代理</h3>
 
-<h2>使用方法</h2>
+<p>现在很多公司都是在局域网中工作，要访问Internet需要使用代理，或者是需要使用代理来进行“翻墙”操作，以此来方便员工掌握更多的网络资源，所以给Eclipse配置代理是必不可少的操作，该操作可以方便后面的软件更新，插件安装等。</p>
 
 <ul>
-<li><p>基本用法</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="o">[</span>-F FS<span class="o">]</span> <span class="s1">&#39;pattern{action}&#39;</span> filename
+<li><p>手动设置</p>
+
+<ol>
+<li>操作路径
+window -&gt; preferences -&gt; general -&gt; network connections,看到如下界面：<br>
+<img src="/assets/images/set_proxy.png" alt="set_proxy"></li>
+<li>设置代理<br>
+Active Provider选中Manual，并在下面的proxy entries里面进行代理的设置</li>
+</ol></li>
+<li><p>命令设置<br>
+以下面的命令启动Eclipse，或者将以下的命令配置到快捷方式的命令里</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">eclipse.exe -vmargs -DproxySet<span class="o">=</span><span class="nb">true</span> -DproxyHost<span class="o">=</span>aProxyAddress -DproxyPort<span class="o">=</span>aProxyPort
 </code></pre></div></li>
-<li><p>参数说明</p>
-
-<ul>
-<li>pattern   表示awk在数据中查找的内容</li>
-<li>action    在找到匹配内容时所执行的一系列命令</li>
-<li><code>-F FS</code>   指定域分割符为FS[<mark>一行代表一个记录,一个记录按FS分割成多个域</mark>]</li>
-</ul></li>
-<li><p>核心action</p>
-
-<ul>
-<li>内置变量
-
-<ul>
-<li><code>ARGC</code>    命令行数量个数</li>
-<li><code>ARGV</code>    命令行变元数组</li>
-<li><code>FILENAME</code>    当前输入文件名</li>
-<li><code>NR</code>  当前文件中的记录号(行号)</li>
-<li><code>FS</code>  设置域分隔符,等价于-F</li>
-<li><code>RS</code>  设置记录分隔符,默认是&#39;\n&#39;</li>
-<li><code>NF</code>  浏览记录中域的个数</li>
-<li><code>NR</code>  已读的记录数</li>
-<li><code>OFS</code> 输出域分隔符</li>
-<li><code>ORS</code> 输出记录分隔符</li>
-<li><code>$0</code>  整条记录</li>
-<li><code>$1/2</code>    第1/2个域</li>
-</ul></li>
-<li>变量和赋值
-
-<ul>
-<li>变量值可以是数字或字符串,关键是怎么用.</li>
-</ul></li>
-<li>条件语句和循环语句完全借鉴c语言</li>
-<li>内置函数
-
-<ul>
-<li>数字    <code>atan2</code>/<code>cos</code>/<code>exp</code>/<code>int</code>/<code>log</code>/<code>rand</code>/<code>sin</code>/<code>sqrt</code>/<code>srand</code></li>
-<li>字符串 <code>index</code>/<code>length</code>/<code>match</code>/<code>toupper</code>/<code>tolower</code>/<code>substr</code>/<code>system</code>/<code>systime</code></li>
-</ul></li>
-</ul></li>
 </ul>
 
-<h2>样例演示</h2>
+<h2>python插件</h2>
+
+<p>Eclipse支持Python代码编写的插件叫PyDev。安装需要通过添加仓库的方式。</p>
+
+<ol>
+<li>安装<br>
+
+<ol>
+<li>操作路径<br>
+Help -&gt; Install New Software,看到如下界面：<br>
+<img src="/assets/images/add_repository.png" alt="add_reposity"></li>
+<li>添加仓库<br>
+Name随便填写，建议用PyDev。Location填http://pydev.org/updates ，后面安装PyDev就OK了。</li>
+</ol></li>
+<li>配置<br>
+
+<ol>
+<li>操作路径<br>
+Window -&gt; Preferences -&gt; Pydev -&gt; Interpreter-Python,看到如下界面：<br>
+<img src="/assets/images/python_config.png" alt="python_config"></li>
+<li>配置<br>
 
 <ul>
-<li><p>统计/etc/passwd:文件名,每行的行号,每行的列数,对应的完整行内容</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;{printf(&quot;filename:%11s,linenumber:%s,columns:%s,linecontent:%s\n&quot;,FILENAME,NR,NF,$0)}&#39;</span>
-</code></pre></div>
-<p><img src="/assets/images/awk-var.png" alt="awk-var"></p></li>
-<li><p>统计/etc/passwd中出现oo次数</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;BEGIN{count=0;printf(&quot;login_name\tpasswd\n&quot;)} /oo/{printf(&quot;%-15s\t%s\n&quot;,$1,$2);count++} END{printf(&quot;count is %d\n&quot;,count)}&#39;</span>
-</code></pre></div>
-<p><img src="/assets/images/awk-begend.png" alt="awk-begend"></p>
-
-<blockquote>
-<p><strong>注意:</strong><br>
-BEGIN{}表示在处理任意行之前进行的操作.END{}表示在处理完所有行之后进行的操作.</p>
-</blockquote></li>
-<li><p>统计/etc/passwd中第1列以s开头的行</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;$1~/^s/{printf(&quot;%s\n&quot;,$1)}&#39;</span>
-</code></pre></div>
-<p><img src="/assets/images/awk-s.png" alt="awk-s"></p></li>
-<li><p>统计/etc/passwd中第1列为sys的行</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;$1==&quot;sys&quot;{printf(&quot;%s\n&quot;,$1)}&#39;</span>
-</code></pre></div>
-<p><img src="/assets/images/awk==.png" alt="awk=="></p>
-
-<blockquote>
-<p><strong>注意:</strong><br>
-~和==都是匹配,不过~是不精确的比较,一般跟正则连用</p>
-</blockquote></li>
-</ul>
+<li>Auto Config -- 会自动搜索路径，查找python的安装路径</li>
+<li>New -- 自己手动添加python的安装路径</li>
+</ul></li>
+</ol></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>

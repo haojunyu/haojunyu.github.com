@@ -117,7 +117,7 @@
 <p>这里VMWare只是传统虚拟化方式的一个典型代表--虚拟机。传统方式是在硬件层面实现的，就像我们有时在新建虚拟机时出现这样的错误信息：</p>
 
 <blockquote>
-<p>Error:<br>
+<p><strong>Error:</strong><br>
 The virtual machine could not be started because the hypervisor is not running.</p>
 </blockquote>
 
@@ -163,7 +163,9 @@ sudo bash -c <span class="s2">&quot;echo deb https://get.docker.io/ubuntu docker
 sudo apt-get update
 <span class="c"># 安装Docker</span>
 sudo apt-get install lxc-docker -y --force-yes
-</code></pre></div>
+</code></pre></div></li>
+</ol>
+
 <h2>Docker配置</h2>
 
 <p>Docker的配置文件是<a href="/assets/attachs/docker.txt">/etc/default/docker</a>，里面可以设置Docker的启动路径，参数配置，代理以及临时目录设置。</p>
@@ -179,11 +181,67 @@ sudo apt-get install lxc-docker -y --force-yes
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">cat <span class="s">&lt;&lt; EOF &gt;&gt; /etc/default/docker</span>
 <span class="s">DOCKER_OPTS=&quot;-H unix:///var/run/docker.sock -H 0.0.0.0:4243 --insecure-regis    try 127.0.0.1:5000&quot;</span>
 <span class="s">EOF</span>
-</code></pre></div></li>
-</ol></li>
+</code></pre></div>
+<p>附：Docker一键安装配置<a href="/assets/attachs/install_docker.sh.txt">install_docker.sh</a></p></li>
 </ol>
 
 <h2>Docker使用</h2>
+
+<ol>
+<li><p>镜像操作</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 获取注册服务器registry.hub.docker.com上的ubuntu镜像</span>
+sudo docker pull ubuntu:14.04
+<span class="c"># 列出本地镜像</span>
+sudo docker images
+<span class="c"># 启动docker容器</span>
+sudo docker run -it ubuntu:14.04 /bin/bash
+<span class="c"># 提交已有镜像,获得新镜像id</span>
+sudo docker commit -m <span class="s2">&quot;commit information&quot;</span> -a <span class="s2">&quot;user information&quot;</span> original_docker_id repository:tag
+<span class="c"># 从当前目录下的Dockerfile中生成镜像</span>
+sudo docker build -t<span class="o">=</span><span class="s2">&quot;repository:tag&quot;</span> .
+<span class="c"># 修改镜像标签</span>
+sudo docker tag image_id repostory:new_tag
+<span class="c"># 从本地文件系统（容器快照）导入</span>
+sudo cat ubuntu-14.04-x86_64-minimal.tar.gz <span class="p">|</span> docker import - ubuntu:14.04
+<span class="c"># 保存镜像</span>
+sudo docker save -o ubuntu_14.04.tar ubuntu:14.04
+<span class="c"># 载入镜像</span>
+sudo docker load &lt; ubuntu_14.04.tar
+<span class="c"># 上传镜像</span>
+sudo docker push repostory:tag
+<span class="c"># 清理所有未打过标签的本地镜像</span>
+sudo docker rmi <span class="k">$(</span>docker images --quiet --filter <span class="s2">&quot;dangling=true&quot;</span><span class="k">)</span>
+</code></pre></div>
+<p>附：</p>
+
+<ol>
+<li><a href="/assets/attachs/Dockfile.txt">Dockerfile</a></li>
+<li>本地文件系统导入镜像的下载：<a href="http://openvz.org/Download/templates/precreated">openvz的模板下载</a></li>
+</ol></li>
+<li><p>容器操作</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 容器启动</span>
+<span class="c">## -t   让Docker分配一个终端Terminal并绑定容器的标准输入</span>
+<span class="c">## -i   让容器的标准输入保持打开（交互模式）</span>
+<span class="c">## -d   以守护态运行</span>
+sudo docker run -it ubuntu:14.04 /bin/bash
+<span class="c"># 显示容器状态</span>
+sudo docker ps
+<span class="c"># 获取容器的输出信息</span>
+sudo docker logs container_id
+<span class="c"># 容器快照的导出</span>
+sudo docker <span class="nb">export </span>container_id
+<span class="c"># 清理所有处于终止状态的容器</span>
+sudo docker rm <span class="k">$(</span>docker ps -a -q<span class="k">)</span>
+</code></pre></div></li>
+<li><p>仓库操作</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 查找官方仓库的镜像</span>
+sudo docker search ubuntu
+<span class="c"># 创建私有仓库（官方registry镜像）</span>
+sudo docker run -d -p 5000:5000 registry
+<span class="c"># 上传镜像到私有仓库</span>
+sudo docker push localhost:5000/image_id:tag
+</code></pre></div></li>
+</ol>
 
 					
 						<div id="disqus_thread"></div>
@@ -221,6 +279,8 @@ sudo apt-get install lxc-docker -y --force-yes
 						<h4 class="title">Recent Posts</h4>
 						<ul class="list">
 							
+								<li><a href="/ubuntu/2015/08/13/%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Eclipse%E7%9A%84%E9%85%8D%E7%BD%AE.html" title="集成开发工具Eclipse的配置" rel="bookmark">集成开发工具Eclipse的配置</a></li>
+							
 								<li><a href="/ubuntu_ops/2015/08/11/%E9%80%83%E7%A6%BBVMWare%E6%8B%A5%E6%8A%B1docker.html" title="逃离VMWare拥抱docker" rel="bookmark">逃离VMWare拥抱docker</a></li>
 							
 								<li><a href="/ubuntu_ops/2015/08/04/%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9FELK.html" title="快速部署日志分析系统ELK" rel="bookmark">快速部署日志分析系统ELK</a></li>
@@ -238,8 +298,6 @@ sudo apt-get install lxc-docker -y --force-yes
 								<li><a href="/acm_algorithm/2015/06/30/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%B9%B6%E6%9F%A5%E9%9B%86.html" title="ACM算法之基本并查集" rel="bookmark">ACM算法之基本并查集</a></li>
 							
 								<li><a href="/ubuntu/2015/06/13/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98.html" title="自定义博客主题" rel="bookmark">自定义博客主题</a></li>
-							
-								<li><a href="/ubuntu/2015/06/07/%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html" title="markdown+jekyll+github搭建博客" rel="bookmark">markdown+jekyll+github搭建博客</a></li>
 							
 						</ul>
 					</div>
