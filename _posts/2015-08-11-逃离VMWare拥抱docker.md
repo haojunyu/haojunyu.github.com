@@ -139,3 +139,4 @@ Docker的配置文件是[/etc/default/docker]({{site.baseurl}}/assets/attachs/do
 	sudo docker run -d -p 5000:5000 registry
 	# 上传镜像到私有仓库
 	sudo docker push localhost:5000/image_id:tag
+	```
