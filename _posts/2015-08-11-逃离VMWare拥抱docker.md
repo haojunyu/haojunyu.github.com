@@ -9,7 +9,7 @@ Docker是一个开源项目，它是基于linux容器（LXC）等技术，旨在
 
 ## VMWare VS Docker
 这里VMWare只是传统虚拟化方式的一个典型代表--虚拟机。传统方式是在硬件层面实现的，就像我们有时在新建虚拟机时出现这样的错误信息：
-> Error:  
+> **Error:**  
 > The virtual machine could not be started because the hypervisor is not running.
 
 而解决这个问题的方法就是进入BIOS里面打开Hypervisor。这里的Hypervisor是所有传统虚拟化技术的核心。它运行于物理服务器和操作系统之间的中间的的软件层，允许多个操作系统和应用共享一套基础物理硬件。
@@ -60,25 +60,82 @@ Docker需要的Ubuntu的内核版本要大于3.13。对于Ubuntu 14.04这个版�
 	# 安装Docker
 	sudo apt-get install lxc-docker -y --force-yes
 	```
+
 ## Docker配置
 Docker的配置文件是[/etc/default/docker]({{site.baseurl}}/assets/attachs/docker.txt)，里面可以设置Docker的启动路径，参数配置，代理以及临时目录设置。
-	1. 使用代理
-		
-		```bash
-		cat << EOF >> /etc/default/docker
-		export http_proxy="http://127.0.0.1:8080"
-		export https_proxy="http://127.0.0.1:8080"
-		EOF
-		```
-	2. 改变docker进程监听的IP和端口
-		
-		```bash
-		cat << EOF >> /etc/default/docker
-		DOCKER_OPTS="-H unix:///var/run/docker.sock -H 0.0.0.0:4243 --insecure-regis    try 127.0.0.1:5000"
-		EOF
-		```
+
+1. 使用代理
+
+	```bash
+	cat << EOF >> /etc/default/docker
+	export http_proxy="http://127.0.0.1:8080"
+	export https_proxy="http://127.0.0.1:8080"
+	EOF
+	```
+2. 改变docker进程监听的IP和端口
+	
+	```bash
+	cat << EOF >> /etc/default/docker
+	DOCKER_OPTS="-H unix:///var/run/docker.sock -H 0.0.0.0:4243 --insecure-regis    try 127.0.0.1:5000"
+	EOF
+	```
+附：Docker一键安装配置[install_docker.sh]({{site.baseurl}}/assets/attachs/install_docker.sh.txt)
 
 ## Docker使用
+1. 镜像操作
+	
+	```bash
+	# 获取注册服务器registry.hub.docker.com上的ubuntu镜像
+	sudo docker pull ubuntu:14.04
+	# 列出本地镜像
+	sudo docker images
+	# 启动docker容器
+	sudo docker run -it ubuntu:14.04 /bin/bash
+	# 提交已有镜像,获得新镜像id
+	sudo docker commit -m "commit information" -a "user information" original_docker_id repository:tag
+	# 从当前目录下的Dockerfile中生成镜像
+	sudo docker build -t="repository:tag" .
+	# 修改镜像标签
+	sudo docker tag image_id repostory:new_tag
+	# 从本地文件系统（容器快照）导入
+	sudo cat ubuntu-14.04-x86_64-minimal.tar.gz | docker import - ubuntu:14.04
+	# 保存镜像
+	sudo docker save -o ubuntu_14.04.tar ubuntu:14.04
+	# 载入镜像
+	sudo docker load < ubuntu_14.04.tar
+	# 上传镜像
+	sudo docker push repostory:tag
+	# 清理所有未打过标签的本地镜像
+	sudo docker rmi $(docker images --quiet --filter "dangling=true")
+	```
+附：
+	1. [Dockerfile]({{site.baseurl}}/assets/attachs/Dockfile.txt)
+	2. 本地文件系统导入镜像的下载：[openvz的模板下载](http://openvz.org/Download/templates/precreated)
 
+2. 容器操作
 
+	```bash
+	# 容器启动
+	## -t	让Docker分配一个终端Terminal并绑定容器的标准输入
+	## -i	让容器的标准输入保持打开（交互模式）
+	## -d	以守护态运行
+	sudo docker run -it ubuntu:14.04 /bin/bash
+	# 显示容器状态
+	sudo docker ps
+	# 获取容器的输出信息
+	sudo docker logs container_id
+	# 容器快照的导出
+	sudo docker export container_id
+	# 清理所有处于终止状态的容器
+	sudo docker rm $(docker ps -a -q)
+	```
 
+3. 仓库操作
+
+	```bash
+	# 查找官方仓库的镜像
+	sudo docker search ubuntu
+	# 创建私有仓库（官方registry镜像）
+	sudo docker run -d -p 5000:5000 registry
+	# 上传镜像到私有仓库
+	sudo docker push localhost:5000/image_id:tag
