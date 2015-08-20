@@ -123,9 +123,146 @@
 <h2>思路</h2>
 
 <ol>
-<li><p>暴力求解
+<li><p>暴力求解<br>
 根据<a href="/acm_algorithm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">约数个数原理</a>，我们可以很快的计算出给定的数n的约数个数。不过显然其时间复杂度是很大的。提交的结果是超时。</p></li>
-<li><p>枚举优化</p></li>
+<li><p>枚举优化<br>
+假定n以内的所有质数为$ p _1, \cdots , p _k $,那么对于n有$$ n = \prod _{i=1}^k p _i^{a _i} = p _1^{a _1} * \cdots * p _k^{a _k} $$,其中$ a _i \in [ 0, \lfloor \log _{p _i} n \rfloor ] $，这个就是约数个数原理。通过对这k个$ a _i $的自由组合我们能够<strong>枚举</strong>n以内所有的数。
+而本题要求的是正整数n的约数个数最多并且n尽量小。该目的就是我们<strong>优化</strong>或<strong>剪枝</strong>$ a _i $组合的出发点。</p>
+
+<ul>
+<li><p>约数个数最多<br>
+对于正整数n的约数个数$ f(n)= \prod _{i=1}^k (a _i+1) $,而要使$ f(n)$更大，那么$a _i$值要大并且$ a _i == 0 $的数目要少，这样乘积才会更大，当然此时n也会更大，这里$ a _i $是质数$ p _i $的指数。这里的冲突点在于当要给某个$ a _i $增加值时，是给小的$p _i$增加个大值还是给大的$p _i$增加个小值。简单的例子如下：对于4这个整数，乘上19和2^4得到的$f(76)=6,f(64)=7$，而对于8这个整数，乘上19和2^4得到的$f(152)=8,f(128)=8$，再对于16这个整数，乘上19和2^4得到的$f(304)=10,f(256)=9$。该冲突让我们考虑到底要用哪些$p _i$来构成这个约数个数最多的数。经过计算质数$[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]$依次相乘为$1.3 \times 10^{16}$。显然对于正整数$N &lt; 10^{16}$以内约数个数最多的数n一定是由上面的14个质数组成。</p>
+
+<blockquote>
+<p><strong>剪枝条件1：</strong><br>
+对于正整数$N &lt; 10^{16}$以内约数个数最多的数n一定是由这[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]14个质数组成。</p>
+
+<blockquote>
+<p><strong>简要证明</strong><br>
+假设最终的n中有约数大于43的质数$p _k$，其中$n&lt;N$,那么上面的质数组里必定有一个质数$p _j$的指数为0,不然n一定会超出N。那么此时用$p _j$代替$p _k$一定会获得比n更小的值$n&#39;$，那么n并不是最终的n，这和假设矛盾。  </p>
+</blockquote>
+</blockquote></li>
+<li><p>n尽量小<br>
+当约数个数相同的时候，会取n最小的那个正整数。这也就意味着此时k个$a _i$的取值已经确定了，但是每个$a _i$对应的质数$p _j$还没有确定（$i,j \in [0,k]$），不同的组合会构成不同的数，但是最小的正整数只能有一种组合，那就是最大的$a _i$对应最小的$p _j$。所以我们获得了另一个剪枝的条件。</p>
+
+<blockquote>
+<p><strong>剪枝条件2：</strong><br>
+最终求解的拥有最大约数个数的数n一定满足：<br>
+若$p _1 &lt; p _2 &lt; \cdots &lt; p _k$，则$a _1 &gt; a _2 &gt; \cdots &gt; a _k$。</p>
+</blockquote></li>
+</ul></li>
+</ol>
+
+<h2>算法说明</h2>
+
+<ol>
+<li><p>剪枝条件1的应用
+定义静态常量数组，用来存放这14个质数</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">little_prime</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> 
+<span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span>
+<span class="mi">31</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">43</span><span class="p">};</span>
+</code></pre></div></li>
+<li><p>递归函数的声明
+函数功能是当第len位质数加入后，寻找约数个数最多的最小正整数
+，其参数如下:  </p>
+
+<ul>
+<li>N --  输入要寻找的N范围内</li>
+<li>n --  求解的n</li>
+<li>counts    --  约数的个数</li>
+<li>len   --  第len个质数</li>
+<li>maxTimes  --  第len个质数的最大指数</li>
+</ul>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">FindMinN</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">counts</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">maxTimes</span><span class="p">);</span>
+</code></pre></div></li>
+<li><p>函数内部解析</p>
+
+<ul>
+<li>numOfMinN --  全局变量，用来存储当前所找数中约数最多的值</li>
+<li>minN  --  全局变量，用来存储当前所有数中最小的n</li>
+</ul>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 当第len位质数加入后，寻找约数个数最多的最小正整数</span>
+<span class="kt">void</span> <span class="nf">FindMinN</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">counts</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">maxTimes</span><span class="p">){</span>
+    <span class="c1">// 当找到约数个数更多或者约数个数相同但数更小的直接更新</span>
+    <span class="c1">// update</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="n">numOfMinN</span> <span class="o">||</span> <span class="p">(</span><span class="n">counts</span> <span class="o">==</span> <span class="n">numOfMinN</span> <span class="o">&amp;&amp;</span> <span class="n">minN</span> <span class="o">&gt;</span> <span class="n">N</span><span class="p">)){</span>
+        <span class="n">numOfMinN</span> <span class="o">=</span> <span class="n">counts</span><span class="p">;</span>
+        <span class="n">minN</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// find</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="c1">// 遍历第len位质数，其指数为1,2，。。。，maxTimes</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">maxTimes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">little_prime</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ans</span> <span class="o">&gt;</span> <span class="n">N</span><span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="c1">// 遍历第len+1位质数，其指数的最大值为i -- 剪枝条件2</span>
+        <span class="n">FindMinN</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">counts</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">len</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><a href="/assets/attachs/hiho_divisors.cpp.txt">完整代码</a></p></li>
+</ol>
+
+<h2>举一反三</h2>
+
+<ol>
+<li><p>k维数组的遍历<br>
+对本题的另一种解读是n维数组的遍历。这里每个$p _i$算一个维度，在每个维度上有$a _i+1$个可能的值。对这k个维度的遍历就是对比N小的正整数的依次判别。  </p>
+
+<ul>
+<li><p>代码说明  </p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 每个维度取值个数</span>
+<span class="kt">int</span> <span class="n">varMax</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span>
+<span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span>
+<span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+<span class="c1">// 第ind维度取值的情况</span>
+<span class="kt">void</span> <span class="nf">TraversalByRecu</span><span class="p">(</span><span class="kt">int</span> <span class="n">dim</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">,</span> <span class="kt">int</span> <span class="n">var</span><span class="p">[]){</span>
+    <span class="c1">// 取完dim个维度打印输出</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ind</span><span class="o">&gt;=</span><span class="n">dim</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">dim</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span><span class="n">var</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>   
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="c1">// 第ind维度取完所有可能的取值</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">max</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">var</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+        <span class="c1">// 取第ind+1维度，并设定第ind+1维度取值个数</span>
+        <span class="n">TraversalByRecu</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">varMax</span><span class="p">[</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">var</span><span class="p">);</span>
+    <span class="p">}</span>   
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><a href="/assets/attachs/hiho_divisors_travel.cpp.txt">完整代码</a></p></li>
+</ul></li>
+<li><p>区间里约数个数最大的尽量小的数
+对于这个问题，其实和N以内很类似，唯一的区别可能就是在更新的时候要判断当前的n在不在区间范围内。  </p>
+
+<ul>
+<li><p>代码说明</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">FindMinN</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">low</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">high</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">counts</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">maxTimes</span><span class="p">){</span>
+    <span class="c1">// update</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="n">high</span> <span class="o">&amp;&amp;</span> <span class="n">n</span><span class="o">&gt;=</span><span class="n">low</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="n">numOfMinN</span> <span class="o">||</span> <span class="p">(</span><span class="n">counts</span> <span class="o">==</span> <span class="n">numOfMinN</span> <span class="o">&amp;&amp;</span> <span class="n">minN</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)){</span>
+            <span class="n">numOfMinN</span> <span class="o">=</span> <span class="n">counts</span><span class="p">;</span>
+            <span class="n">minN</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>   
+    <span class="c1">// find</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">maxTimes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">little_prime</span><span class="p">[</span><span class="n">len</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">)</span>
+            <span class="k">break</span><span class="p">;</span>
+            <span class="n">FindMinN</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">counts</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">len</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> 
+    <span class="p">}</span>   
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><a href="/assets/attachs/hiho_divisors_depart.cpp.txt">完整代码</a></p></li>
+</ul></li>
 </ol>
 
 					
