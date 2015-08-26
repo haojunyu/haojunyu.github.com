@@ -110,21 +110,21 @@
 					<ul></ul>
 				</nav>
 				<div  id="contents" class="main">
-					<p>本题的解法是在<a href="/acm_algorithm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">约数个数原理</a>的基础上对问题进行优化，从而大大降低算法的时间复杂度。而解题的思路是从结果去想它满足什么样的条件，从而获得优化问题的方法。</p>
+					<p>题目很简单，就是求解一个字符串中最长的回文子串，回文字符串是指颠倒之后的字符串和原来的字符串完全一样。网上很多人的博文，像<a href="http://blog.csdn.net/kangroger/article/details/37742639">kangroger</a>,还有把最牛b的Manacher算法说得很清晰的<a href="http://blog.csdn.net/yzl_rex/article/details/7908259">yzl_rex</a>，介绍了四种解法：分别是暴力法（$O(n^3)$），动态规划（$O(n^2)$），中心扩展（$O(n^2)$）和Manache法（$O(n)$）。本博文只是对这四种方法的自我实现。</p>
 
 <h2>题目</h2>
 
-<p>题目来自微软2016年校招探星夏令营第二题<a href="http://hihocoder.com/contest/mstest2015july1/problem/2">Divisor</a>，并在<a href="http://hihocoder.com">HiHocoder</a>上进行编程笔试，题目大意是：</p>
+<p>题目来自HihoCoder上第一周的题目<a href="http://hihocoder.com/contest/hiho1/problem/1">最长回文子串</a>，题目大意是：</p>
 
 <blockquote>
-<p>给一个数n，$n &lt; 10^{16}$，输出在$1 \sim n$之间约数最多的数，如果有多个相同最大约数个数的数，就输出最小的数</p>
+<p>给定一个字符串，求解这个字符串中最长的回文子串。而回文字符串是指颠倒之后的字符串和原来的字符串完全一样。</p>
 </blockquote>
 
 <h2>思路</h2>
 
 <ol>
 <li><p>暴力求解<br>
-根据<a href="/acm_algorithm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">约数个数原理</a>，我们可以很快的计算出给定的数n的约数个数。不过显然其时间复杂度是很大的。提交的结果是超时。</p></li>
+暴力求解的方法分两步，第一步是得到字符串所有的子串（$n\times(n+1)/2$个），第二步是判断每一个子串是否是回文子串（$n/2$比较操作），如果是则记录下长度，不是则舍弃。</p></li>
 <li><p>枚举优化<br>
 假定n以内的所有质数为$ p _1, \cdots , p _k $,那么对于n有$$ n = \prod _{i=1}^k p _i^{a _i} = p _1^{a _1} * \cdots * p _k^{a _k} $$,其中$ a _i \in [ 0, \lfloor \log _{p _i} n \rfloor ] $，这个就是约数个数原理。通过对这k个$ a _i $的自由组合我们能够<strong>枚举</strong>n以内所有的数。
 而本题要求的是正整数n的约数个数最多并且n尽量小。该目的就是我们<strong>优化</strong>或<strong>剪枝</strong>$ a _i $组合的出发点。</p>
