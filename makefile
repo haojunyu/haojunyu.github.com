@@ -12,6 +12,8 @@ deploy:
 	rm -r /tmp/_site
 	git add -A
 	git commit -m "deploy blog"
-	git push origin master
+	git push -u origin master:master
+	echo "=========deploy github succeed=========="
+	git push -u gitcafe master:gitcafe-pages
+	echo "=========deploy gitcafe succeed=========="
 	git checkout source
-	echo "=========deploy succeed=========="
