@@ -140,7 +140,7 @@
 <h3>动态规划算法</h3>
 
 <ol>
-<li>二维数组的动态申请用c实现的步骤：--
+<li>二维数组的动态申请用c实现的步骤：
 
 <ol>
 <li>申请一个长度为len的指针数组(int **)dp，用来存放二维数组每行的首地址。</li>
@@ -150,30 +150,32 @@
 <li>释放数组dp[0]</li>
 <li>释放指针数组dp</li>
 </ol></li>
-<li><p>代码演示
-```c
-// 动态申请二位数组并初始化
-int *<em>dp = (int *</em>)malloc(sizeof(int *) * len);
-dp[0] = (int *)malloc(sizeof(int) * len * len);
-for(i=1; i&lt;len; i++)
-    dp[i] = dp[i-1] + len;</p>
+<li><p>代码演示</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// 动态申请二位数组并初始化</span>
+<span class="kt">int</span> <span class="o">**</span><span class="n">dp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">len</span><span class="p">);</span>
+<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="n">len</span> <span class="o">*</span> <span class="n">len</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">len</span><span class="p">;</span>
 
-<p>// 释放申请的二位数组
-free(dp[0]);
-free(dp);
-```</p>
+<span class="c1">// 释放申请的二位数组</span>
+<span class="n">free</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">free</span><span class="p">(</span><span class="n">dp</span><span class="p">);</span>
+</code></pre></div></li>
+</ol>
 
-<h3>Mancher算法</h3></li>
-<li><p>假设--
-为解释清楚Manacher算法，作如下假定：  </p>
+<h3>Mancher算法</h3>
+
+<ol>
+<li>假设<br>
+为解释清楚Manacher算法，作如下假定：<br>
 
 <ul>
 <li>所有的回文子串的数目都是奇数（通过向字符首尾和字符间插入特殊字符集&#39;#&#39;实现）</li>
 <li>辅助数组radius用来存储对称半径。即radius[i]表示以第i个字符为中心构成的回文子串的半径。像字符串“#a#”的回文半径为1。</li>
 </ul></li>
-<li><p>符号说明--
+<li><p>符号说明<br>
 如下图所示，我们要根据回文字符串buf和radius[0]～radius[i-1]来求取radius[i]。
-<img src="/assets/images/manacher.png" alt="manacher">
+<img src="/assets/images/manacher.png" alt="manacher"><br>
 图中符号说明如下：  </p>
 
 <ul>
@@ -184,43 +186,57 @@ free(dp);
 <li><p>分情况讨论  </p>
 
 <ol>
-<li><mark>$ mx &lt; i$</mark><br>
-此时radius的前i个值不起任何作用，就像初始时根据radius[0]=0求解radius[1]，此时id=0,mx=0。
-<code>c
-if(mx&lt;i){
-    k=1;
-    // 以i为中心，回文子串的半径
-    while(newbuf[i-k]==newbuf[i+k]&amp;&amp;i-k&gt;=0&amp;&amp;i+k&lt;len)
-        k++;
-    radius[i]=k-1;
-}
-</code></li>
-<li><mark>$ mx &gt; i $</mark>--
+<li><p><mark>$ mx &lt; i$</mark><br>
+此时radius的前i个值不起任何作用，就像初始时根据radius[0]=0求解radius[1]，此时id=0,mx=0。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">if</span><span class="p">(</span><span class="n">mx</span><span class="o">&lt;</span><span class="n">i</span><span class="p">){</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// 以i为中心，回文子串的半径</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="p">]</span><span class="o">==</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">&lt;</span><span class="n">len</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><mark>$ mx &gt; i $</mark>  </p>
 
 <ol>
-<li><mark>$ mx-i &gt;= radius[j] $</mark>--
-$mx-i$代表i到mx的距离，而radius[j]就是图中绿线的一半距离。如果$mx-i &gt; radius[j]$说明$radius[i]=radius[j]$，因为$[2*id-mx,mx]是关于id对称的，而i和j也是关于id对称的。
-<code>c
-if(mx-i &gt;= radius[j])
-    radius[i]=radius[j];
-</code></li>
-<li><mark>$ mx-i &lt; radius[j]$ ==--
-此时我们根据对称性，能够获得$radius[i]&gt;=radius[j]$的。所以我们直接从mx+1开始判断$buf[mx+t]</mark>buf[2*i-mx-t],t=1,2,\cdots$。
-<code>c
-if(mx-i&lt;radius[j]){
-    k=mx-i+1;
-    // 以i为中心，回文子串的半径从mx-i+1开始验证
-    while(newbuf[i-k]==newbuf[i+k]&amp;&amp;i-k&gt;=0&amp;&amp;i+k&lt;len)
-        k++;
-    radius[i]=k-1;
-}
-</code></li>
+<li><p><mark>$ mx-i &gt;= radius[j] $</mark><br>
+$mx-i$代表i到mx的距离，而radius[j]就是图中绿线的一半距离。如果$mx-i &gt; radius[j]$说明$radius[i]=radius[j]$，因为$[2*id-mx,mx]是关于id对称的，而i和j也是关于id对称的。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">if</span><span class="p">(</span><span class="n">mx</span><span class="o">-</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">radius</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">radius</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</code></pre></div></li>
+<li><p><mark>$ mx-i &lt; radius[j]$</mark><br>
+此时我们根据对称性，能够获得$radius[i]&gt;=radius[j]$的。所以我们直接从mx+1开始判断$buf[mx+t]==buf[2*i-mx-t],t=1,2,\cdots$。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">if</span><span class="p">(</span><span class="n">mx</span><span class="o">-</span><span class="n">i</span><span class="o">&lt;</span><span class="n">radius</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">mx</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// 以i为中心，回文子串的半径从mx-i+1开始验证</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="p">]</span><span class="o">==</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">-</span><span class="n">k</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">&lt;</span><span class="n">len</span><span class="p">)</span>
+        <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
 </ol></li>
 </ol></li>
-<li><p>情况融合
-仔细思考一下，发现第二种情况里面的两种情况可以融合，说白点就是取图中i到mx的距离和图中一半绿线距离中的最小值，即$radius[i]=min(radius[j],mx-i)$。然后再进行向外扩展，看radius[i]能否更大。
-```c</p></li>
-<li><p><a href="/assets/attachs/1032.cpp.txt">完整代码</a></p></li>
+<li><p>情况融合<br>
+仔细思考一下，发现第二种情况里面的两种情况可以融合，说白点就是取图中i到mx的距离和图中一半绿线距离中的最小值，即$radius[i]=min(radius[j],mx-i)$。然后再进行向外扩展，看radius[i]能否更大。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">radius</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">mx</span><span class="o">&gt;</span><span class="n">i</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">radius</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;</span><span class="n">mx</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">radius</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="k">else</span>
+            <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">mx</span><span class="o">-</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(;</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">==</span><span class="n">newbuf</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">+</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">len</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">-</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">);</span>
+    <span class="c1">// 更新id，mx</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="o">&gt;</span><span class="n">mx</span><span class="p">){</span>
+        <span class="n">id</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+        <span class="n">mx</span><span class="o">=</span><span class="n">radius</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p><a href="/assets/attachs/1032.c.txt">完整代码</a></p></li>
 </ol>
 
 <h2>举一反三</h2>
