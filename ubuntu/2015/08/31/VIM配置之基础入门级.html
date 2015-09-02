@@ -126,134 +126,133 @@
 
 <h2>基本配置</h2>
 
-<h3>安装vim,scripts,doc</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">```sh
-sudo apt-get install vim vim-scripts vim-doc
-```
-&gt; **Tips:**
-&gt; * vim         vim软件，安装目录是/usr/share/vim
-&gt; * vim-scripts vim的基本插件，包括语法高亮等，安装目录是/usr/share/vim-scripts
-&gt; * vim-doc     vim帮助文件，不过是英文版本的
+<ol>
+<li><p>安装vim,scripts,doc</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">sudo apt-get install vim vim-scripts vim-doc
 </code></pre></div>
-<h3>中文帮助文档</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">1. 下载[最新版本](http://sourceforge.net/projects/vimcdoc/files/vimcdoc/)的vim中文帮助文档
-2. 解压doc文件夹到~/.vim目录下
-</code></pre></div>
-<h3>配置~/.vimrc文件</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">配置个性化的[.vimrc](.vimrc)（不懂的命令可以用`:help command`查看中文帮助文档）
-</code></pre></div>
+<blockquote>
+<p><strong>Tips:</strong>
+* vim         vim软件，安装目录是/usr/share/vim
+* vim-scripts vim的基本插件，包括语法高亮等，安装目录是/usr/share/vim-scripts
+* vim-doc     vim帮助文件，不过是英文版本的</p>
+</blockquote></li>
+<li><p>中文帮助文档</p>
+
+<ol>
+<li>下载<a href="http://sourceforge.net/projects/vimcdoc/files/vimcdoc/">最新版本</a>的vim中文帮助文档</li>
+<li>解压doc文件夹到~/.vim目录下</li>
+</ol></li>
+<li><p>配置~/.vimrc文件</p>
+
+<p>配置个性化的<a href=".vimrc">.vimrc</a>（不懂的命令可以用<code>:help command</code>查看中文帮助文档）</p></li>
+</ol>
+
 <h2>实用插件</h2>
 
 <p>vim的插件很多，而且功能很强大，非常强大。官网的插件地址在<a href="http://www.vim.org/scripts/script_search_results.php?order_by=creation_date&amp;direction=descending">这里</a>。</p>
 
-<h3>ctags</h3>
+<ul>
+<li><p>ctags
+ctags可以建立源码树的标签索引（标签就是一个标识符被定义的地方，如函数定义），使程序员在编程时能迅速定位函数、变量、宏定义等位置去查看原形。</p>
 
-<p>ctags可以建立源码树的标签索引（标签就是一个标识符被定义的地方，如函数定义），使程序员在编程时能迅速定位函数、变量、宏定义等位置去查看原形。
-1. 安装exuberant-ctags工具
-    <code>sh
-    sudo apt-get install exuberant-ctags
-</code>
-2. 创建C++代码库索引
-    1. 下载<a href="http://www.vim.org/scripts/download_script.php?src_id=9178">libstdc++</a>头文件,包含c++中STL，streams等。
-    2. 解压到~/.vim/tags目录后执行ctags命令
-        <code>sh
-        ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ cpp_src
-        mv tags ~/.vim/tags/cpptag
-</code>
-    3. 在.vimrc中设置
-        <code>vim
-        set tags+=~/.vim/tags/cpptag
-</code>
-3. 创建gcc代码库索引
-    1. ubuntu中安装完build-essential后，会在/usr/include/c++目录下有C/C++的头文件。
-        <code>sh
-        sudo apt-get install build-essential
-</code>
-    2. 拷贝/usr/include/c++/4.8里的文件到~/.vim/tags/gcc文件夹里后执行ctags命令
-        <code>sh
-        cp -R /usr/include/c++/4.8 ~/.vim/tags/gcc
-        ctags -R --c++-kinds=+p --fields=+iaS --extra=+q gcc
-        mv tags ~/.vim/tags/gcctag
-</code>
-    3. 在.vimrc中设置
-        ```vim
-        set tags+=~/.vim/tags/gcctag</p>
-
-<h3>taglist</h3>
-
-<p>在屏幕右侧出现的就是taglist窗口，从中可以看到文件中定义的所有tag：宏、定义、变量、函数等；通过单击某个tag，可以跳到该tag定义的位置；也可以把某一类的tag折叠起来，方便查看。
-1. 安装taglist
-    <code>sh
-    vim-addon-manager install taglist
-</code>
-2. 在.vimrc中配置
-    ```vim</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">```
-</code></pre></div>
 <ol>
-<li>自定义快捷键说明
+<li><p>安装exuberant-ctags工具</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">sudo apt-get install exuberant-ctags
+</code></pre></div></li>
+<li><p>创建C++代码库索引</p>
+
+<ol>
+<li>下载<a href="http://www.vim.org/scripts/download_script.php?src_id=9178">libstdc++</a>头文件,包含c++中STL，streams等。</li>
+<li><p>解压到~/.vim/tags目录后执行ctags命令</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">ctags -R --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q --language-force<span class="o">=</span>C++ cpp_src
+mv tags ~/.vim/tags/cpptag
+</code></pre></div></li>
+<li><p>在.vimrc中设置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">set</span> <span class="k">tags</span><span class="p">+=~</span><span class="sr">/.vim/</span><span class="k">tags</span>/cpptag
+</code></pre></div></li>
+</ol></li>
+<li><p>创建gcc代码库索引</p>
+
+<ol>
+<li><p>ubuntu中安装完build-essential后，会在/usr/include/c++目录下有C/C++的头文件。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">sudo apt-get install build-essential
+</code></pre></div></li>
+<li><p>拷贝/usr/include/c++/4.8里的文件到~/.vim/tags/gcc文件夹里后执行ctags命令</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">cp -R /usr/include/c++/4.8 ~/.vim/tags/gcc
+ctags -R --c++-kinds<span class="o">=</span>+p --fields<span class="o">=</span>+iaS --extra<span class="o">=</span>+q gcc
+mv tags ~/.vim/tags/gcctag
+</code></pre></div></li>
+<li><p>在.vimrc中设置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">set</span> <span class="k">tags</span><span class="p">+=~</span><span class="sr">/.vim/</span><span class="k">tags</span>/gcctag
+</code></pre></div></li>
+</ol></li>
+</ol></li>
+<li><p>taglist
+在屏幕右侧出现的就是taglist窗口，从中可以看到文件中定义的所有tag：宏、定义、变量、函数等；通过单击某个tag，可以跳到该tag定义的位置；也可以把某一类的tag折叠起来，方便查看。</p>
+
+<ol>
+<li><p>安装taglist</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">vim-addon-manager install taglist
+</code></pre></div></li>
+<li><p>在.vimrc中配置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">adf
+</code></pre></div></li>
+<li><p>自定义快捷键说明</p>
 
 <ul>
-<li><F10>     打开/关闭标签列表</li>
+<li><code>&lt;F10&gt;</code>     打开/关闭标签列表</li>
 </ul></li>
-</ol>
+</ol></li>
+<li><p>winmanager
+WinManager用于管理文件浏览器和缓冲区（buffer）。2.0以上版本的WinManager还可以管理其他IDE类型插件，不过要用户在插件中增加一些辅助变量和hook来支持WinManager（帮助文档有相关说明）。</p>
 
-<h3>winmanager</h3>
-
-<p>WinManager用于管理文件浏览器和缓冲区（buffer）。2.0以上版本的WinManager还可以管理其他IDE类型插件，不过要用户在插件中增加一些辅助变量和hook来支持WinManager（帮助文档有相关说明）。
-1. 安装winmanager
-    <code>sh
-    vim-addon-manager install winmanager
-</code>
-2. 在.vimrc中配置
-    ```vim</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">```
-</code></pre></div>
 <ol>
-<li>自定义快捷键说明
+<li><p>安装winmanager</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">vim-addon-manager install winmanager
+</code></pre></div></li>
+<li><p>在.vimrc中配置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">
+</code></pre></div></li>
+<li><p>自定义快捷键说明</p>
 
 <ul>
-<li><F9>     打开/关闭文件浏览器</li>
+<li><code>&lt;F9&gt;</code>     打开/关闭文件浏览器</li>
 </ul></li>
-</ol>
+</ol></li>
+<li><p>minibufexplorer
+MiniBufferExplorer用于浏览和管理buffer，如果只打开一个文件，是不会显示在屏幕上的，而打开多个文件之后，会自动出现在屏幕上。vim也有自带的buffer管理工具，不过只有:ls, :bnext, :bdelete 等的命令, 既不好用, 又不直观.</p>
 
-<h3>minibufexplorer</h3>
-
-<p>MiniBufferExplorer用于浏览和管理buffer，如果只打开一个文件，是不会显示在屏幕上的，而打开多个文件之后，会自动出现在屏幕上。vim也有自带的buffer管理工具，不过只有:ls, :bnext, :bdelete 等的命令, 既不好用, 又不直观.
-1. 安装minibufexplorer
-    <code>sh
-    vim-addon-manager install minibufexplorer
-</code>
-2. 在.vimrc中配置
-    ```vim</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">```
-</code></pre></div>
 <ol>
-<li>自定义快捷键说明
+<li><p>安装minibufexplorer</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">vim-addon-manager install minibufexplorer
+</code></pre></div></li>
+<li><p>在.vimrc中配置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">
+</code></pre></div></li>
+<li><p>自定义快捷键说明</p>
 
 <ul>
-<li><Tab>     移动到下一个buffer</li>
-<li><C-Tab>   移动到上一个buffer</li>
+<li><code>&lt;Tab&gt;</code>     移动到下一个buffer</li>
+<li><code>&lt;C-Tab&gt;</code>   移动到上一个buffer</li>
 </ul></li>
-</ol>
+</ol></li>
+<li><p>quickfix
+通过quickfix命令集，你可在 Vim 内编译程序并直接跳转到出错位置进行修正。你可以接着重新编译并做修正，直到不再出错为止。因为quickfix已经在vim里集成了，只要配置就好了。</p>
 
-<h3>quickfix</h3>
-
-<p>通过quickfix命令集，你可在 Vim 内编译程序并直接跳转到出错位置进行修正。你可以接着重新编译并做修正，直到不再出错为止。因为quickfix已经在vim里集成了，只要配置就好了。
-1. 在.vimrc中配置
-    ```vim</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">```
-</code></pre></div>
 <ol>
-<li>自定义快捷键说明
+<li><p>在.vimrc中配置</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">
+</code></pre></div></li>
+<li><p>自定义快捷键说明</p>
 
 <ul>
-<li><F2>     make当前程序</li>
-<li><F10>    make clean当前程序</li>
-<li><F3>     光标移动到上一个错误所在行</li>
-<li><F4>     光标移动到下一个错误所在行</li>
+<li><code>&lt;F2&gt;</code>     make当前程序</li>
+<li><code>&lt;F10&gt;</code>    make clean当前程序</li>
+<li><code>&lt;F3&gt;</code>     光标移动到上一个错误所在行</li>
+<li><code>&lt;F4&gt;</code>     光标移动到下一个错误所在行</li>
 </ul></li>
-</ol>
+</ol></li>
+</ul>
 
 					
 						<div id="disqus_thread"></div>
