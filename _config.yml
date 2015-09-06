@@ -40,7 +40,7 @@ host:    127.0.0.1          # 主机
 baseurl: ""                 # 网站根目录
 
 # Outputting
-permalink:     date
+permalink:     /:year/:month/:day/:title.html
 paginate_path: /page:num
 timezone:      null         # 设置时区
 
