@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/07/06/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%BD%AF%E7%A1%AC%E9%93%BE%E6%8E%A5ln.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		shell编程之软硬链接ln
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>shell编程之软硬链接ln</h1>
+    						<p class="meta">Jul 6, 2015 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Shell">Shell</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>在windows里面我们经常通过快捷方式来创建链接以方便我们使用电脑。而linux中有两种方式创建链接，分别为软链接和硬链接。下面我们就来详细说下二者的区别。</p>
+
+<h2>定义</h2>
+
+<p><code>ln</code>命令是为某个文件在另外一个位置建立一个同步链接，当我们需要在不同的目录用到相同的文件时，我们不需要在每一个需要的目录下都放一个必须相同的文件，此时只需用<code>ln</code>创建对应文件的链接，不必重复的占用磁盘空间。</p>
+
+<ul>
+<li><p>命令格式</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 硬链接</span>
+ln <span class="nb">source </span>target
+<span class="c"># 软链接</span>
+ln -s <span class="nb">source </span>target
+</code></pre></div></li>
+<li><p>软链接</p>
+
+<p>软链接跟windows里面的快捷方式等价。它的内容是指向另一个文件的位置。所以可以创建某个目录的软链接，也可以对一个不存在的文件进行链接。除此之外，它可以跨文件系统。这三点硬链接都无法实现。</p></li>
+<li><p>硬链接</p>
+
+<p>硬链接可以理解为文件的别名，而且别名可以有多个。</p></li>
+</ul>
+
+<h2>原理</h2>
+
+<p>对于linux而言，文件的结构与windows有点类似，由文件名，inode（类似于windows下的FCB文件控制块，保存文件的一些信息）和数据组成。比如创建origin文件，会得到下面的信息。
+<img src="/assets/images/origin.png" alt="origin"></p>
+
+<p>注意Inode和硬链接，下面创建origin的硬链接hardlink。
+<img src="/assets/images/hardlink.png" alt="hardlink"></p>
+
+<p>比对发现，创建硬链接的文件hardlink与原文件origin之间除了名称不同之外其他完全相同，就像同一个人它有个正式的名称也可能会有小名。它们的数据显然完全一样。</p>
+
+<p>接下来，我们创建origin的软链接softlink。
+<img src="/assets/images/softlink.png" alt="softlink"></p>
+
+<p>对比发现，origin和softlink是完全不同的文件，有着不同的size，不同的块，不同的Inode，不同的type。唯一的联系是softlink文件指向origin文件。</p>
+
+<h2>用例</h2>
+
+<ul>
+<li><p>删除源文件对软硬链接的影响
+<img src="/assets/images/rmorigin.png" alt="rmorigin"></p>
+
+<p>由上图可以看出hardlink中硬链接的个数少了一个，而softlink还是安然无恙的存在着。接着我们通过两个链接来打开文件。
+<img src="/assets/images/linkshow.png" alt="linkshow"></p>
+
+<p>由上图发觉，hardlink依旧能打开文件，而软链接却无法查看原文件。</p></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Shell" data-title="shell编程之软硬链接ln" data-url="//2015/07/06/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%BD%AF%E7%A1%AC%E9%93%BE%E6%8E%A5ln.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

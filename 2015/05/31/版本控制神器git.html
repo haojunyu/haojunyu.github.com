@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/05/31/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%A5%9E%E5%99%A8git.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		版本控制神器git
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>版本控制神器git</h1>
+    						<p class="meta">May 31, 2015 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Ubuntu">Ubuntu</a>
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Git">Git</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>当使用git管理代码,有github帐号,至少有一个自己创建的项目出现在求职的综合加分项里时,了解git,github就应该成为一项立即,马上,现在去做的事.</p>
+
+<h2>Git简介</h2>
+
+<p>Git是一个免费的、分布式的版本控制工具，或是一个强调了速度快的源代码管理工具。每一个Git的工作目录都是一个完全独立的代码库，并拥有完整的历史记录和版本追踪能力，不依赖于网络和中心服务器。</p>
+
+<p>Git 在管理项目时，在本地会有三个工作区域：Git 的本地数据目录，工作目录以及暂存区域。如下图所示：<img src="/assets/images/git-three-workspace.png" alt="git-three-workspace">. </p>
+
+<p>因此对于任何一个文件，在 Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。</p>
+
+<h2>GitHub简介</h2>
+
+<p>GitHub是一个利用Git提供免费的代码托管服务的网站（类似的网站还有老牌的SourceForge），很多著名的项目都托管在上面。说白一点就是将Git的本地数据库同步到GitHub网站上。用户一般通过公钥认证的方式连接到GitHub的SSH服务器.</p>
+
+<h2>Git&amp;GitHub的结合</h2>
+
+<p>Git命令的实际操作图:
+<img src="/assets/images/git-github.jpg" alt="git-github"></p>
+
+<p>图中<strong>workspace</strong>代表当前工作目录,<strong>index</strong>代表暂存区域，也叫索引,<strong>Repository</strong>代表本地仓库,而<strong>Remote</strong>代表远程服务器上的数据仓库，这里一般指GitHub网站的服务器.</p>
+
+<h2>Git远程操作详解</h2>
+
+<ul>
+<li><p><code>git clone</code>   从远程主机克隆一个版本库</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 用法 从版本库的网址上拷贝文件到本地文件夹</span>
+git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;
+<span class="c"># 用例 支持多种文件协议</span>
+git clone http<span class="o">[</span>s<span class="o">]</span>://example.com/path/to/repo.git/  <span class="c"># http协议</span>
+git clone ssh://example.com/path/to/repo.git/      <span class="c"># ssh协议</span>
+git clone git://example.com/path/to/repo.git/      <span class="c"># git协议</span>
+git clone /opt/git/project.git                     <span class="c"># 本地文件</span>
+git clone file:///opt/git/project.git              <span class="c"># 本地文件</span>
+git clone ftp<span class="o">[</span>s<span class="o">]</span>://example.com/path/to/repo.git/   <span class="c"># ftp协议</span>
+git clone rsync://example.com/path/to/repo.git/    <span class="c"># rsync协议</span>
+</code></pre></div></li>
+<li><p><code>git remote</code>  管理远程主机名</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 用法 </span>
+git remote add &lt;主机名&gt; &lt;网址&gt;    <span class="c"># 添加远程主机名</span>
+git remote rm &lt;主机名&gt;           <span class="c"># 删除远程主机名</span>
+git remote rename &lt;原主机名&gt; &lt;新主机名&gt;   <span class="c"># 更改原主机名</span>
+git remote show &lt;主机名&gt;         <span class="c"># 显示主机名的详细信息</span>
+</code></pre></div></li>
+<li><p><code>git fetch</code>   将远程主机的版本库更新取回本地<mark>[clone是从无到有,fetch是从有到有]</mark></p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git fetch &lt;主机名&gt; &lt;分支名&gt;
+</code></pre></div></li>
+<li><p><code>git branch/checkout/merge/rebase</code>    管理分支</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 用法 查看分支情况</span>
+git branch -r    <span class="c"># 查看远程分支</span>
+git branch -a    <span class="c"># 查看所有分支，远程分支以remotes/开头</span>
+<span class="c"># 用法 创建新分支</span>
+git checkout -b newBranch origin/master   <span class="c"># 在origin/master的基础上创建新分支</span>
+<span class="c"># 用法 合并分支</span>
+git merge origin/master      <span class="c"># 将origin/master分支合并到本地分支</span>
+git rebase origin/master
+</code></pre></div></li>
+<li><p><code>git pull</code>    取回远程主机某个分支的更新，再与本地的指定分支合并</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+<span class="c"># 等价于</span>
+git fetch &lt;远程主机名&gt; &lt;远程分支名&gt;
+git merge &lt;远程主机名&gt;/&lt;远程分支名&gt;
+</code></pre></div></li>
+<li><p><code>git push</code>    将本地分支的更新,推送到远程主机</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</code></pre></div></li>
+</ul>
+
+<h2>ubuntu下安装</h2>
+
+<ul>
+<li><p>安装git</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install git
+</code></pre></div></li>
+<li><p>配置SSH Keys</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 以haojunyu2012@gmail.com创建ssh key，并将私钥保存在github文件中，公钥保存在github.pub文件中</span>
+ssh-keygen -C <span class="s2">&quot;haojunyu2012@gmail.com&quot;</span> -f ~/.ssh/github
+</code></pre></div></li>
+<li><p>配置GitHub<br>
+登录自己的GitHub,依次点击Settings=&gt;SSH keys=&gt;Add SSH key,将github.pub中的公钥添加进去.</p></li>
+<li><p>验证成功</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 执行命令</span>
+ssh -T git@github.com
+<span class="c"># 提示</span>
+Hi haojunyu! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></li>
+<li><p>配置git的个人信息</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 设置用户名</span>
+git config --global user.name <span class="s2">&quot;haojunyu&quot;</span>
+<span class="c"># 设置email邮箱</span>
+git config --global user.email <span class="s2">&quot;haojunyu2012@gmail.com&quot;</span>
+</code></pre></div></li>
+</ul>
+
+<h2>ubuntu下使用</h2>
+
+<ul>
+<li><p>为已有的项目[project]创建代码仓库[repository]</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 在项目[project]的根目录执行以下命令</span>
+
+<span class="c"># 创建README.md文件</span>
+<span class="nb">echo</span> <span class="s2">&quot;# NLP&quot;</span> &gt;&gt; README.md
+<span class="c"># 创建一个空的git版本库[.git文件夹]</span>
+git init
+<span class="c"># 添加所有文件到暂存区域</span>
+git add *
+<span class="c"># 将暂存区域文件提交到本地仓库，并标注信息“initial project”</span>
+git commit -m <span class="s2">&quot;initial project&quot;</span>
+<span class="c"># 添加远程主机名origin，它代表网址“https://github.com/haojunyu/SHELL.git”</span>
+git remote add origin https://github.com/haojunyu/SHELL.git
+<span class="c"># 将本地的master分支推送到origin主机上的master分支，并设定origin为默认主机</span>
+git push -u origin master
+</code></pre></div></li>
+<li><p>从远程服务器上克隆一个仓库到本地</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 从https://github.com/haojunyu上克隆SHELL.git到本地shell文件夹</span>
+git clone https://github.com/haojunyu/SHELL.git shell
+</code></pre></div></li>
+<li><p>忽略某些文件或文件夹
+有些文件无需纳入 Git 的管理,也不希望它们总出现在未跟踪文件列表。通常都是些自动生成的文件,像是日志或者编译过程中创建的等等。可以创建.gitignore文件来屏蔽这些</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 此为注释 – 将被 Git 忽略</span>
+*.a        <span class="c"># 忽略所有 .a 结尾的文件</span>
+!lib.a     <span class="c"># 但 lib.a 除外</span>
+/TODO      <span class="c"># 仅仅忽略项目根目录下的 TODO 文件,不包括 subdir/TODO</span>
+build/     <span class="c"># 忽略 build/ 目录下的所有文件</span>
+doc/*.txt  <span class="c"># 会忽略 doc/notes.txt， 但不包括 doc/server/arch.txt</span>
+</code></pre></div></li>
+<li><p>查看提交的更新</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 查看提交的日志，并显示最近两次提交更新区别</span>
+git log -p -2
+</code></pre></div>
+<blockquote>
+<p><strong>选项说明</strong><br>
+<code>-p</code>  按补丁格式显示每个更新之间的差异。<br>
+<code>--stat</code>  显示每次更新的文件修改统计信息。<br>
+<code>--shortstat</code> 只显示 --stat 中最后的行数修改添加移除统计  。<br>
+<code>--pretty</code>                使用其他格式显示历史提交信息。可用的选项包括 oneline,short,full,fuller 和 format(后跟指定格式)。  </p>
+</blockquote></li>
+<li><p>存储当前工作空间
+储藏（stashing）可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中,随时可以重新应用。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 存储当前工作空间，以方便进行切换</span>
+git stash
+<span class="c"># 此时工作空间所有文件的状态就干净了,可以切换到其他工作空间</span>
+
+<span class="c"># 显示之前存储的工作空间</span>
+git stash list
+
+<span class="c"># 重新启用存储的工作空间</span>
+git stash apply stash@2
+
+<span class="c"># 移除存储的工作空间</span>
+git stash drop stash@2
+
+<span class="c"># 从存储中创建分支</span>
+git stash branch testchanges
+</code></pre></div></li>
+</ul>
+
+<h2>Git文件结构</h2>
+
+<ul>
+<li>文件夹：
+
+<ul>
+<li><code>branches</code></li>
+<li><code>hooks</code>   客户端或服务端钩子脚本</li>
+<li><code>info</code>    保存了一份不希望在 .gitignore 文件中管理的忽略模式 (ignored patterns) 的全局</li>
+</ul></li>
+<li>可执行文件
+
+<ul>
+<li><code>refs</code>    存储指向数据 (分支) 的提交对象的指针</li>
+<li><code>objects</code> 存储所有数据内容</li>
+</ul></li>
+<li>文件
+
+<ul>
+<li><code>HEAD</code>    指向当前分支</li>
+<li><code>config</code>  包含了项目特有的配置选项</li>
+<li><code>description</code> 仅供GitWeb 程序使用</li>
+<li><code>index</code>   保存了暂存区域信息</li>
+</ul></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="UbuntuGit" data-title="版本控制神器git" data-url="//2015/05/31/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%A5%9E%E5%99%A8git.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

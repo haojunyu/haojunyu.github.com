@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2014/12/10/python%E5%9F%BA%E7%A1%80%E7%AF%87%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		python基础篇之正则表达式
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>python基础篇之正则表达式</h1>
+    						<p class="meta">Dec 10, 2014 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Python">Python</a>
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Google">Google</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>初学Python，对Python的文字处理能力有很深的印象，除了str对象自带的一些方法外，就是正则表达式这个强大的模块了。关于python里面正则表达式的使用网上有很多博文,如<a href="http://blog.csdn.net/whycadi/article/details/2011046">python正则式学习笔记</a>等,这里做一下自己的总结.</p>
+
+<h2>基本使用</h2>
+
+<ul>
+<li><p>match方法</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;an example word:cat!!&#39;</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&#39;word:\w\w\w&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+<span class="c"># If语句紧跟来检验search()是否成功</span>
+<span class="k">if</span> <span class="n">match</span><span class="p">:</span>                      
+    <span class="k">print</span> <span class="s">&#39;found&#39;</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>  <span class="c">## 找到cat</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;did not find&#39;</span>
+</code></pre></div></li>
+<li><p>findall方法</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c"># 在字符串中查找</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;purple alice@google.com, blah monkey bob@abc.com blah dishwasher&#39;</span>
+
+<span class="c"># 找出str中所有的正规的邮箱</span>
+<span class="n">emails</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&#39;[\w\.-]+@[\w\.-]+&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="c">## [&#39;alice@google.com&#39;, &#39;bob@abc.com&#39;]</span>
+<span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">email</span>
+
+<span class="c"># 在文件中查找</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="err">（</span><span class="s">&#39;test.txt&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="err">）</span>
+
+<span class="n">strings</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&#39;pattern&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div></li>
+</ul>
+
+<h2>基本模式</h2>
+
+<ul>
+<li><code>普通字符</code>    a-z,A-Z,0-9</li>
+<li><code>.</code>           匹配任何一个单字符,除了换行符<code>\n</code></li>
+<li><code>\w</code>          匹配字母/数字/下划线,等价于[a-zA-Z0-9],<code>\W</code>与<code>\w</code>互为补集</li>
+<li><code>\b</code>          匹配词和非词的分隔界限</li>
+<li><code>\s</code>          匹配单个空格字符,等价于[ \n\r\t\f\v].<code>\S</code>和<code>\s</code>互为补集</li>
+<li><code>\t\n\r</code>      匹配制表符,换行符,回车符</li>
+<li><code>\d</code>          匹配数字,等价于[0-9]</li>
+<li><code>^ $</code>         <code>^</code>匹配开头,<code>$</code>匹配结尾</li>
+</ul>
+
+<h2>重复模式</h2>
+
+<ul>
+<li><code>+</code>           匹配至少有一个和左边相同的字符构成的串.eg &#39;i+&#39;匹配i/ii/iii etc</li>
+<li><code>*</code>           匹配0个或多个和左边相同的字符构成的串.eg &#39;i*&#39;匹配 /i/ii/iii etc</li>
+<li><p><code>?</code>           匹配0个或一个和左边相同的字符.eg &#39;i?&#39;匹配/i</p>
+
+<blockquote>
+<p><strong>注意:</strong><br>
+<code>+</code>和<code>*</code>都是尽可能多的匹配字符串</p>
+</blockquote></li>
+</ul>
+
+<h2>特殊符号</h2>
+
+<ul>
+<li><code>[]</code>          代表单个字符,这个字符是属于[]中的元素</li>
+<li><code>()</code>          ()中匹配的字符串构成的一个group，可以通过match.group(i)提取第i个组合</li>
+</ul>
+
+<h2>课后习题</h2>
+
+<ul>
+<li>练习题: <a href="/assets/attachs/babynames.py.txt">babynames.py</a>  <a href="/assets/attachs/baby2006.html.txt">baby2006.html</a></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="PythonGoogle" data-title="python基础篇之正则表达式" data-url="//2014/12/10/python%E5%9F%BA%E7%A1%80%E7%AF%87%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

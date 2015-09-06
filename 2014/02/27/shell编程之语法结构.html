@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2014/02/27/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		shell编程之语法结构
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>shell编程之语法结构</h1>
+    						<p class="meta">Feb 27, 2014 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Shell">Shell</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>前一篇博文介绍了shell编程的基本内容,主要介绍了变量,数值计算以及字符串.这些相当于食材,而本文介绍的语法结构就相当于食谱,二者组合方能做出美食.</p>
+
+<h2>判断语句</h2>
+
+<ul>
+<li><p>条件判断</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">test </span>expression
+<span class="o">[</span> expression <span class="o">]</span>
+</code></pre></div></li>
+<li><p>条件表达式中常用的判断</p>
+
+<ol>
+<li>数值       <code>-eq</code> <code>-ne</code> <code>-gt</code> <code>-lt</code> <code>-ge</code> <code>-le</code> [<strong>e</strong>qual <strong>n</strong>ot <strong>g</strong>reater <strong>t</strong>han <strong>l</strong>ess]</li>
+<li>字符串    <code>=:</code> <code>!=</code> <code>-z</code> <code>-n</code> [<strong>z</strong>ero <strong>n</strong>ozero]</li>
+<li>文件       <code>-e</code> <code>-r</code> <code>-w</code> <code>-x</code> <code>-s</code> <code>-d</code> <code>-f</code> <code>-c</code> <code>-b</code>    [<strong>e</strong>xist <strong>r</strong>ead <strong>w</strong>rite <strong>e</strong>xecute <strong>s</strong>ize <strong>d</strong>irectory <strong>f</strong>ile <strong>c</strong>har <strong>b</strong>lock]</li>
+</ol></li>
+<li><p>语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="nv">$mark</span> -le <span class="m">80</span> <span class="o">]</span>
+<span class="k">then</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Average.&quot;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$mark</span> -gt <span class="m">80</span> -a <span class="nv">$mark</span> -le <span class="m">90</span> <span class="o">]</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Good.&quot;</span>
+<span class="k">else</span>
+<span class="nb">echo</span> <span class="s2">&quot;Your Grade is Outstanding.&quot;</span>
+<span class="k">fi</span>
+</code></pre></div></li>
+</ul>
+
+<h2>case分支</h2>
+
+<ul>
+<li><p>语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">case</span> <span class="nv">$choice</span> in
+1<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;choice1&quot;</span><span class="p">;;</span>
+2<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;choice2&quot;</span><span class="p">;;</span>
+*<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;out of choice&quot;</span>
+</code></pre></div></li>
+</ul>
+
+<h2>循环语句</h2>
+
+<ul>
+<li><p>for循环语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> val in vals
+<span class="k">do</span>
+...
+<span class="k">done</span>
+</code></pre></div></li>
+<li><p>while循环语句结构</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">i</span><span class="o">=</span>0
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> -le <span class="m">100</span> <span class="o">]</span>
+<span class="k">do</span>
+...
+<span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1<span class="o">))</span>
+<span class="k">done</span>
+</code></pre></div></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Shell" data-title="shell编程之语法结构" data-url="//2014/02/27/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

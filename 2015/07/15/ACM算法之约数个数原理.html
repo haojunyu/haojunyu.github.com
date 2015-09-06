@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		ACM算法之约数个数原理
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>ACM算法之约数个数原理</h1>
+    						<p class="meta">Jul 15, 2015 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=ACM">ACM</a>
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Algorithm">Algorithm</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>在数论里面除了老生常谈的素数问题，还有一个就是约数个数问题。对于这个问题的解法可能还停留在用n除以 $1,\cdots,\sqrt n$，然后统计能够整除的个数。其时间复杂度为 $O(\sqrt n)$。本文主要介绍约数个数定理以及它在实际题目中的应用。</p>
+
+<h2>约数个数原理</h2>
+
+<ul>
+<li><p>原理<br>
+对于一个大于1的正整数n，n可以因式分解为
+$$
+n = \prod _{ i = 1 } ^k p _i ^{ a _i } = p _1 ^{ a _1 } * \cdots * p _k ^{ a _k } 
+$$,
+其中$ p _i $是质数，$ a _i \in N $，那么n的约数个数就是
+$$
+f ( n ) = \prod _{ i = 1 } ^k ( a _i + 1) = ( a _i + 1) * \cdots *( a _k + 1 )
+$$</p></li>
+<li><p>简证<br>
+因为$ p _i $都是质数，无法再进行因式分解，所以任意$ p _i $的组合都可以构成一个约数，对于质数$ p _i $有$ (a _i+1) $种可能，分别是 $ 0,1,\cdots,a _i $，那么对于k个$ p _i $共有 $ \prod _{i=1}^k (a _i +1) $种可能的组合。</p></li>
+</ul>
+
+<h2>代码实现</h2>
+
+<ul>
+<li><p>思路<br>
+要求解一个整数n的约数个数$ f(n) $，其关键就是通过因式分解获取各个质数的指数。不过通常情况下，我们无法获取比n小的质数有哪些（$ 10^{16} $以内的质数有104165820+个，所以数目还是可观的。）这里我们通过n不断除以除数m，$ m \in {2,3,5,7,9,\cdots} $，如果能够整除的话，就更新n为$ n/m $，这样虽然除数里面有9这样的合数，但经过除以2次3后，9将会不被更新后的n整除，所以实际的情况还是除以质数。</p></li>
+<li><p>c++代码  </p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">// 快速计算n的约数个数</span>
+<span class="kt">int</span> <span class="nf">NumOfFac</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">m</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">m</span><span class="o">!=</span><span class="mi">1</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">m</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+                    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">/</span> <span class="n">i</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">*</span><span class="n">k</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="c1">// 2,3,5,7,11...避开2-&gt;3之间差1</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+<h2>解题报告</h2>
+
+<ul>
+<li><p>HihoCoder</p>
+
+<ol>
+<li><p>divisors: <a href="http://hihocoder.com/contest/mstest2015july1/problem/2">divisors</a> | <a href="/assets/attachs/hiho_divisors.cpp.txt">源码</a> | <a href="/acm_report/2015/07/23/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E5%A4%A7%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0.html">报告细节</a></p>
+
+<p>注意点：</p>
+
+<ol>
+<li>暴力求解(<mark>遍历比n小的数，依次求解每个数的约数个数</mark>)是行不通的。</li>
+<li><p>合理利用约数个数原理，并对其进行优化求解。</p>
+
+<blockquote>
+<p><strong>TIPS:</strong><br>
+最终求解的拥有最大约数个数的数一定满足下面的推论：<br>
+若$p _1 &lt; p _2 &lt;  \cdots &lt; p _k$,则$a _1 &gt; a _2 &gt; \cdots &gt; a _k$</p>
+</blockquote></li>
+</ol></li>
+</ol></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ACMAlgorithm" data-title="ACM算法之约数个数原理" data-url="//2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

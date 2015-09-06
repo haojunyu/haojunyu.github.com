@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/05/18/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7awk.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		shell编程之文本处理工具awk
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>shell编程之文本处理工具awk</h1>
+    						<p class="meta">May 18, 2015 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Shell">Shell</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>AWK是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说<mark>awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</mark>。</p>
+
+<h2>简介</h2>
+
+<p>AWK其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序<strong>读取输入文件</strong>、<strong>为数据排序</strong>、<strong>处理数据</strong>、<strong>对输入执行计算</strong>以及<strong>生成报表</strong>，还有无数其他的功能。</p>
+
+<h2>使用方法</h2>
+
+<ul>
+<li><p>基本用法</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="o">[</span>-F FS<span class="o">]</span> <span class="s1">&#39;pattern{action}&#39;</span> filename
+</code></pre></div></li>
+<li><p>参数说明</p>
+
+<ul>
+<li>pattern   表示awk在数据中查找的内容</li>
+<li>action    在找到匹配内容时所执行的一系列命令</li>
+<li><code>-F FS</code>   指定域分割符为FS[<mark>一行代表一个记录,一个记录按FS分割成多个域</mark>]</li>
+</ul></li>
+<li><p>核心action</p>
+
+<ul>
+<li>内置变量
+
+<ul>
+<li><code>ARGC</code>    命令行数量个数</li>
+<li><code>ARGV</code>    命令行变元数组</li>
+<li><code>FILENAME</code>    当前输入文件名</li>
+<li><code>NR</code>  当前文件中的记录号(行号)</li>
+<li><code>FS</code>  设置域分隔符,等价于-F</li>
+<li><code>RS</code>  设置记录分隔符,默认是&#39;\n&#39;</li>
+<li><code>NF</code>  浏览记录中域的个数</li>
+<li><code>NR</code>  已读的记录数</li>
+<li><code>OFS</code> 输出域分隔符</li>
+<li><code>ORS</code> 输出记录分隔符</li>
+<li><code>$0</code>  整条记录</li>
+<li><code>$1/2</code>    第1/2个域</li>
+</ul></li>
+<li>变量和赋值
+
+<ul>
+<li>变量值可以是数字或字符串,关键是怎么用.</li>
+</ul></li>
+<li>条件语句和循环语句完全借鉴c语言</li>
+<li>内置函数
+
+<ul>
+<li>数字    <code>atan2</code>/<code>cos</code>/<code>exp</code>/<code>int</code>/<code>log</code>/<code>rand</code>/<code>sin</code>/<code>sqrt</code>/<code>srand</code></li>
+<li>字符串 <code>index</code>/<code>length</code>/<code>match</code>/<code>toupper</code>/<code>tolower</code>/<code>substr</code>/<code>system</code>/<code>systime</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2>样例演示</h2>
+
+<ul>
+<li><p>统计/etc/passwd:文件名,每行的行号,每行的列数,对应的完整行内容</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;{printf(&quot;filename:%11s,linenumber:%s,columns:%s,linecontent:%s\n&quot;,FILENAME,NR,NF,$0)}&#39;</span>
+</code></pre></div>
+<p><img src="/assets/images/awk-var.png" alt="awk-var"></p></li>
+<li><p>统计/etc/passwd中出现oo次数</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;BEGIN{count=0;printf(&quot;login_name\tpasswd\n&quot;)} /oo/{printf(&quot;%-15s\t%s\n&quot;,$1,$2);count++} END{printf(&quot;count is %d\n&quot;,count)}&#39;</span>
+</code></pre></div>
+<p><img src="/assets/images/awk-begend.png" alt="awk-begend"></p>
+
+<blockquote>
+<p><strong>注意:</strong><br>
+BEGIN{}表示在处理任意行之前进行的操作.END{}表示在处理完所有行之后进行的操作.</p>
+</blockquote></li>
+<li><p>统计/etc/passwd中第1列以s开头的行</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;$1~/^s/{printf(&quot;%s\n&quot;,$1)}&#39;</span>
+</code></pre></div>
+<p><img src="/assets/images/awk-s.png" alt="awk-s"></p></li>
+<li><p>统计/etc/passwd中第1列为sys的行</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;$1==&quot;sys&quot;{printf(&quot;%s\n&quot;,$1)}&#39;</span>
+</code></pre></div>
+<p><img src="/assets/images/awk==.png" alt="awk=="></p>
+
+<blockquote>
+<p><strong>注意:</strong><br>
+~和==都是匹配,不过~是不精确的比较,一般跟正则连用</p>
+</blockquote></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Shell" data-title="shell编程之文本处理工具awk" data-url="//2015/05/18/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7awk.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>

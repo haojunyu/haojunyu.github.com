@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2013/09/08/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		简单批处理之内部命令
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+ 					
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>简单批处理之内部命令</h1>
+    						<p class="meta">Sep 8, 2013 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Batch">Batch</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>批处理(Batch)，也称为批处理脚本。顾名思义，批处理就是对某对象进行批量的处理，通常被认为是一种简化的脚本语言，它应用于DOS和Windows系统中。批处理文件的扩展名为bat 。本文主要介绍批处理比较常用的内部命令.</p>
+
+<h2>echo 命令</h2>
+
+<p>打开回显或关闭请求回显功能，或显示消息。如果没有任何参数，echo 命令将显示当前回显设置。</p>
+
+<ul>
+<li><p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">echo</span> [{<span class="k">on</span>　<span class="k">off</span>}] [message]
+</code></pre></div></li>
+<li><p>Sample：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span> / <span class="k">echo</span> hello world
+</code></pre></div></li>
+</ul>
+
+<h2>rem命令</h2>
+
+<p>注释命令，类似于在C语言中的/*--------*/，它并不会被执行，只是起一个注释的作用，只有在编辑批处理时才会被看到，主要用于方便修改。</p>
+
+<ul>
+<li><p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem [context]</span>
+</code></pre></div></li>
+<li><p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem 注释内容</span>
+</code></pre></div>
+<blockquote>
+<p><strong>注意</strong><br>
+:: 也具有rem的功能，区别如下：<br>
+当关闭回显时,rem和::都不显示注释内容;<br>
+当打开回显时,rem会显示注释内容,而::却不显示注释内容 </p>
+</blockquote></li>
+</ul>
+
+<h2>pause命令</h2>
+
+<p>暂停命令。运行 Pause 命令时，将显示下面的消息：</p>
+
+<ul>
+<li><p>Usage:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">Press any key to continue. . .（或：请按任意键继续. . .)
+</code></pre></div></li>
+</ul>
+
+<h2>call 命令</h2>
+
+<p><em>从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序</em>.call命令接受用作调用目标的标签。如果在脚本或批处理文件外使用Call，它将不会在命令行起作用。</p>
+
+<ul>
+<li><p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">call</span> [[Drive:][Path] FileName [BatchParameters]]
+[<span class="nl">:label</span> [arguments]]
+</code></pre></div></li>
+<li><p>Sample：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">call</span> file.bat
+</code></pre></div></li>
+</ul>
+
+<h2>start 命令</h2>
+
+<p>调用外部程序，所有的DOS命令和命令行程序都可以由start命令来调用。</p>
+
+<ul>
+<li><p>Usage：</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">start FileName [BatchParameters]
+</code></pre></div>
+<blockquote>
+<p><strong>Parameters:</strong><br>
+MIN        开始时窗口最小化<br>
+SEPARATE   在分开的空间内开始 16 位 Windows 程序<br>
+HIGH       在HIGH 优先级类别开始应用程序<br>
+REALTIME   在 REALTIME 优先级类别开始应用程序<br>
+WAIT       启动应用程序并等候它结束</p>
+</blockquote></li>
+<li><p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch">start calc.exe
+</code></pre></div></li>
+</ul>
+
+<h2>goto命令</h2>
+
+<p>跳转命令。程序指针跳转到指定的标签，从标签后的第一条命令开始继续执行批处理程序。</p>
+
+<ul>
+<li><p>Usage:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="k">goto</span> <span class="nl">label</span>
+</code></pre></div></li>
+<li><p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="nl">:label</span>
+start a.exe
+<span class="k">goto</span> <span class="nl">label</span>
+</code></pre></div></li>
+</ul>
+
+<h2>set命令</h2>
+
+<p>显示、设置或删除变量。</p>
+
+<ul>
+<li><p>Sample:</p>
+<div class="highlight"><pre><code class="language-batch" data-lang="batch"><span class="c">rem 把变量a定义为hjy。用echo %a%来回显</span>
+<span class="k">set</span> <span class="nv">a</span><span class="o">=</span>hjy 
+
+<span class="c">rem 删除变量a</span>
+<span class="k">set</span> <span class="nv">a</span><span class="o">=</span>
+
+<span class="c">rem 显示所有以s开头的变量及其值</span>
+<span class="k">set</span> <span class="nv">s</span>    
+<span class="c">rem 显示批处理当前已定义的所有变量及其值</span>
+<span class="k">set</span> 
+</code></pre></div></li>
+</ul>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+  						
+    						<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Batch" data-title="简单批处理之内部命令" data-url="//2013/09/08/%E7%AE%80%E5%8D%95%E6%89%B9%E5%A4%84%E7%90%86%E4%B9%8B%E5%86%85%E9%83%A8%E5%91%BD%E4%BB%A4.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+  						
+
+					</div>
+        			</div>
+        			
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
