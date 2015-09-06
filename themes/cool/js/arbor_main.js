@@ -261,31 +261,84 @@
 
     // or, equivalently:
     //
+
     var nodes = {
       'js': { description: 'javascript', type: 'lang' },
       'java': { description: 'Java', type: 'lang' },
       'c': { description: 'C/C++', type: 'lang' },
+      'python': { description: 'Python', type: 'lang' },
+      'shell': { description: 'Shell', type: 'lang' },
+      'markdown': { description: 'MarkDown', type: 'lang' },
+      'matlab': { description: 'Matlab', type: 'lang' },
       'c#': { description: 'C#', type: 'lang' },
-      'lisp': { description: 'lisp', type: 'lang' },
       'css': { description: 'css', type: 'lang' },
       'html': { description: 'html5', type: 'lang' },
-      'git': { description: 'git', type: 'tool' },
-      'justjs': { description: 'JustJS', type: 'experience' },
-      'jreparser': { description: 'JRE-Parser', type: 'experience' },
-      'ms-intern': { description: 'Microsoft实习', type: 'experience' },
-      'haijiao': { description: '海角教育', type: 'experience' },
+      'git': { description: 'Git', type: 'tool' },
+      'jekyll': { description: 'Jekyll', type: 'tool' },
+      'android': { description: 'android开发', type: 'tool'},
+      'elk': { description: 'Logstash+Elasticsearch+Kibia', type: 'tool' },
+      'logger': { description: 'linux日志', type: 'tool' },
+      'ssh': { description: 'Struct+Spring+Hibernate', type: 'tool' },
+      'django': { description: 'Django', type: 'tool' },
+      'blog': { description: '禹过留声（博客）', type: 'experience' },
+      'nuance-intern': { description: 'Nuance实习', type: 'experience' },
+		'sap-intern': { description: 'SAP实习', type: 'experience' }
+    };
+
+    var edges = {
+    	'blog': {
+        'jekyll': { weight: 2 },
+        'js': { weight: 2 },
+        'css': { weight: 3 },
+        'html': { weight: 3 },
+        'git': { weight: 2 },
+        'markdown' : { weight : 3}
+      },
+      'nuance-intern': {
+        'python': { weight: 1 },
+        'django': { weight: 2 },
+        'android': { weight: 2 },
+        'java': { weight: 1 }
+      },
+      'sap-intern': {
+        'shell': { weight: 3 },
+        'python': { weight: 1 },
+        'elk': { weight: 2 },
+        'logger': { weight: 1 }
+      }
+    };
+
+	/*
+	var nodes = {
+      'js': { description: 'javascript', type: 'lang' },
+      'java': { description: 'Java', type: 'lang' },
+      'c': { description: 'C/C++', type: 'lang' },
+      'python': { description: 'Python', type: 'lang' },
+      'shell': { description: 'Shell', type: 'lang' },
+      'markdown': { description: 'MarkDown', type: 'lang' },
+      'matlab': { description: 'Matlab', type: 'lang' },
+      'c#': { description: 'C#', type: 'lang' },
+      'css': { description: 'css', type: 'lang' },
+      'html': { description: 'html5', type: 'lang' },
+      'git': { description: 'git', type: 'tool' },   
+      'jekyll': { description: 'Jekyll', type: 'tool' },
+      'android': { description: 'android开发', type: 'tool'},
+      'elk': { description: 'Logstash+Elasticsearch+Kibia', type: 'tool' },
+      'logger': { description: 'linux日志', type: 'tool' },
+      'ssh': { description: 'Struct+Spring+Hibernate', type: 'tool' },
+      'django': { description: 'Django', type: 'tool' },      
       'cocos2d-js': { description: 'cocos2d-JS', type: 'tool' },
       'unity-3d': { description: 'Unity-3d', type: 'tool' },
       'mongodb': { description: 'MongoDB', type: 'tool' },
-      'logv': { description: 'LogV', type: 'experience' },
       'kinect': { description: 'Kinect', type: 'tool' },
+      'uav': { description: '小型无人机技术大赛', type: 'experience' },
       'screenbuilder': { description: 'Screen Builder', type: 'experience' },
       'maoxian': { description: '冒险的召唤', type: 'experience' },
-      'jekyll': { description: 'jekyll', type: 'tool' },
-      'cocos-docs': { description: 'cocos维基', type: 'experience' },
-      'uav': { description: '小型无人机技术大赛', type: 'experience' },
-      'ssh': { description: 'Struct+Spring+Hibernate', type: 'tool' },
       'game-dev': { description: '游戏开发', type: 'experience' },
+      'justjs': { description: 'JustJS', type: 'experience' },
+      'logv': { description: 'LogV', type: 'experience' },
+      'ms-intern': { description: 'Microsoft实习', type: 'experience' },
+      'haijiao': { description: '海角教育', type: 'experience' },
       'blog': { description: 'Jerry的乐园（博客）', type: 'experience' }
     };
 
@@ -338,17 +391,11 @@
       'lisp': {
         'js': { weight: 1 }
       },
-      'cocos-docs': {
-        'cocos2d-js': { weight: 1 }
-      },
       'justjs': {
-        'js': { weight: 3 }
-      },
-      'jreparser': {
         'js': { weight: 3 }
       }
     };
-
+    */
     for (var n1 in edges) {
       if (edges.hasOwnProperty(n1)) {
         for (var n2 in edges[n1]) {
