@@ -109,6 +109,9 @@
               case 'tool':
                 ctx.fillStyle = '#FF6A6A';
                 break;
+              case 'project':
+				ctx.fillStyle = '#4ce534';
+				break;
               case 'experience':
                 ctx.fillStyle = '#EEB422';
                 break;
@@ -263,50 +266,80 @@
     //
 
     var nodes = {
-      'js': { description: 'javascript', type: 'lang' },
-      'java': { description: 'Java', type: 'lang' },
-      'c': { description: 'C/C++', type: 'lang' },
-      'python': { description: 'Python', type: 'lang' },
-      'shell': { description: 'Shell', type: 'lang' },
-      'markdown': { description: 'MarkDown', type: 'lang' },
-      'matlab': { description: 'Matlab', type: 'lang' },
-      'c#': { description: 'C#', type: 'lang' },
-      'css': { description: 'css', type: 'lang' },
-      'html': { description: 'html5', type: 'lang' },
-      'git': { description: 'Git', type: 'tool' },
-      'jekyll': { description: 'Jekyll', type: 'tool' },
-      'android': { description: 'android开发', type: 'tool'},
-      'elk': { description: 'Logstash+Elasticsearch+Kibia', type: 'tool' },
-      'logger': { description: 'linux日志', type: 'tool' },
-      'ssh': { description: 'Struct+Spring+Hibernate', type: 'tool' },
-      'django': { description: 'Django', type: 'tool' },
-      'blog': { description: '禹过留声（博客）', type: 'experience' },
-      'nuance-intern': { description: 'Nuance实习', type: 'experience' },
-		'sap-intern': { description: 'SAP实习', type: 'experience' }
+		'js'		:	{ description: 'javascript', 	type: 'lang' },
+		'java'		:	{ description: 'Java', 			type: 'lang' },
+		'c'			:	{ description: 'C/C++', 		type: 'lang' },
+		'python'	:	{ description: 'Python', 		type: 'lang' },
+		'shell'		:	{ description: 'Shell', 		type: 'lang' },
+		'markdown'	:	{ description: 'MarkDown', 		type: 'lang' },
+		'matlab'	:	{ description: 'Matlab', 		type: 'lang' },
+		'c#'		:	{ description: 'C#', 			type: 'lang' },
+		'css'		:	{ description: 'css',			type: 'lang' },
+		'html'		:	{ description: 'html5', 		type: 'lang' },
+		'sql'		:	{ description: 'SQL', 			type: 'lang' },
+		
+		'git'		:	{ description: 'Git',			type: 'tool' },
+		'latex'		:	{ description: 'Latex', 		type: 'tool' },
+		'vim'		:	{ description: 'Vim', 			type: 'tool' },
+		'jekyll'	:	{ description: 'Jekyll', 		type: 'tool' },
+		'linux'		:	{ description: 'Linux',			type: 'tool' },
+		'socket'	:	{ description: 'Socket通信', 	type: 'tool' },
+		'multhread'	:	{ description: '多线程编程', 		type: 'tool' },
+		'android'	:	{ description: 'android开发',	type: 'tool' },
+		'elk'		:	{ description: 'Logstash+Elasticsearch+Kibia', 	type: 'tool' },
+		'logger'	:	{ description: 'linux日志',		type: 'tool' },
+		'ssh'		:	{ description: 'Struct+Spring+Hibernate', 		type: 'tool' },
+		'django'	:	{ description: 'Django',		type: 'tool' },
+		
+		'pms'		:	{ description: '研究生管理系统', 	type: 'project'},
+		'enluapp'	:	{ description: '基于ENLU的android应用开发',	type: 'project' },
+		'vdds'		:	{ description: '虚拟桌面系统调度服务器',		type: 'project' },
+		'blog'		:	{ description: '禹过留声（博客）', type: 'project' },
+		
+		'nua-intern':	{ description: 'Nuance实习',		type: 'experience' },
+		'sap-intern':	{ description: 'SAP实习',		type: 'experience' }
     };
 
     var edges = {
-    	'blog': {
-        'jekyll': { weight: 2 },
-        'js': { weight: 2 },
-        'css': { weight: 3 },
-        'html': { weight: 3 },
-        'git': { weight: 2 },
-        'markdown' : { weight : 3}
-      },
-      'nuance-intern': {
-        'python': { weight: 1 },
-        'django': { weight: 2 },
-        'android': { weight: 2 },
-        'java': { weight: 1 }
-      },
-      'sap-intern': {
-        'shell': { weight: 3 },
-        'python': { weight: 1 },
-        'elk': { weight: 2 },
-        'logger': { weight: 1 }
-      }
-    };
+		'pms':{
+			'c#'		:	{ weight: 3 },
+			'sql'		:	{ weight: 2 },
+			'js'		:	{ weight: 1 },
+			'css'		:	{ weight: 1 },
+			'html'		:	{ weight: 1 }
+		},
+		'enluapp':{
+			'java'		:	{ weight: 3 },
+			'android'	:	{ weight: 3 },
+			'html'		:	{ weight: 2 }
+		},
+		'vdds':{
+			'c'			:	{ weight: 3 },
+			'socket'	:	{ weight: 2 },
+			'linux'		:	{ weight: 1},
+			'multhread' :	{ weight: 1}
+		},
+		'blog': {
+			'jekyll'	:	{ weight: 2 },
+			'js'		:	{ weight: 2 },
+			'css'		:	{ weight: 3 },
+			'html'		:	{ weight: 3 },
+			'git'		:	{ weight: 2 },
+			'markdown'	:	{ weight: 3 }
+		},
+		'nua-intern': {
+			'python'	:	{ weight: 1 },
+			'django'	:	{ weight: 2 },
+			'android'	:	{ weight: 2 },
+			'java'		:	{ weight: 1 }
+		},
+		'sap-intern': {
+			'shell'		:	{ weight: 3 },
+			'python'	:	{ weight: 1 },
+			'elk'		:	{ weight: 2 },
+			'logger'	:	{ weight: 1 }
+		}
+	};
 
 	/*
 	var nodes = {
