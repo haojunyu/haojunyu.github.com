@@ -1,7 +1,7 @@
 ---
 layout:	default
 title:	ubuntukylin(64bit)安装推荐
-category:	ubuntu
+category:	[Ubuntu, Software]
 comments:	true
 ---
 在网上经常会看到[安装ubuntu后必做的n件事](http://www.linuxidc.com/Linux/2014-04/100411.htm),不过这些事情都是大众通用的,并不是完全适合自己的.所以本文就是对自己使用ubuntukylin这些年来的记录总结.

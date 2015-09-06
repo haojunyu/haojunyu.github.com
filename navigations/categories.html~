@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Categories
+title: 分类目录
+sidePart: true
 ---
 <div class="article">
     <h3 class="title">{{ page.title }}</h3>

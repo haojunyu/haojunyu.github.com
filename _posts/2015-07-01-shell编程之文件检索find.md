@@ -1,7 +1,7 @@
 ---
 layout:	default
 title:	shell编程之文件检索find
-category:   shell
+category:   Shell
 comments:   true
 ---
 `find`命令是用来搜索指定目录下面符合搜索选项的文件.它跟`awk`,`sed`,`grep`的区别是它搜索到的对象是文件,而后三者是文件里的字符或字符串.

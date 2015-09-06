@@ -1,7 +1,7 @@
 ---
 layout:	default
 title:	逃离VMWare拥抱docker
-category:	ubuntu_ops
+category:	[Ubuntu, OPS]
 comments:	true
 ---
 Docker是一个开源项目，它是基于linux容器（LXC）等技术，旨在实现轻量级的操作系统虚拟化的一个解决方案。用户操作Docker的容器就像操作虚拟机一样，但是它比虚拟机更轻量更快速。

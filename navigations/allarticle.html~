@@ -1,0 +1,42 @@
+---
+title: 所有文章
+layout: default
+sidePart: true
+---
+
+<script type="text/javascript">
+// prepare data from jekyll
+var $J = {
+  baseUrl: "{{ site.baseurl }}/navigations/allarticle.html/?label=",
+  staticUrl: "/themes/{{site.theme}}/images",
+  labels: [
+    "显示全部",
+    {% for post in site.posts %}
+        {% for label in post.category %}
+          "{{ label }}",
+        {% endfor %}
+    {% endfor %}
+  ],
+  posts: [
+    {% for post in site.posts %}
+      {
+        title: "{{ post.title }}",
+        date: "{{ post.date | date: "%Y-%m-%d" }}",
+        link: "{{ post.url | prepend: site.baseurl }}",
+        labels: [
+        {% for label in post.category %}
+          "{{ label }}",
+        {% endfor %}
+        ]
+      },
+    {% endfor %}
+  ]
+};
+</script>
+
+<div id="main"></div>
+
+<!-- concat React JSX -->
+<script src="/themes/{{site.theme}}/js/lib/react/react.min.js"></script>
+<script src="/themes/{{site.theme}}/js/lib/react/JSXTransformer.js"></script>
+<script type="text/jsx" src="/themes/{{site.theme}}/js/lib/react/articles.js" ></script>

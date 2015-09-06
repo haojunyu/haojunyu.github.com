@@ -1,7 +1,7 @@
 ---
 layout:	default
 title:	ubuntu制作usb启动盘
-category:	ubuntu
+category:	[Ubuntu, Software]
 comments:	true
 ---
 常年与计算机为伴,免不了要经常给计算机安装系统.而重装系统当然需要工具.光盘安装,读取太慢;硬盘安装,需要一个大前提:电脑能正常工作,一旦电脑无法正常开机,该方法无效.现在u盘非常普及,所以用usb作系统启动盘能很好的解决上面的两个问题.

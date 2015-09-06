@@ -58,22 +58,25 @@ favicon: http://jekyllrb.com/favicon.png
 nav:
   - text: 首页
     url: index.html
-  - text: 分类目录
-    url: navigations/categories.html
   - text: 文章归档
     url: navigations/archives.html
-  - text: 联系我
+  - text: 技能图谱
+    url: navigations/skills.html
+  - text: 关于我
     url: navigations/contact.html
   - text: 友情链接
     url: navigations/links.html
+  - text: RSS订阅
+    url: navigations/atom.xml
     
 
 # author config
 author:
   name: 郝俊禹
+  nickname: 飘移
   email: haojunyu2012@gmail.com
-  imageLink: https://avatars.githubusercontent.com/minixalpha
-  simpleIntro: 郝俊禹</br></br>专注coding一百年
+  imageLink: /themes/cool/images/minixalpha.png
+  simpleIntro: 专注coding一百年
   detailIntro: 
     情不知何起,一往而深,生者可以死;死可以生,生而不可与死,死而不可复生者,皆非情之至也.
 
@@ -139,7 +142,7 @@ username: haojunyu
 title: 禹过留声
 description: 人生到处知何似，应似飞鸿踏雪泥
 #theme: merlot_extend
-theme: jmq
+theme: cool
 disqusname: haojunyugithubio
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
