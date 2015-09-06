@@ -63,8 +63,6 @@ nav:
     url: navigations/skills.html
   - text: 关于我
     url: navigations/contact.html
-  - text: about me
-    url: navigations/about.html
   - text: 友情链接
     url: navigations/links.html
   - text: RSS订阅
