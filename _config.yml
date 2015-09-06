@@ -48,7 +48,6 @@ timezone:      null         # 设置时区
 # Markdown Processors
 
 # Site config
-keywords: 日,fuck
 url: /haojunyu
 feed:  /atom.xml
 favicon: http://jekyllrb.com/favicon.png
