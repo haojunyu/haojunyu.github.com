@@ -134,6 +134,13 @@ UbuntuKylin是Ubuntu社区中面向中文用户的Ubuntu衍生版本，与麒麟
 			sudo dpkg -i wine-qqintl_0.1.3-2_i386.deb
 			sudo apt-get -f install
 			```
+	14. 安装pdf2htmlEx
+		
+		```bash
+		sudo add-apt-repository ppa:coolwanglu/pdf2htmlex 
+		sudo apt-get update 
+		sudo apt-get install pdf2htmlEX
+		```
 
 ## 待续
 	

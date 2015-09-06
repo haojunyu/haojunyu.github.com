@@ -63,6 +63,8 @@ nav:
     url: navigations/skills.html
   - text: 关于我
     url: navigations/contact.html
+  - text: about me
+    url: navigations/about.html
   - text: 友情链接
     url: navigations/links.html
   - text: RSS订阅
@@ -74,7 +76,7 @@ author:
   name: 郝俊禹
   nickname: 飘移
   email: haojunyu2012@gmail.com
-  imageLink: /themes/cool/images/minixalpha.png
+  imageLink: /themes/cool/images/favicon.ico
   simpleIntro: 专注coding一百年
   detailIntro: 
     情不知何起,一往而深,生者可以死;死可以生,生而不可与死,死而不可复生者,皆非情之至也.
