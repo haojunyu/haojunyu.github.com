@@ -6,6 +6,8 @@
 　　<p>最新文章</p>
 　　<ul>
 　　　　
+　　　　　　<li>07 Sep 2015 <a href="/2015/09/07/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%A0%BC%E9%9B%B7%E7%A0%81.html">ACM解题报告之格雷码</a></li>
+　　　　
 　　　　　　<li>31 Aug 2015 <a href="/2015/08/31/VIM%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E7%BA%A7.html">Vim配置之基本入门级</a></li>
 　　　　
 　　　　　　<li>25 Aug 2015 <a href="/2015/08/25/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.html">ACM解题报告之最长回文子串</a></li>

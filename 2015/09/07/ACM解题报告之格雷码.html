@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/09/07/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%A0%BC%E9%9B%B7%E7%A0%81.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+    	<!-- Baidu Analysis -->
+    	<script>
+        if (window.location.href.substr(7, 9) !== 'localhost') {
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?7cff4399c363d93f9d894086636ff111";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        }
+    </script>
+
+    	<!-- Google Analytics -->
+    	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-47842677-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		ACM解题报告之格雷码
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>ACM解题报告之格雷码</h1>
+    						<p class="meta">Sep 7, 2015 <span class="pause"> - </span>
+        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=ACM">ACM</a>
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Report">Report</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p><strong>格雷码</strong>（Gray Code）是指在一组数的编码中，任意两个相邻的代码只有一位二进制数不同，则称这种代码为格雷码。另外由于最大数和最小数之间也仅有一位数不同，即“首尾相连”，因此又称为<strong>循环码</strong><em>或</em><strong>反射码</strong>。这篇博文主要介绍怎样用递归的方式构造格雷码以及格雷码与8421码之间的转换。</p>
+
+<h2>简介</h2>
+
+<p>在数字系统中，通常要求代码按一定顺序变化。例如，按自然数递增计数，若采用8421码，则数0111变到1000时四位均需要变化，而在实际电路中，四位的变化不可能绝对同时发生，则计数中可能出现短暂的其他编码（1100,1111等），在特定情况下可能导致电路状态或输出错误。而使用格雷码可以避免这种错误。这也是<strong>格雷码</strong>叫<strong>循环码</strong>的原因。而叫它<strong>反射码</strong>的原因在于常见的编码生成方式是反射或镜像。</p>
+
+<h2>题目</h2>
+
+<p>题目的来源有两个，一个是最近腾讯笔试的编程题：给定一个编码位数n，用递归的方式输出这串n位格雷码，而另一题目是<a href="https://leetcode.com/problems/gray-code/">LeetCode</a>上的第87题，就是给出一个编码位数n，以十进制的方式输出这串n位格雷码。</p>
+
+<h2>思路</h2>
+
+<ol>
+<li>反射或镜像
+之所以称<strong>格雷码</strong>叫<strong>反射码</strong>，是因为通过反射可以构造<strong>格雷码</strong>。下面这附图通过n的增大来体现何为<strong>反射码</strong>.
+<img src="/assets/images/gray.png" alt="gray.png"></li>
+</ol>
+
+<p>图中的虚线就是反射的反射面，也是镜像的镜面。而由n变化到n+1,只需将n的格雷码镜像翻转后，上面的镜像前面添0,下面的镜像前面添1。除此之外，还可以发现以下的规律：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; 假定正常顺序是先出现0再出现1，那么：
+&gt; 如果第i位前面出现偶数个1,那么第i位就是正常顺序;
+&gt; 如果第i位前面出现奇数个1,那么第i位就是不正常顺序。
+</code></pre></div>
+<ol>
+<li>格雷码和8421码的转换
+其实格雷码和我们经常使用的8421码之间是可以直接转换的，也就是说给定一个数值为k的8421码可以直接得出第k个格雷码。当然给定一个格雷码也可以直接获得这个格雷码对应的8421码。那么这就需要知道格雷码和8421码之间的对应关系。下图将给个详细的解释。
+<img src="/assets/images/8421.png" alt="8421.png"></li>
+</ol>
+
+<p>图中第一个矩形表示的是格雷码和8421码的对应关系。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&gt; **Tips:**  
+&gt; 对于格雷码的序列有多种，这里采用的是最常见的一种方式。
+</code></pre></div>
+<p>图中第二个矩形表示的是格雷码和8421码之间的转换关系。由图中可以看出由格雷码转换到8421码时，有如下的对应关系：
+$$
+    8421[0]=Gray[0];            i=0
+$$$$
+    8421[i]=Gray[i] \wedge Gray[i-1];  i&gt;0
+$$
+同理我们可以得到8421码到格雷码的转换，转换关系如下：
+$$
+    Gray[0]=8421[0];            i=0
+$$$$
+    Gray[i]=\backsim (8421[i] \wedge 8421[i-1]);  i&gt;0
+$$</p>
+
+<h2>算法说明</h2>
+
+<ol>
+<li><p>通过递归的方式构造格雷码</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// bin[]    存放二进制编码</span>
+<span class="c1">// ind      确定第ind的编码</span>
+<span class="c1">// sum      前ind位有多少个1</span>
+<span class="c1">// num      编码的位数</span>
+<span class="kt">void</span> <span class="nf">GrayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">bin</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">ind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ind</span><span class="o">==</span><span class="n">num</span><span class="p">){</span>
+        <span class="c1">// 输出显示</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="n">bin</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">sum</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+            <span class="c1">// 前ind位有偶数个1，正常顺序</span>
+            <span class="n">bin</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="n">GrayCode</span><span class="p">(</span><span class="n">bin</span><span class="p">,</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">sum</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+            <span class="n">bin</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">GrayCode</span><span class="p">(</span><span class="n">bin</span><span class="p">,</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">sum</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="c1">// 前ind位有奇数个1,不正常顺序</span>
+            <span class="n">bin</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="n">GrayCode</span><span class="p">(</span><span class="n">bin</span><span class="p">,</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">sum</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+            <span class="n">bin</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+            <span class="n">GrayCode</span><span class="p">(</span><span class="n">bin</span><span class="p">,</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">sum</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li><p>8421码转换到格雷码</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// n        编码位数</span>
+<span class="c1">// returnSize   存放返回8421码数组的长度</span>
+<span class="c1">// return   8421码数组</span>
+<span class="kt">int</span><span class="o">*</span> <span class="nf">GrayCode</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">returnSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="c1">// 数组长度</span>
+    <span class="o">*</span><span class="n">returnSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">;</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">gray</span><span class="o">=</span><span class="n">malloc</span><span class="p">((</span><span class="o">*</span><span class="n">returnSize</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;*</span><span class="n">returnSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="c1">// 格雷码转换为8421码，一步到位</span>
+        <span class="n">gray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">^</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">gray</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ol>
+
+<h2>举一反三</h2>
+
+<p>格雷码转换到8421码也可以用位运算一步解决：
+$$
+    8421=～(Gray \wedge (Gray&gt;&gt;1));
+$$</p>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+					</div>
+					
+					
+  						
+        			</div>
+				
+				<div class="comment">
+        		
+  				</div>
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
