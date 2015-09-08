@@ -177,6 +177,12 @@
         	{% else %}
 				{% if page.sidePart == 'none' %}
 					{{ content }}
+					
+					<div class="comment">
+						{% if page.comments %}
+							{% include duoshuo.html %}
+						{% endif %}
+					</div>
 				{% else %}
 					
 					<div class="index-part">
@@ -206,17 +212,15 @@
 						<p class="copyright">
     						本文的版权归作者 <a href="mailto:{{ site.author.email }}">{{ site.author.name }}</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
   						</p>
+						
+						<div class="comment">
+							{% if page.comments %}
+								{% include duoshuo.html %}
+							{% endif %}
+						</div>
 					</div>
-					
-					
-  						
-        			</div>
 				{% endif %}
-				<div class="comment">
-        		{% if page.comments %}
-    				{% include duoshuo.html %}
-  				{% endif %}
-  				</div>
+				
         	{% endif %}
       </div>
     </div>
