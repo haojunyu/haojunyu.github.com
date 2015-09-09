@@ -176,9 +176,15 @@
 
 <blockquote>
 <p>Unable to download data from https://rubygems.org/ - 连接被对端重置 (https://rubygems.global.ssl.fastly.net/latest_specs.4.8.gz)<br>
-ERROR: Installation aborted, verification failed for logstash-output-webhdfs
-这里公司的上网环境是使用了代理。</p>
+ERROR: Installation aborted, verification failed for logstash-output-webhdfs</p>
 </blockquote>
+
+<p>这里公司上网环境是使用了代理。本人在~/.bashrc中添加了<code>export http_proxy=xxx</code>和<code>export https_proxy=xxx</code>。接下来按照网上的解决方法作了如下尝试：  </p>
+
+<ol>
+<li>用Google搜索错误提示<a href="http://www.sjsjw.com/kf_jiagou/article/027841ABA028365.asp">Unable to download data from https://rubygems.org</a></li>
+<li><a href="https://discuss.elastic.co/t/shield-w-logstash-offline-install/25072">手动安装插件logstash-output-webhdfs</a></li>
+</ol>
 
 <h2>必备知识</h2>
 
@@ -208,9 +214,13 @@ linux里面关于用户</li>
 </ul></li>
 </ol>
 
-<p><a href="http://www.baidu.com">baidu</a></p>
-
 <h2>参考文献</h2>
+
+<ol>
+<li><a href="https://www.java.com/zh_CN/download/help/path.xml">如何设置或更改PATH系统变量</a></li>
+<li><a href="http://www.sjsjw.com/kf_jiagou/article/027841ABA028365.asp">如何更换rubygem镜像的源</a></li>
+<li><a href="https://discuss.elastic.co/t/shield-w-logstash-offline-install/25072">如何手动安装logstash插件logstash-output-elasticsearch-shield</a></li>
+</ol>
 
   						</article>
 					
