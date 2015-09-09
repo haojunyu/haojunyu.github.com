@@ -40,16 +40,19 @@
 		</script>		-->
     	<!-- Baidu Analysis -->
     	<script>
-        if (window.location.href.substr(7, 9) !== 'localhost') {
-            var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
-				var s = document.getElementsByTagName("script")[0]; 
-				s.parentNode.insertBefore(hm, s);
-			})();
-        }
-    </script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     	<!-- handle external js files -->
     	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
@@ -136,6 +139,10 @@
         			昵称: {{site.author.nickname}} </br>
         			口号: {{site.author.simpleIntro}} </br>
         			邮箱: <a href="{{site.author.email}}">{{site.author.email}}</a> 
+        			<span id="busuanzi_container_site_pv">
+						本站访客数：  <span id="busuanzi_value_site_uv"></span>  人次 </br>
+						本站访问量：  <span id="busuanzi_value_site_pv"></span>  次						
+					</span>
     				</p>
 					</div>
 
@@ -196,7 +203,9 @@
 						<header class="post-header">
     						<h1>{{ page.title }}</h1>
     						<p class="meta">{{ page.date | date: "%b %-d, %Y" }} <span class="pause"> - </span>
-        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
         						{% if page.category %}
             					{% for label in page.category %}
                			 		<a class="label" href="{{ site.baseurl }}/navigations/archives/?label={{ label }}">{{ label }}</a>
