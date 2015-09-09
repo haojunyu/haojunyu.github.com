@@ -40,16 +40,19 @@
 		</script>		-->
     	<!-- Baidu Analysis -->
     	<script>
-        if (window.location.href.substr(7, 9) !== 'localhost') {
-            var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
-				var s = document.getElementsByTagName("script")[0]; 
-				s.parentNode.insertBefore(hm, s);
-			})();
-        }
-    </script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     	<!-- handle external js files -->
     	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
@@ -151,7 +154,9 @@
 						<header class="post-header">
     						<h1>python基础篇之介绍</h1>
     						<p class="meta">Dec 3, 2014 <span class="pause"> - </span>
-        						浏览量：<span id="visit-counter"></span>次<span class="pause"> | </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
         						
             					
                			 		<a class="label" href="/navigations/archives/?label=Python">Python</a>
@@ -216,15 +221,10 @@
 						<p class="copyright">
     						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
   						</p>
-					</div>
-					
-					
-  						
-        			</div>
-				
-				<div class="comment">
-        		
-    				<!-- 多说评论框 start -->
+						
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="PythonGoogle" data-title="python基础篇之介绍" data-url="//2014/12/03/python%E5%9F%BA%E7%A1%80%E7%AF%87%E4%B9%8B%E4%BB%8B%E7%BB%8D.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -241,8 +241,11 @@ var duoshuoQuery = {short_name:"haojunyu"};
 	</script>
 <!-- 多说公共JS代码 end -->
 
-  				
-  				</div>
+							
+						</div>
+					</div>
+				
+				
         	
       </div>
     </div>

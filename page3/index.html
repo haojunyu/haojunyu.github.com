@@ -40,16 +40,19 @@
 		</script>		-->
     	<!-- Baidu Analysis -->
     	<script>
-        if (window.location.href.substr(7, 9) !== 'localhost') {
-            var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
-				var s = document.getElementsByTagName("script")[0]; 
-				s.parentNode.insertBefore(hm, s);
-			})();
-        }
-    </script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     	<!-- handle external js files -->
     	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
@@ -144,9 +147,21 @@
   <ul class="posts">
     
       <li>
+        <a class="post-link" href="/2015/07/23/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E5%A4%A7%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0.html" title="ACM解题报告之最大约数个数">ACM解题报告之最大约数个数</a>
+        <p class="post-date">Posted on Jul 23, 2015 | 
+        	
+        		<a href="/navigations/archives.html/?label=ACM"><span class="post-label">ACM</span></a>
+        	
+        		<a href="/navigations/archives.html/?label=Report"><span class="post-label">Report</span></a>
+        	
+        </p>
+        <p class="post-description"><p>本题的解法是在<a href="/acm_algorithm/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">约数个数原理</a>的基础上对问题进行优化，从而大大降低算法的时间复杂度。而解题的思路是从结果去想它满足什么样的条件，从而获得优化问题的方法。</p>
+ </p>
+      </li>
+    
+      <li>
         <a class="post-link" href="/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html" title="ACM算法之约数个数原理">ACM算法之约数个数原理</a>
-        <p class="post-date">Posted on Jul 15, 2015 ;
-            浏览量: <span class="visit-count" data-link="/2015/07/15/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0%E5%8E%9F%E7%90%86.html">0</span>次
+        <p class="post-date">Posted on Jul 15, 2015 | 
         	
         		<a href="/navigations/archives.html/?label=ACM"><span class="post-label">ACM</span></a>
         	
@@ -159,8 +174,7 @@
     
       <li>
         <a class="post-link" href="/2015/07/06/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%BD%AF%E7%A1%AC%E9%93%BE%E6%8E%A5ln.html" title="shell编程之软硬链接ln">shell编程之软硬链接ln</a>
-        <p class="post-date">Posted on Jul 6, 2015 ;
-            浏览量: <span class="visit-count" data-link="/2015/07/06/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%BD%AF%E7%A1%AC%E9%93%BE%E6%8E%A5ln.html">0</span>次
+        <p class="post-date">Posted on Jul 6, 2015 | 
         	
         		<a href="/navigations/archives.html/?label=Shell"><span class="post-label">Shell</span></a>
         	
@@ -171,8 +185,7 @@
     
       <li>
         <a class="post-link" href="/2015/07/01/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A3%80%E7%B4%A2find.html" title="shell编程之文件检索find">shell编程之文件检索find</a>
-        <p class="post-date">Posted on Jul 1, 2015 ;
-            浏览量: <span class="visit-count" data-link="/2015/07/01/shell%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%96%87%E4%BB%B6%E6%A3%80%E7%B4%A2find.html">0</span>次
+        <p class="post-date">Posted on Jul 1, 2015 | 
         	
         		<a href="/navigations/archives.html/?label=Shell"><span class="post-label">Shell</span></a>
         	
@@ -183,8 +196,7 @@
     
       <li>
         <a class="post-link" href="/2015/06/30/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%B9%B6%E6%9F%A5%E9%9B%86.html" title="ACM算法之基本并查集">ACM算法之基本并查集</a>
-        <p class="post-date">Posted on Jun 30, 2015 ;
-            浏览量: <span class="visit-count" data-link="/2015/06/30/ACM%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9F%BA%E6%9C%AC%E5%B9%B6%E6%9F%A5%E9%9B%86.html">0</span>次
+        <p class="post-date">Posted on Jun 30, 2015 | 
         	
         		<a href="/navigations/archives.html/?label=ACM"><span class="post-label">ACM</span></a>
         	
@@ -192,20 +204,6 @@
         	
         </p>
         <p class="post-description"><p>并查集是一种用途广泛的数据结构，能够快速地处理集合的合并和查询问题，并且实现起来非常方便，在很多场合中都有着非常巧妙的应用。本文首先介绍并查集的定义、原理及具体实现，然后结合hihocoder以及poj上的题目做一些具体实践。</p>
- </p>
-      </li>
-    
-      <li>
-        <a class="post-link" href="/2015/06/13/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98.html" title="自定义博客主题">自定义博客主题</a>
-        <p class="post-date">Posted on Jun 13, 2015 ;
-            浏览量: <span class="visit-count" data-link="/2015/06/13/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98.html">0</span>次
-        	
-        		<a href="/navigations/archives.html/?label=Ubuntu"><span class="post-label">Ubuntu</span></a>
-        	
-        		<a href="/navigations/archives.html/?label=Blog"><span class="post-label">Blog</span></a>
-        	
-        </p>
-        <p class="post-description"><p>房子需要装修,博客也需要装修.而通过<strong>markdown</strong>+<strong>jekyll</strong>+<strong>github</strong>搭建的博客是支持自定义自己的主题的.不过这需要对<strong>html</strong>,<strong>javascript</strong>,<strong>css</strong>有一定的了解.当然,要想自己的博客漂亮美观,自己的审美要好,显然我不具备(嘻嘻).</p>
  </p>
       </li>
     
@@ -270,19 +268,7 @@
   
 </div>
 
-<script>
-    jsonp('http://analytics1.sinaapp.com/page.php', {
-        callback: 'getCallback',
-        type: 'getByDomain',
-        domain: 'http://www.haojunyu.link'
-    });
 
-    function getCallback(result) {
-        for (var i = 0; i < result.length; i++) {
-            $('.visit-count[data-link="'+ result[i].url +'"]').html(result[i].count);
-        }
-    }
-</script>
 
 
 
@@ -298,6 +284,10 @@
         			昵称: 飘移 </br>
         			口号: 专注coding一百年 </br>
         			邮箱: <a href="haojunyu2012@gmail.com">haojunyu2012@gmail.com</a> 
+        			<span id="busuanzi_container_site_pv">
+						本站访客数：  <span id="busuanzi_value_site_uv"></span>  人次 </br>
+						本站访问量：  <span id="busuanzi_value_site_pv"></span>  次						
+					</span>
     				</p>
 					</div>
 
@@ -307,6 +297,8 @@
     					<hr/>
     				
     					<ul class="list">
+							
+								<li><a href="/2015/09/08/%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95%E4%B9%8Bshell%E9%87%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html" title="刨根问底之shell里的运行环境" rel="bookmark">刨根问底之shell里的运行环境</a></li>
 							
 								<li><a href="/2015/09/07/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%A0%BC%E9%9B%B7%E7%A0%81.html" title="ACM解题报告之格雷码" rel="bookmark">ACM解题报告之格雷码</a></li>
 							
@@ -325,8 +317,6 @@
 								<li><a href="/2015/08/04/%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9FELK.html" title="快速部署日志分析系统ELK" rel="bookmark">快速部署日志分析系统ELK</a></li>
 							
 								<li><a href="/2015/08/01/%E5%AE%BF%E8%90%A5%E9%BB%84%E5%B1%B1.html" title="宿营黄山" rel="bookmark">宿营黄山</a></li>
-							
-								<li><a href="/2015/07/23/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E5%A4%A7%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0.html" title="ACM解题报告之最大约数个数" rel="bookmark">ACM解题报告之最大约数个数</a></li>
 							
 						</ul>
 					</div>
@@ -350,7 +340,6 @@
 								})();
 						</script>
 						<!-- 多说公共JS代码 end -->
-
 					</div>          		
           		
         		</div>

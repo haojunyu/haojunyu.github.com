@@ -9,7 +9,7 @@
     	<meta name="viewport" content="width=device-width">
     	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
     	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
-    	<link rel="canonical" href="/haojunyu/2015/06/04/%E5%AE%9E%E7%94%A8%E7%9A%84%E5%86%99%E5%8D%9A%E8%AF%AD%E8%A8%80markdown.html">
+    	<link rel="canonical" href="/haojunyu/2015/09/08/%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95%E4%B9%8Bshell%E9%87%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">
     	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     	<!-- Custom CSS -->
@@ -110,7 +110,7 @@
 	<header class="site-header">
   		<div class="wrap">
     		<a class="site-title" href="/">
-    		实用的写博语言markdown
+    		刨根问底之shell里的运行环境
     		</a>
     		<nav class="site-nav">
       	<div class="trigger">
@@ -152,8 +152,8 @@
         			<div id="contents" class="central-right">  		
         			<div class="post">
 						<header class="post-header">
-    						<h1>实用的写博语言markdown</h1>
-    						<p class="meta">Jun 4, 2015 <span class="pause"> - </span>
+    						<h1>刨根问底之shell里的运行环境</h1>
+    						<p class="meta">Sep 8, 2015 <span class="pause"> - </span>
 								<span id="busuanzi_container_page_pv">
 								浏览量:	<span id="busuanzi_value_page_pv"></span>
 								</span>次 <span class="pause"> | 
@@ -161,110 +161,56 @@
             					
                			 		<a class="label" href="/navigations/archives/?label=Ubuntu">Ubuntu</a>
             					
-               			 		<a class="label" href="/navigations/archives/?label=Markdown">Markdown</a>
+               			 		<a class="label" href="/navigations/archives/?label=Shell">Shell</a>
             					
         						
     						</p>
   						</header>
 
   						<article class="post-content">
-  							<p>Markdown是一种可以使用普通文本编辑器编写的标记语言,通过类似HTML的标记语法,它可以使普通文本内容具有一定的格式.用它来书写博客是非常方便的.</p>
+  							<p>在Ubuntu里，我们经常在终端中使用<code>sudo</code>来提权--以普通用户的身份去行使管理员的权限（前提是知道管理员用户的密码），这样减少了root用户的登录次数和管理时间，也提高了系统的安全性。不过有时候我们会直接用<code>su</code>切换到管理员进行一系列操作。本篇博文就是总结<code>sudo</code>，<code>su</code>对bash运行环境的影响。明白了这点，你将明白在公司里怎样使用代理。</p>
 
-<h2>简介</h2>
+<h2>起因</h2>
 
-<p>Markdown具有一系列衍生版本，用于扩展Markdown的功能（如表格、脚注、内嵌HTML等等），这些功能原初的Markdown尚不具备，它们能让Markdown转换成更多的格式，例如LaTeX，Docbook。Markdown增强版中比较有名的有Markdown Extra、MultiMarkdown、 Maruku等。这些衍生版本要么基于工具，如Pandoc；要么基于网站，如GitHub和Wikipedia，在语法上基本兼容，但在换行等细节上也有改动。其有如下的优势:
-    * 写博客专用,省去后期对文字格式进行改动
-    * 纯文本编辑,脱离鼠标,专注文字100年
-    * 受用面积广,windows/linux/mac都支持,而且有浏览器插件支持.perfect!
-    * 支持转成Latex格式,方便以后整理.</p>
-
-<h2>基本用法</h2>
-
-<h3>标题</h3>
-
-<ul>
-<li>H1:   <code># Header 1</code></li>
-<li>H2:   <code>## Header 2</code></li>
-<li>H3:   <code>### Header 3</code></li>
-<li>H4:   <code>#### Header 4</code></li>
-</ul>
-
-<h3>块注释</h3>
+<p>今天在公司准备使用命令行<code>sudo /opt/logstash/bin/plugin install logstash-output-webhdfs</code>给logstash安装logstash-output-webhdfs插件，以实现将logstash收集的日志信息存储到Hadoop文件系统这一目的。但是却一直提示如下错误：</p>
 
 <blockquote>
-<p><strong>Note:</strong><br>
-可以嵌套引用  </p>
-
-<blockquote>
-<ul>
-<li>item1<br></li>
-<li>item2<br></li>
-</ul>
+<p>Unable to download data from https://rubygems.org/ - 连接被对端重置 (https://rubygems.global.ssl.fastly.net/latest_specs.4.8.gz)<br>
+ERROR: Installation aborted, verification failed for logstash-output-webhdfs
+这里公司的上网环境是使用了代理。</p>
 </blockquote>
 
-<p>结束</p>
-</blockquote>
+<h2>必备知识</h2>
 
-<h3>字体格式</h3>
-
-<ul>
-<li><strong>加粗</strong>:   <code>**加粗**</code></li>
-<li><em>斜体</em>: <code>*斜体*</code></li>
-<li><del>删除线</del>:    <code>~~删除线~~</code></li>
-<li><mark>高亮</mark>:   <code>==高亮==</code></li>
-<li>水平线:    <code>---</code></li>
-</ul>
-
-<h3>列表</h3>
-
-<h4>无序</h4>
+<ol>
+<li><p>bashrc VS profile<br>
+在windows系统里面，经常会遇到<a href="https://www.java.com/zh_CN/download/help/path.xml">设置环境变量</a>的问题，特别是安装完Java JDK之后。我们很少在黑漆漆的命令行窗口中执行命令<code>set path=%path%;D:\jdk\bin</code>,因为这样设置只会在这个命令窗口中识别<code>java</code>命令在D:\jdk\bin，重新打开一个命令窗口后将无法识别。也就是说该path只对执行那个命令的shell有效。还有两种方法是设置系统变量或用户变量。二者的区别就在于系统变量对所有用户有效，而用户变量只对当前用户有效。经实验，二者都无需重启就可以起作用。同理，linux里面对环境变量的设置和windows是共通的。它也有三种方式</p>
 
 <ul>
-<li>用星号标注
-
-<ul>
-<li>可以嵌套
-
-<ul>
-<li>再嵌套</li>
+<li>终端中设置
+执行命令<code>PATH=$PATH&#39;:/home/hjy/program/jdk/bin&#39;</code>,同样java命令只能在当前窗口中识别，重开一个窗口java命令将无效。</li>
+<li>设置用户变量
+linux里面关于用户变量的设置都在bashrc文件中，一个是/etc/bashrc（Ubuntu系统是/etc/bash.bashrc），另一个是~/.bashrc。</li>
+<li>设置系统变量
+linux里面关于用户</li>
 </ul></li>
+<li><p>四种不同的shell模式</p>
+
+<ul>
+<li>登录模式<br>
+进入登录模式的shell需要一个特定的用户名和密码，就像我们按<code>Ctrl + Alt + F1</code>进入tty1后输入用户名和密码后成功登录系统的情况。</li>
+<li>非登录模式<br>
+非登录模式是指不用登录直接进入shell，它需要在特定用户登录状态下才能进入。就像在终端下直接输入<code>bash</code>或<code>bash -c ‘CMD’</code>。</li>
+<li>交互模式<br>
+在交互模式的shell中，标准输入，输出和错误都显示在终端上，此时变量<code>$PS1</code>一定会被设置。像以<code>bash</code>，<code>bash -i</code>命令启动。</li>
+<li>非交互模式<br>
+非交互模式就是指shell里面没有交互，像执行命令<code>bash -c ‘CMD’</code>，像运行shell脚本等。</li>
 </ul></li>
-</ul>
-
-<h4>有序</h4>
-
-<ol>
-<li>第一点</li>
-<li>第二点
-
-<ol>
-<li>嵌套
-
-<ol>
-<li>再嵌套</li>
-<li>再嵌套</li>
-</ol></li>
-</ol></li>
 </ol>
 
-<h3>链接</h3>
+<p><a href="http://www.baidu.com">baidu</a></p>
 
-<p><code>[名称](链接)</code><br>
-<a href="http://baike.baidu.com/view/1.htm">百度百科</a></p>
-
-<h3>图片</h3>
-
-<p><code>![名称](链接)</code><br>
-<img src="/assets/images/apache.png" alt="apache"></p>
-
-<h3>代码</h3>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install <span class="nb">command</span>
-</code></pre></div>
-<h3>脚注</h3>
-
-<p>I get 10 times more traffic from Google[^google] than from Yahoo<a href="Yahoo%09http://search.yahoo.com/">^2</a> or MSN<a href="MSN%09http://search.msn.com/">^3</a>.</p>
-
-<p>[^google]: Google http://google.com/</p>
+<h2>参考文献</h2>
 
   						</article>
 					
@@ -275,7 +221,7 @@
 						<div class="comment">
 							
 								<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UbuntuMarkdown" data-title="实用的写博语言markdown" data-url="//2015/06/04/%E5%AE%9E%E7%94%A8%E7%9A%84%E5%86%99%E5%8D%9A%E8%AF%AD%E8%A8%80markdown.html"></div>
+	<div class="ds-thread" data-thread-key="UbuntuShell" data-title="刨根问底之shell里的运行环境" data-url="//2015/09/08/%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95%E4%B9%8Bshell%E9%87%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

@@ -40,16 +40,19 @@
 		</script>		-->
     	<!-- Baidu Analysis -->
     	<script>
-        if (window.location.href.substr(7, 9) !== 'localhost') {
-            var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
-				var s = document.getElementsByTagName("script")[0]; 
-				s.parentNode.insertBefore(hm, s);
-			})();
-        }
-    </script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     	<!-- handle external js files -->
     	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
@@ -249,10 +252,10 @@ Vim，Latex，Git</li>
 * <a href="http://www.cnblogs.com/happy-island/">博客园</a><br>
 * <a href="http://bulo.hujiang.com/u/7080242/">沪江</a>  </p>
 
-				
-				<div class="comment">
-        		
-    				<!-- 多说评论框 start -->
+					
+					<div class="comment">
+						
+							<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="" data-title="关于我" data-url="//navigations/contact.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -269,8 +272,10 @@ var duoshuoQuery = {short_name:"haojunyu"};
 	</script>
 <!-- 多说公共JS代码 end -->
 
-  				
-  				</div>
+						
+					</div>
+				
+				
         	
       </div>
     </div>
