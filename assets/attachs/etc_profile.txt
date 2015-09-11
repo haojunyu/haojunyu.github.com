@@ -1,0 +1,36 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+# 判断变量$PS1是否存在
+if [ "$PS1" ]; then
+  # 判断当前$BASH是否是/bin/sh
+  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    # shell使用bash，则初始化bash（/etc/bash.bashrc）
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    # 是不是root用户
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+# The default umask is now handled by pam_umask.
+# See pam_umask(8) and /etc/login.defs.
+# 是否存在/etc/profile.d文件夹
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    # *.sh文件存在且可读
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  # 清除i变量
+  unset i
+fi
