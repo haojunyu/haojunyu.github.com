@@ -9,7 +9,7 @@
     	<meta name="viewport" content="width=device-width">
     	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
     	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
-    	<link rel="canonical" href="/haojunyu/2015/09/08/%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95%E4%B9%8Bshell%E9%87%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html">
+    	<link rel="canonical" href="/haojunyu/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">
     	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     	<!-- Custom CSS -->
@@ -110,7 +110,7 @@
 	<header class="site-header">
   		<div class="wrap">
     		<a class="site-title" href="/">
-    		刨根问底之shell里的运行环境
+    		shell运行环境之环境配置文件
     		</a>
     		<nav class="site-nav">
       	<div class="trigger">
@@ -152,8 +152,8 @@
         			<div id="contents" class="central-right">  		
         			<div class="post">
 						<header class="post-header">
-    						<h1>刨根问底之shell里的运行环境</h1>
-    						<p class="meta">Sep 8, 2015 <span class="pause"> - </span>
+    						<h1>shell运行环境之环境配置文件</h1>
+    						<p class="meta">Sep 9, 2015 <span class="pause"> - </span>
 								<span id="busuanzi_container_page_pv">
 								浏览量:	<span id="busuanzi_value_page_pv"></span>
 								</span>次 <span class="pause"> | 
@@ -168,66 +168,32 @@
   						</header>
 
   						<article class="post-content">
-  							<p>在Ubuntu里，我们经常在终端中使用<code>sudo</code>来提权--以普通用户的身份去行使管理员的权限（前提是知道管理员用户的密码），这样减少了root用户的登录次数和管理时间，也提高了系统的安全性。不过有时候我们会直接用<code>su</code>切换到管理员进行一系列操作。本篇博文就是总结<code>sudo</code>，<code>su</code>对bash运行环境的影响。明白了这点，你将明白在公司里怎样使用代理。</p>
+  							<p><a href="/2015/09/08/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">上一篇博文</a>介绍了shell运行环境中三种不同的环境变量--临时变量，用户变量和系统变量，除此之外还有/etc/environment，/etc/profile和～/.profile作用域。这篇文章将主要围绕bash这个shell来讲解环境配置文件，并结合shell的四种模式来说明这些配置文件的作用域。</p>
 
-<h2>起因</h2>
+<h2>简介</h2>
 
-<p>今天在公司准备使用命令行<code>sudo /opt/logstash/bin/plugin install logstash-output-webhdfs</code>给logstash安装logstash-output-webhdfs插件，以实现将logstash收集的日志信息存储到Hadoop文件系统这一目的。但是却一直提示如下错误：</p>
-
-<blockquote>
-<p>Unable to download data from https://rubygems.org/ - 连接被对端重置 (https://rubygems.global.ssl.fastly.net/latest_specs.4.8.gz)<br>
-ERROR: Installation aborted, verification failed for logstash-output-webhdfs</p>
-</blockquote>
-
-<p>这里公司上网环境是使用了代理。本人在~/.bashrc中添加了<code>export http_proxy=xxx</code>和<code>export https_proxy=xxx</code>。接下来按照网上的解决方法作了如下尝试，均已失败告终。  </p>
-
-<ol>
-<li>用Google搜索错误提示<a href="http://www.sjsjw.com/kf_jiagou/article/027841ABA028365.asp">Unable to download data from https://rubygems.org</a></li>
-<li><a href="https://discuss.elastic.co/t/shield-w-logstash-offline-install/25072">手动安装插件logstash-output-webhdfs</a></li>
-</ol>
-
-<h2>必备知识</h2>
-
-<ol>
-<li><p>Windows &amp; Linux 环境变量设置<br>
-在windows系统里面，经常会遇到<a href="https://www.java.com/zh_CN/download/help/path.xml">设置环境变量</a>的问题，特别是安装完Java JDK之后。我们很少在黑漆漆的命令行窗口中执行命令<code>set path=%path%;D:\jdk\bin</code>,因为这样设置只会在这个命令窗口中能识别<code>java</code>命令在D:\jdk\bin目录里，重新打开一个命令窗口后将无法识别。也就是说该path只对执行那个命令的shell有效。还有两种方法是设置系统变量或用户变量。二者的区别就在于系统变量对所有用户有效，而用户变量只对当前用户有效。经试验，win8系统中二者都无需重启就可以起作用。同理，linux里面对环境变量的设置和windows是共通的。它也有三种方式</p>
-
-<ul>
-<li>终端中设置
-执行命令<code>PATH=$PATH&#39;:/home/hjy/program/jdk/bin&#39;</code>,同样java命令只能在当前窗口中识别，重开一个窗口java命令将无效。</li>
-<li>设置用户变量
-linux里面关于用户变量的设置是在两个文件中，一个是/etc/profile，另一个是~/.profile。</li>
-<li>设置系统变量
-linux里面关于系统变量的设置是在/etc/environment文件中。</li>
-</ul></li>
-<li><p>bashrc VS profile<br>
-我们知道bashrc和profile都是linux系统里面设置环境变量的地方，但是二者也是有区别的。</p>
-
-<ul>
-<li>profile -- 配置shell<br>
-profile是配置的意思，是某个用户唯一用来设置环境变量的地方，但是用户可用的shell有多个，像bash，sh，zsh之类的，但像环境变量这种只需要在统一的一个地方初始化就可以了，而这就是profile。而Ubuntu中<a href="/assets/attachs/etc_profile.txt">/etc/profile</a>将在用户<strong>第一次</strong>登录（可以是图形也可以是终端）时被执行，其只做两件事。
+<p>我们知道linux系统中有很多shell，像最常用的bash，sh，zsh等。
+2. bashrc VS profile<br>
+我们知道bashrc和profile都是linux系统里面设置环境变量的地方，但是二者也是有区别的。
+    * profile -- 配置shell<br>
+    profile是配置的意思，是某个用户唯一用来设置环境变量的地方，但是用户可用的shell有多个，像bash，sh，zsh之类的，但像环境变量这种只需要在统一的一个地方初始化就可以了，而这就是profile。而Ubuntu中<a href="/assets/attachs/etc_profile.txt">/etc/profile</a>将在用户<strong>第一次</strong>登录（可以是图形也可以是终端）时被执行，其只做两件事。
+        1. 设置shell使用bash（主要执行/etc/bash.bashrc）
+        2. 查看/etc/profile.d中是否有相应的环境变量要设置（该文件夹中每个sh文件都是针对某个应用设置的环境变量，这个叫<a href="http://baike.baidu.com/link?url=Y8DhEJDs3JgwVb0Cntn8psCW__SPphjQYg2o_iSPF8zQfSm_Gi0w8Squu2jDTt5MoekofzEJ0KxBRcBqd2CPBuRJdxwpa7i7fO3OcnpqQqu">可插拔功能</a>）。
+    而<a href="/assets/attachs/home.profile.txt">~/.profile</a>也是在用户<strong>第一次</strong>登录时被执行，其也是做两件事。
+        1. 设置shell使用bash（主要执行~/.bashrc）
+        2. 设置路径包含用户私有的执行文件目录（如果存在）
+    * bashrc -- 配置bash<br>
+    bashrc看名字就知道，是专门用来给bash做初始化的。像初始化bash的设置，代码补全，别名，颜色等。同理，还会有shrc，zshrc这样的文件存在，只是bash太常用了。在Ubuntu系统中，每次打开bash，<a href="/assets/attachs/etc_bash.bashrc.txt">/etc/bash.bashrc</a>就会被执行，进行如下设置。
+        0. <mark>非交互模式则不进行下面的操作</mark>
+        1. 窗口可调整
+        2. 增强$PS1
+        3. 设置xterm（注释掉了）
+        4. 交互模式中开启命令补全（注释掉了）
+        5. 在bash中使用sudo
+        6. 安装command-not-found包后bash的变化
+    而<a href="/assets/attachs/home.bashrc.txt">~/.bashrc</a>中设置的就比较多了，具体可以看文档注释。</p>
 
 <ol>
-<li>设置shell使用bash（主要执行/etc/bash.bashrc）</li>
-<li>查看/etc/profile.d中是否有相应的环境变量要设置（该文件夹中每个sh文件都是针对某个应用设置的环境变量，这个叫<a href="http://baike.baidu.com/link?url=Y8DhEJDs3JgwVb0Cntn8psCW__SPphjQYg2o_iSPF8zQfSm_Gi0w8Squu2jDTt5MoekofzEJ0KxBRcBqd2CPBuRJdxwpa7i7fO3OcnpqQqu">可插拔功能</a>）。
-而<a href="/assets/attachs/home.profile.txt">~/.profile</a>也是在用户<strong>第一次</strong>登录时被执行，其也是做两件事。</li>
-<li>设置shell使用bash（主要执行~/.bashrc）</li>
-<li>设置路径包含用户私有的执行文件目录（如果存在）</li>
-</ol></li>
-<li>bashrc -- 配置bash<br>
-bashrc看名字就知道，是专门用来给bash做初始化的。像初始化bash的设置，代码补全，别名，颜色等。同理，还会有shrc，zshrc这样的文件存在，只是bash太常用了。在Ubuntu系统中，每次打开bash，<a href="/assets/attachs/etc_bash.bashrc.txt">/etc/bash.bashrc</a>就会被执行，进行如下设置。
-
-<ol>
-<li><mark>非交互模式则不进行下面的操作</mark></li>
-<li>窗口可调整</li>
-<li>增强$PS1</li>
-<li>设置xterm（注释掉了）</li>
-<li>交互模式中开启命令补全（注释掉了）</li>
-<li>在bash中使用sudo</li>
-<li>安装command-not-found包后bash的变化
-而<a href="/assets/attachs/home.bashrc.txt">~/.bashrc</a>中设置的就比较多了，具体可以看文档注释。</li>
-</ol></li>
-</ul></li>
 <li><p>四种不同的<a href="https://wiki.archlinux.org/index.php/Bash_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E4.BC.A0.E7.BB.9F.E6.A8.A1.E5.BC.8F">shell模式</a></p>
 
 <ul>
@@ -311,7 +277,7 @@ su和sudo虽然不是具有相似功能的命令，但是它们的目的大部�
 						<div class="comment">
 							
 								<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UbuntuShell" data-title="刨根问底之shell里的运行环境" data-url="//2015/09/08/%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95%E4%B9%8Bshell%E9%87%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83.html"></div>
+	<div class="ds-thread" data-thread-key="UbuntuShell" data-title="shell运行环境之环境配置文件" data-url="//2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

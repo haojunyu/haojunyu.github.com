@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="alternate" type="application/rss+xml" title="咀嚼之味 RSS" href="/feed.xml">
+    	<link rel="canonical" href="/haojunyu/2015/09/08/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+		<!-- Google Analytics -->
+    	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-67273073-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		<!-- Cnzz Analysis 
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256284061'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256284061' type='text/javascript'%3E%3C/script%3E"));
+		</script>		-->
+    	<!-- Baidu Analysis -->
+    	<script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		shell运行环境之环境变量
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>shell运行环境之环境变量</h1>
+    						<p class="meta">Sep 8, 2015 <span class="pause"> - </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
+        						
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Ubuntu">Ubuntu</a>
+            					
+               			 		<a class="label" href="/navigations/archives/?label=Shell">Shell</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>在windows系统中，我们经常需要设置环境变量，特别是安装玩JAVA JDk之后。而在linux里面也是需要对一些环境变量进行设置，比如PATH（执行文件的路径），http_proxy（http代理）等。本篇博文主要介绍三种环境变量--临时变量，用户变量和系统变量，并对其作用的先后做一点验证。</p>
+
+<h2>简介</h2>
+
+<p><a href="http://baike.baidu.com/link?url=3Gg85PddfEhNPdztYJ_eXTlskslQrMUiD3rgR707cgNQtc9TEQhNksaqD-pX-kd0s2xN4nSS4Y6_CVynCguHLK">环境变量</a>一般是指在操作系统中用来指定操作系统运行环境的一些参数，如：临时文件夹位置和系统文件夹位置等。它相当于给系统或用户应用程序设置的一些参数，具体起什么作用这和具体的环境变量相关。</p>
+
+<p>在windows系统里面，经常会遇到<a href="https://www.java.com/zh_CN/download/help/path.xml">设置环境变量</a>的问题，特别是安装完Java JDK之后。我们很少在黑漆漆的命令行窗口中执行命令<code>set path=%path%;D:\jdk\bin</code>,因为这样设置的变量是临时环境变量，它只能在这个命令窗口中被识别，知道<code>java</code>命令在D:\jdk\bin目录里，但当重新打开一个命令窗口（shell外壳）后那个窗口将无法识别。也就是说该path只对执行那个命令的shell有效。还有两种方法是设置用户变量或系统变量。二者的区别就在于系统变量对所有用户有效，而用户变量只对当前用户有效。经试验，win8系统中二者都无需重启就可以起作用。</p>
+
+<h2>Linux 环境变量设置</h2>
+
+<p>其实，linux里面对环境变量的设置和windows是共通的。它也有三种方式
+    * 临时变量
+    在shell外壳中执行命令<code>PATH=$PATH&#39;:/home/hjy/program/jdk/bin&#39;</code>,同样java命令只能在当前窗口中识别，重开一个外壳<code>java</code>命令将无效。
+    * 用户变量
+    linux里面关于用户变量的设置是在两个文件中，一个是/etc/profile，另一个是~/.profile。profile是配置的意思，是某个用户唯一用来设置环境变量的地方。针对不同的用户习惯，使用不同的shell（像bash，sh，zsh等），针对不同的功能或不同的应用，加载不同的环境变量文件。这部分将在<a href="/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">shell的运行环境之环境配置文件</a>里详细说明。
+    * 系统变量
+    linux里面关于系统变量的设置是在/etc/environment文件中。该环境变量的设置不需要加<code>export</code>，直接赋值即可。</p>
+
+<h2>验证作用域</h2>
+
+<p>易知临时变量的作用域只在当前的外壳中，出了当前外壳将失效。而对于用户变量和系统变量，我们这里做两个小的试验，其中一个是<a href="http://andy136566.iteye.com/blog/1025338">网上</a>的，关键是讲解中又是疑问又是否定的，没搞明白作者啥意思，所以这里亲自验证一下。</p>
+
+<ul>
+<li><p>图形界面登录<br>
+经试验发现，自己的电脑环境和网上博主还是有些区别的。主要在<a href="http://wiki.ubuntu.org.cn/%E4%BF%AE%E6%94%B9locale">本地化语言环境设定上的区别</a>，在安装好中文和英文的语言包后，系统的本地语言环境如图：
+<img src="/assets/images/ori_locale.jpg" alt="ori_locale"><br>
+但是由这篇博文--<a href="http://my.oschina.net/luan/blog/79875">locale的设定中LANG、LC_ALL、LANGUAGE环境变量的区别</a>知道，<code>LC_ALL &gt; LC_* &gt;LANG</code>，所以在本机上配置LANG将会被LC_*所取代，而导致无论怎么设置都是英文环境。所以实际实验是设定LC_ALL变量。   </p>
+
+<ul>
+<li>试验步骤<br>
+
+<ol>
+<li>将<code>export LC_ALL=zh_CN.UTF-8</code>加入/etc/profile，退出系统重新登录，登录界面和locale变量如下图所示：<br>
+<img src="/assets/images/eprofile.jpg" alt="eprofile"><br>
+<img src="/assets/images/pro_locale.jpg" alt="pro_locale"><br></li>
+<li> 删除/etc/profile中的<code>export LC_ALL=zh_CN.UTF-8</code>，并将其加入到/etc/envirionment，退出系统重新登录，登录界面和locale变量如下图所示：
+<img src="/assets/images/environment.jpg" alt="environment"><br>
+<img src="/assets/images/env_locale.jpg" alt="env_locale"></li>
+</ol></li>
+<li>结论：<br>
+
+<ol>
+<li>在登录界面时（还没有用户登录系统），系统执行了/etc/environment，仅此而已。而对于是否执行/etc/profile以及这两个文件谁先谁后的问题无法得出结论。对于这个问题，后面会做一下讨论。</li>
+</ol></li>
+</ul>
+
+<blockquote>
+<p><strong>结论：</strong>
+用户登录系统前，即刚进入登录界面，此时/etc/environment已经被执行。</p>
+</blockquote></li>
+<li><p>用户登录后进入shell后  </p>
+
+<ul>
+<li><p>试验步骤  </p>
+
+<ol>
+<li><p>在/etc/profile文件中加入如下变量：</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nb">export </span><span class="nv">eprofile</span><span class="o">=</span>‘I am in /etc/profile’
+<span class="nb">export </span><span class="nv">epro_env</span><span class="o">=</span>‘I am in /etc/profile’
+<span class="nb">export </span><span class="nv">epro_pro</span><span class="o">=</span>‘I am in /etc/profile’
+</code></pre></div></li>
+<li><p>在/etc/environment文件中加入如下变量：</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">environment</span><span class="o">=</span>‘I am in /etc/environment’
+<span class="nv">epro_env</span><span class="o">=</span>‘I am in /etc/environment’
+<span class="nv">env_pro</span><span class="o">=</span>‘I am in /etc/environment’
+</code></pre></div></li>
+<li><p>在~/.profile文件中加入如下变量：</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nb">export </span><span class="nv">profile</span><span class="o">=</span>‘I am in ~/.profile’
+<span class="nb">export </span><span class="nv">epro_pro</span><span class="o">=</span>‘I am in ~/.profile’
+<span class="nb">export </span><span class="nv">env_pro</span><span class="o">=</span>‘I am in ~/.profile’
+</code></pre></div></li>
+<li><p>重启系统后查看profile，environment，homepro，pro<em>env,pro</em>env_pro这五个变量的值，结果如下图所示：
+<img src="/assets/images/login.jpg" alt="login">  </p></li>
+</ol></li>
+<li><p>结论：  </p>
+
+<ol>
+<li>三个环境配置文件都被执行了<br>
+变量environment，eprofile，profile都有值</li>
+<li>/etc/environment 优先于 /etc/profile<br>
+变量epro_env是/etc/profile里面的值，结合第一个结论，可得/etc/environment 优先于 /etc/profile</li>
+<li>/etc/profile 优先于 ~/.profile<br>
+变量epro_pro是~/.profile里面的值，结合第一个结论，可得/etc/profile 优先于 ~/.profile</li>
+</ol></li>
+</ul>
+
+<blockquote>
+<p><strong>结论：</strong>
+用户登录系统打开shell后，/etc/environment，/etc/profile和~/.profile执行顺序是：
+/etc/environment =&gt; /etc/profile =&gt; ~/.profile</p>
+</blockquote></li>
+</ul>
+
+<h2>问题讨论</h2>
+
+<ol>
+<li>关于第一个试验中只能得出/etc/environment在登录界面前将被执行，而对于是否执行/etc/profile以及这两个文件谁先谁后的问题无法得出结论。<br>
+从两幅登录界面发现在/etc/environment设定的LC_ALL起作用了，但是/etc/profile中的不起作用可能是被后面的覆盖掉，也有可能<mark>该文件还没有被执行</mark>，至于后面locale变量的比较，是在我们登录进系统后打开shell后看到的。在下一篇博文<a href="/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">shell的运行环境之环境配置文件</a>中我们会得出打开shell后会执行/etc/profile和~/.profile文件，所以无法判定在登录界面之前/etc/profile是否被执行，更不谈谁先谁后。
+个人倾向的解释是登录界面之前只是执行/etc/environment，不会执行/etc/profile，当输入用户和密码后才会以登录模式进入系统，此时/etc/profile和～/.profile才会被执行。</li>
+</ol>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="http://baike.baidu.com/link?url=3Gg85PddfEhNPdztYJ_eXTlskslQrMUiD3rgR707cgNQtc9TEQhNksaqD-pX-kd0s2xN4nSS4Y6_CVynCguHLK">环境变量定义</a></li>
+<li><a href="https://www.java.com/zh_CN/download/help/path.xml">如何设置或更改PATH系统变量</a></li>
+<li><a href="http://andy136566.iteye.com/blog/1025338">etc/profile和/etc/environment的比较</a></li>
+<li><a href="http://my.oschina.net/luan/blog/79875">本地化环境变量LANG、LC_ALL、LANGUAGE的区别</a></li>
+<li><a href="http://wiki.ubuntu.org.cn/%E4%BF%AE%E6%94%B9locale">wiki locale</a></li>
+</ol>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+						
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="UbuntuShell" data-title="shell运行环境之环境变量" data-url="//2015/09/08/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+							
+						</div>
+					</div>
+				
+				
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
