@@ -178,13 +178,16 @@
 
 <h2>Linux 环境变量设置</h2>
 
-<p>其实，linux里面对环境变量的设置和windows是共通的。它也有三种方式
-    * 临时变量
-    在shell外壳中执行命令<code>PATH=$PATH&#39;:/home/hjy/program/jdk/bin&#39;</code>,同样java命令只能在当前窗口中识别，重开一个外壳<code>java</code>命令将无效。
-    * 用户变量
-    linux里面关于用户变量的设置是在两个文件中，一个是/etc/profile，另一个是~/.profile。profile是配置的意思，是某个用户唯一用来设置环境变量的地方。针对不同的用户习惯，使用不同的shell（像bash，sh，zsh等），针对不同的功能或不同的应用，加载不同的环境变量文件。这部分将在<a href="/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">shell的运行环境之环境配置文件</a>里详细说明。
-    * 系统变量
-    linux里面关于系统变量的设置是在/etc/environment文件中。该环境变量的设置不需要加<code>export</code>，直接赋值即可。</p>
+<p>其实，linux里面对环境变量的设置和windows是共通的。它也有三种方式  </p>
+
+<ul>
+<li>临时变量<br>
+在shell外壳中执行命令<code>PATH=$PATH&#39;:/home/hjy/program/jdk/bin&#39;</code>,同样java命令只能在当前窗口中识别，重开一个外壳<code>java</code>命令将无效。</li>
+<li>用户变量<br>
+Linux里面关于用户变量的设置是在两个文件中，一个是/etc/profile，另一个是~/.profile。profile是配置的意思，是某个用户唯一用来设置环境变量的地方。针对不同的用户习惯，使用不同的shell（像bash，sh，zsh等），针对不同的功能或不同的应用，加载不同的环境变量文件。这部分将在<a href="/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">shell的运行环境之环境配置文件</a>里详细说明。</li>
+<li>系统变量<br>
+Linux里面关于系统变量的设置是在/etc/environment文件中。该环境变量的设置不需要加<code>export</code>，直接赋值即可。</li>
+</ul>
 
 <h2>验证作用域</h2>
 
