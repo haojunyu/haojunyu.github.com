@@ -168,33 +168,45 @@
   						</header>
 
   						<article class="post-content">
-  							<p><a href="/2015/09/08/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">上一篇博文</a>介绍了shell运行环境中三种不同的环境变量--临时变量，用户变量和系统变量，除此之外还有/etc/environment，/etc/profile和～/.profile作用域。这篇文章将主要围绕bash这个shell来讲解环境配置文件，并结合shell的四种模式来说明这些配置文件的作用域。</p>
+  							<p><a href="/2015/09/08/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">上一篇博文</a>介绍了shell运行环境中三种不同的环境变量--临时变量，用户变量和系统变量，除此之外还有/etc/environment，/etc/profile和～/.profile作用域。这篇文章将主要围绕bash这个shell来讲解<a href="https://wido.me/sunteya/understand-bashrc-and-profile">环境配置文件</a>，并结合shell的四种模式来说明这些配置文件的作用域。</p>
 
 <h2>简介</h2>
 
-<p>我们知道linux系统中有很多shell，像最常用的bash，sh，zsh等。
-2. bashrc VS profile<br>
-我们知道bashrc和profile都是linux系统里面设置环境变量的地方，但是二者也是有区别的。
-    * profile -- 配置shell<br>
-    profile是配置的意思，是某个用户唯一用来设置环境变量的地方，但是用户可用的shell有多个，像bash，sh，zsh之类的，但像环境变量这种只需要在统一的一个地方初始化就可以了，而这就是profile。而Ubuntu中<a href="/assets/attachs/etc_profile.txt">/etc/profile</a>将在用户<strong>第一次</strong>登录（可以是图形也可以是终端）时被执行，其只做两件事。
-        1. 设置shell使用bash（主要执行/etc/bash.bashrc）
-        2. 查看/etc/profile.d中是否有相应的环境变量要设置（该文件夹中每个sh文件都是针对某个应用设置的环境变量，这个叫<a href="http://baike.baidu.com/link?url=Y8DhEJDs3JgwVb0Cntn8psCW__SPphjQYg2o_iSPF8zQfSm_Gi0w8Squu2jDTt5MoekofzEJ0KxBRcBqd2CPBuRJdxwpa7i7fO3OcnpqQqu">可插拔功能</a>）。
-    而<a href="/assets/attachs/home.profile.txt">~/.profile</a>也是在用户<strong>第一次</strong>登录时被执行，其也是做两件事。
-        1. 设置shell使用bash（主要执行~/.bashrc）
-        2. 设置路径包含用户私有的执行文件目录（如果存在）
-    * bashrc -- 配置bash<br>
-    bashrc看名字就知道，是专门用来给bash做初始化的。像初始化bash的设置，代码补全，别名，颜色等。同理，还会有shrc，zshrc这样的文件存在，只是bash太常用了。在Ubuntu系统中，每次打开bash，<a href="/assets/attachs/etc_bash.bashrc.txt">/etc/bash.bashrc</a>就会被执行，进行如下设置。
-        0. <mark>非交互模式则不进行下面的操作</mark>
-        1. 窗口可调整
-        2. 增强$PS1
-        3. 设置xterm（注释掉了）
-        4. 交互模式中开启命令补全（注释掉了）
-        5. 在bash中使用sudo
-        6. 安装command-not-found包后bash的变化
-    而<a href="/assets/attachs/home.bashrc.txt">~/.bashrc</a>中设置的就比较多了，具体可以看文档注释。</p>
+<p>我们知道linux系统中有很多shell，像最常用的bash，不常用的sh，zsh等。而对于它们公共的变量我们不可能为每个shell重复设置，所以这些公共变量我们将会保存在profile中，而对于每个shell个性化的配置将会放在各自的配置文件中，像bashrc，shrc和zshrc。而ubuntu默认用的是bash，所以只有bashrc而没有其他吧。</p>
+
+<h2>profile配置文件</h2>
+
+<p>profile是配置的意思，是某个用户唯一用来设置环境变量的地方，而用户可用的shell有多个，像bash，sh，zsh之类的，但像环境变量这种只需要在统一的一个地方初始化就可以了，这就需要profile。在Ubuntu中<a href="/assets/attachs/etc_profile.txt">/etc/profile</a>将在用户<strong>第一次</strong>登录（可以是图形也可以是终端）时被执行，其只做两件事。  </p>
 
 <ol>
-<li><p>四种不同的<a href="https://wiki.archlinux.org/index.php/Bash_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E4.BC.A0.E7.BB.9F.E6.A8.A1.E5.BC.8F">shell模式</a></p>
+<li>设置shell使用bash（主要执行/etc/bash.bashrc）<br></li>
+<li>查看/etc/profile.d中是否有相应的环境变量要设置（该文件夹中每个sh文件都是针对某个应用设置的环境变量，这个叫[可插拔功能][pam]）。</li>
+</ol>
+
+<p>而<a href="/assets/attachs/home.profile.txt">~/.profile</a>也是在用户<strong>第一次</strong>登录时被执行，其也是做两件事。</p>
+
+<ol>
+<li>设置shell使用bash（主要执行~/.bashrc）</li>
+<li>设置路径包含用户私有的执行文件目录（如果存在）</li>
+</ol>
+
+<h2>bashrc配置文件</h2>
+
+<p>bashrc看名字就知道，是专门用来给bash做初始化的。像初始化bash的设置，代码补全，别名，颜色等。同理，还会有shrc，zshrc这样的文件存在，只是bash太常用了。在Ubuntu系统中，每次打开bash，<a href="/assets/attachs/etc_bash.bashrc.txt">/etc/bash.bashrc</a>就会被执行，进行如下设置。</p>
+
+<ol>
+<li><mark>非交互模式则不进行下面的操作</mark></li>
+<li>窗口可调整</li>
+<li>增强$PS1</li>
+<li>设置xterm（注释掉了）</li>
+<li>交互模式中开启命令补全（注释掉了）</li>
+<li>在bash中使用sudo</li>
+<li>安装command-not-found包后bash的变化</li>
+</ol>
+
+<p>而<a href="/assets/attachs/home.bashrc.txt">~/.bashrc</a>中设置的就比较多了，具体可以看文档注释。</p>
+
+<h2>四种不同的<a href="https://wiki.archlinux.org/index.php/Bash_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E4.BC.A0.E7.BB.9F.E6.A8.A1.E5.BC.8F">shell模式</a></h2>
 
 <ul>
 <li><p>登录模式<br>
@@ -225,47 +237,87 @@
 <p><strong>Tips:</strong><br>
 该模式下，shell不会执行任何bashrc文件。</p>
 </blockquote></li>
-</ul></li>
-<li><p>su VS sudo<br>
-su和sudo虽然不是具有相似功能的命令，但是它们的目的大部分情况是为了获取root权限。</p>
+</ul>
+
+<h2>试验</h2>
 
 <ul>
-<li>su命令是switch user的简写，是用来切换用户的。当不加任何参数时，它将切换到root用户。它需要你想切换到的用户的密码，在输入密码后，你将切换到那个用户的运行环境。</li>
-<li><a href="https://zh.wikipedia.org/zh/Sudo">sudo</a>命令是superuser do的简写，能够以root的权限取执行命令，但是它需要的是当前用户的密码，而不是像su需要的是想要切换到的用户的密码。这样需要执行一些需要root权限的命令时就不需要频繁输入root用户的密码，当然前提是当前用户的信息是存档在特殊的文件（/etc/sudoers）中。默认情况下，系统将记住当前用户的密码一段时间，以方便用户不用经常输入密码。</li>
+<li><p>验证四种模式中配置文件的作用域<br>
+当我们在终端中执行bash命令的时候，它其实在终端中又开了一个外壳，所以我们需要<code>exit</code>两次才能退出。所以我们在第一层外壳中设置四个配置文件中变量。设置如下：</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># /etc/profile</span>
+<span class="nb">export </span><span class="nv">epro</span><span class="o">=</span><span class="s1">&#39;I am in /etc/profile&#39;</span>
+<span class="nb">export </span><span class="nv">epro_ebash</span><span class="o">=</span><span class="s1">&#39;I am in /etc/profile&#39;</span>
+<span class="nb">export </span><span class="nv">epro_pro</span><span class="o">=</span><span class="s1">&#39;I am in /etc/profile&#39;</span>
+<span class="nb">export </span><span class="nv">epro_bash</span><span class="o">=</span><span class="s1">&#39;I am in /etc/profile&#39;</span>
+
+<span class="c"># /etc/bash.bashrc</span>
+<span class="nb">export </span><span class="nv">ebash</span><span class="o">=</span><span class="s1">&#39;I am in /etc/bash.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">epro_ebash</span><span class="o">=</span><span class="s1">&#39;I am in /etc/bash.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">ebash_pro</span><span class="o">=</span><span class="s1">&#39;I am in /etc/bash.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">ebash_bash</span><span class="o">=</span><span class="s1">&#39;I am in /etc/bash.bashrc&#39;</span>
+
+<span class="c"># ~/.profile</span>
+<span class="nb">export </span><span class="nv">pro</span><span class="o">=</span><span class="s1">&#39;I am in ~/.profile&#39;</span>
+<span class="nb">export </span><span class="nv">epro_pro</span><span class="o">=</span><span class="s1">&#39;I am in ~/.profile&#39;</span>
+<span class="nb">export </span><span class="nv">ebash_pro</span><span class="o">=</span><span class="s1">&#39;I am in ~/.profile&#39;</span>
+<span class="nb">export </span><span class="nv">pro_bash</span><span class="o">=</span><span class="s1">&#39;I am in ~/.profile&#39;</span>
+
+<span class="c"># ~/.bashrc</span>
+<span class="nb">export </span><span class="nv">bash</span><span class="o">=</span><span class="s1">&#39;I am in ~/.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">epro_bash</span><span class="o">=</span><span class="s1">&#39;I am in ~/.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">ebash_bash</span><span class="o">=</span><span class="s1">&#39;I am in ~/.bashrc&#39;</span>
+<span class="nb">export </span><span class="nv">pro_bash</span><span class="o">=</span><span class="s1">&#39;I am in ~/.bashrc&#39;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Tips:</strong><br>
+上面的变量声明位置要放在各个配置文件前面，但是要放在判别交互和登录模式之后<br>
+/etc/profile      最前面<br>
+/etc/bash.bashrc  前面，但要在判断交互模式之后<br>
+~/.profile        最前面<br>
+~/.bashrc         前面，但要在判断交互模式之后</p>
+</blockquote>
+
+<ul>
+<li>试验步骤
+
+<ol>
+<li>登录模式<br>
+在终端中设置完上面的变量之后，以<code>bash -l</code>进入另一个bash，并显示上面的变量值
+<img src="/assets/images/bash_login.png" alt="login"><br></li>
+<li>交互模式<br>
+在终端中设置完上面的变量之后，以<code>bash -i</code>进入另一个bash，并显示上面的变量
+<img src="/assets/images/bash_inter.png" alt="inter"></li>
+<li>打开terminal时，进入的模式<br>
+在一个终端中设置完上面的变量后，打开另一个终端，显示上面的变量值
+<img src="/assets/images/terminal.png" alt="terminal"><br></li>
+</ol></li>
+<li>结论
+
+<ol>
+<li>登录模式中，四个文件都被执行了，执行的顺序是/etc/profile &gt; /etc/bash.bashrc &gt; ~/.profile &gt; ~/.bashrc
+epro，pro，ebash，bash都有值，说明四个文件都被执行了。epro<em>ebash说明/etc/profile先于/etc/bash.bashrc;
+ebash</em>pro说明/etc/bash.bashrc先于~/.profile;pro_bash说明~/.profile先于~/.bashrc</li>
+<li>交互模式中，两个profile文件没有被执行，两个bash文件都被执行了，并且/etc/bash.bashrc比~/.bashrc先执行
+ebash，bash都有值，说明bash两个文件都被执行了。ebash_bash说明~/.profile先于~/.bashrc</li>
+<li>打开terminal时，进入交互模式
+两个profile文件没有被执行，两个bash文件都被执行了，并且/etc/bash.bashrc比~/.bashrc先执行。此状态和交互模式的状态一致。</li>
+</ol></li>
 </ul></li>
-</ol>
-
-<p>下面我们来讨论一下<a href="http://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">sudo和su命令对运行环境的影响</a>：
-    * sudo 
-    * sudo su<br>
-    bash将以一个交互非登录模式运行，所以只有两个bashrc文件将被执行。所以当用户切换成root后，我们还在当前的工作的目录，而非/root目录。
-    * sudo su -<br>
-    bash将以登录模式运行的，此时/etc/profile，~/.profile将会被执行，隐形的/etc/bash.bashrc和~/.bashrc也将会被执行。此时，我们的当前目录是/root。
-    * sudo -i
-    -i是--login的简写，所以和sudo su -一样的情况
-    * sudo /bin/bash
-    bash将以非登录模式运行，上面四个文件将不会被执行。</p>
-
-<h2>问题关键</h2>
-
-<p>上面提供的</p>
+</ul>
 
 <h2>待解决的问题</h2>
 
 <ol>
-<li>/etc/profile文件中首先判断是否存在变量$PS1。该变量是什么时候被创建的？</li>
+<li>非登录模式如何确定？</li>
+<li>之前的所有试验其实都包含了交互模式。非交互模式又如何确定？</li>
 </ol>
 
 <h2>参考文献</h2>
 
 <ol>
-<li><a href="https://www.java.com/zh_CN/download/help/path.xml">如何设置或更改PATH系统变量</a></li>
-<li><a href="http://www.sjsjw.com/kf_jiagou/article/027841ABA028365.asp">如何更换rubygem镜像的源</a></li>
-<li><a href="https://discuss.elastic.co/t/shield-w-logstash-offline-install/25072">如何手动安装logstash插件logstash-output-elasticsearch-shield</a></li>
-<li><a href="http://baike.baidu.com/link?url=Y8DhEJDs3JgwVb0Cntn8psCW__SPphjQYg2o_iSPF8zQfSm_Gi0w8Squu2jDTt5MoekofzEJ0KxBRcBqd2CPBuRJdxwpa7i7fO3OcnpqQqu">可插拔认证模块</a></li>
-<li><a href="https://zh.wikipedia.org/zh/Sudo">维基百科sudo</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/Bash_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E4.BC.A0.E7.BB.9F.E6.A8.A1.E5.BC.8F">shell的四种模式</a></li>
-<li><a href="http://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">su和sudo对运行环境的影响</a></li>
+<li><a href="https://wido.me/sunteya/understand-bashrc-and-profile">理解 bashrc 和 profile</a></li>
+<li><a href="http://superuser.com/questions/789448/choosing-between-bashrc-profile-bash-profile-etc">Choosing between .bashrc, .profile, .bash_profile, etc</a></li>
 </ol>
 
   						</article>
