@@ -6,6 +6,8 @@
 　　<p>最新文章</p>
 　　<ul>
 　　　　
+　　　　　　<li>25 Sep 2015 <a href="/2015/09/25/VIM%E9%85%8D%E7%BD%AE%E4%B9%8B%E8%BF%9B%E9%98%B6%E7%AF%87.html">Vim配置之进阶篇</a></li>
+　　　　
 　　　　　　<li>13 Sep 2015 <a href="/2015/09/13/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8Bsudo%E7%9A%84%E7%8E%AF%E5%A2%83.html">shell运行环境之sudo的环境</a></li>
 　　　　
 　　　　　　<li>09 Sep 2015 <a href="/2015/09/09/shell%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.html">shell运行环境之环境配置文件</a></li>
@@ -14,7 +16,7 @@
 　　　　
 　　　　　　<li>07 Sep 2015 <a href="/2015/09/07/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%A0%BC%E9%9B%B7%E7%A0%81.html">ACM解题报告之格雷码</a></li>
 　　　　
-　　　　　　<li>31 Aug 2015 <a href="/2015/08/31/VIM%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E7%BA%A7.html">Vim配置之基本入门级</a></li>
+　　　　　　<li>31 Aug 2015 <a href="/2015/08/31/VIM%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%85%A5%E9%97%A8%E7%AF%87.html">Vim配置之入门篇</a></li>
 　　　　
 　　　　　　<li>25 Aug 2015 <a href="/2015/08/25/ACM%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A%E4%B9%8B%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.html">ACM解题报告之最长回文子串</a></li>
 　　　　
