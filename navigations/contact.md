@@ -68,8 +68,10 @@ comments: true
 
 	
 ## 自我评价
-* 学习	本科阶段参加了不少竞赛并获得了些成绩。其次还做过一个管理系统。而硕士阶段主要精力投入在机器学习方面，熟悉主流的Machine Learning算法，自学能力强，善于总结，喜欢写[博客](http://haojunyu.gitcafe.io)记录自己的感悟。
-* 生活	喜欢旅游，随手拍照记录日常点滴。此外还喜欢玩游戏和跑步，以此来释压。
+* 学习	
+本科阶段参加了不少竞赛并获得了些成绩。其次还做过一个管理系统。而硕士阶段主要精力投入在机器学习方面，熟悉主流的Machine Learning算法，自学能力强，善于总结，喜欢写[博客](http://haojunyu.gitcafe.io)记录自己的感悟。
+* 生活	
+喜欢旅游，随手拍照记录日常点滴。此外还喜欢玩游戏和跑步，以此来释压。
 
 详细简历[这里]({{site.baseurl}}/assets/attachs/cv.pdf)，
 如果你有任何问题，请给我发送邮件：[haojunyu2012@gmail.com](mailto:haojunyu2012@gmail.com)，
