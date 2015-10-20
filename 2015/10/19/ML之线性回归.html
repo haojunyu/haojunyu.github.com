@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="canonical" href="/haojunyu/2015/10/19/ML%E4%B9%8B%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+		<!-- Google Analytics -->
+    	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-67273073-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		<!-- Cnzz Analysis 
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256284061'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256284061' type='text/javascript'%3E%3C/script%3E"));
+		</script>		-->
+    	<!-- Baidu Analysis -->
+    	<script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		ML之线性回归
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>ML之线性回归</h1>
+    						<p class="meta">Oct 19, 2015 <span class="pause"> - </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
+        						
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=ML">ML</a>
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=Algorithm">Algorithm</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>线性回归[Line Regression]估计是我们接触最早的机器学习的算法了，差不过在高中的时候我们就会做一类题：就是给定xy坐标上的一些点（一般是线性的），然后用y=ax+b进行拟合，最后求出一个<a,b>以及y的预测值$\hat{y}$。其中y=ax+b在ML中叫模型，<a,b>叫模型参数，或者特征x的权重，而y就是结果或标签，求解模型的方法叫最小二乘法[Ordinary Least Square Estimation]。本文将结合sklearning详细介绍一下线性回归方法。</p>
+
+<h2>概念理解</h2>
+
+<p>在统计学中，<a href="https://en.wikipedia.org/wiki/Linear_regression">线性回归</a></p>
+
+<p>谈及回归，不可避免的谈到分类，这两个概念很相似，只不过分类的结果是1,2,3这样的离散型，而回归的结果却是连续型。二者都可以用来预测。</p>
+
+<h2>问题&amp;回答</h2>
+
+<ol>
+<li>Q：多维线性回归和多变量线性回归的区别<br>
+A：该回答参考<a href="http://www.answers.com/Q/What_is_difference_between_multivariate_regression_and_multipal_regression">这篇英文博文</a>。<br>
+
+<ul>
+<li>差异性<br>
+该问题和线性没有关系。多维回归是指回归模型拥有一个因变量和多个自变量，而多变量回归是指回归模型拥有多个因变量和多个自变量。二者的区别是在于因变量的个数。</li>
+<li>联系<br>
+多变量回归可以由多个多维回归模型构成。</li>
+<li>举例说明<br>
+多变量回归一般用于解决系数的混合检验问题。比如，你想要知道SAT的各项分数对第一学年和第二学年有什么样的影响。一种方法是运行两个简单回归模型，并且查看系数是否相似;另一种方法是运行一个多变量回归模型，而且这种方式是正规的概率检验方式。虽然系数是一样的，但是后续你可以计算它们的相似度和其他属性等。</li>
+</ul></li>
+</ol>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Linear_regression">线性回归wiki</a></li>
+<li><a href="http://www.answers.com/Q/What_is_difference_between_multivariate_regression_and_multipal_regression">多维线性回归vs多变量线性回归</a></li>
+<li><a href="http://share.weiyun.com/f33d5770eba223764845beddf0d6bc09">机器学习实战</a></li>
+</ol>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+						
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="MLAlgorithm" data-title="ML之线性回归" data-url="//2015/10/19/ML%E4%B9%8B%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+							
+						</div>
+					</div>
+				
+				
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
