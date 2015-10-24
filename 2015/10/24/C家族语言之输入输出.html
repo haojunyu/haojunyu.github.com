@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="canonical" href="/haojunyu/2015/10/24/C%E5%AE%B6%E6%97%8F%E8%AF%AD%E8%A8%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+		<!-- Google Analytics -->
+    	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-67273073-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		<!-- Cnzz Analysis 
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256284061'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256284061' type='text/javascript'%3E%3C/script%3E"));
+		</script>		-->
+    	<!-- Baidu Analysis -->
+    	<script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		C家族语言编程之输入
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>C家族语言编程之输入</h1>
+    						<p class="meta">Oct 24, 2015 <span class="pause"> - </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
+        						
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=Coding">Coding</a>
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=C">C</a>
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=C++">C++</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>大家都知道C++语言是兼容C语言的，所以在C++中我们有最起码两种方式来实现输入输出。但是这里我还是想将这二者区分开来。毕竟目前还是喜欢在纯C的环境下面编程。所以这里就稍微介绍一下C/C++里面常用的输入输出。</p>
+
+<h2>输入的过程</h2>
+
+<p>在C家族语言的编程中，我们经常需要在键盘上输入一些字符给程序。比如我们要输入“How are you？\n”，在我们输入上面的字符后敲击回车&quot;\n&quot;，此时这串字符串会先被送到一个叫输入缓冲区(一般叫stdin)的地方，然后程序再从输入缓冲区中获取这些字符。而并不是先接受&quot;How&quot;，然后接受&quot;are&quot;，最后再接受&quot;you?\n&quot;，很简单的反例就是当我们在输入时发现输入了我们并不想输入的字符时，我们用<backspace>可以取消之前的输入，如果不是采用输入缓冲区的机制，那么就会产生误解。</p>
+
+<p>除了了解输入缓冲区的概念外，还要知道输入缓冲区指针，<mark>一个只能前进不能后退的指针</mark>，它用来标注程序目前读到缓冲区什么位置。而对于不同的输入函数，我们要注意两点，第一点是它怎样区分多个输入值，或者说缓冲区指针会吸收掉哪些分隔符;第二点是它接受输入成功后的返回值。</p>
+
+<h2>C里的输入</h2>
+
+<ul>
+<li><p>scanf<br>
+这是最常用的一种输入，无论整数还是字符串等都能够完美解决，其返回值为成功赋值的数据项数。当遇到文件结束符时返回0。它区分多个输入值的分隔符为空格，制表符和回车。</p></li>
+<li><p><mark>gets</mark><br>
+gets是从标准输入缓冲区上读字符串。可以无限读取，不会判断上限，以回车结束读取。如果读取溢出时，多出来的字符将会被写入到堆栈中，这就<strong>覆盖了堆栈原来的内容</strong>，破坏一个或多个不相关变量的值。这个导致gets函数已经被gcc摒弃，所以用fgets来取代gets。</p></li>
+<li><p>fgets<br>
+能够从stream中读取数据，每次读取一行。读取的数据保存在buf指向的字符数组中，每次最多读取bufsize-1个字符（第bufsize个字符赋值&#39;\0&#39;），如果文件中该行不足bufsize个字符，则读完该行就结束。此时特别注意，<strong>fgets不会像gets将&#39;\n&#39;替换成&#39;\0&#39;，而是在&#39;\n&#39;后面添加&#39;\0&#39;</strong>。函数成功将返回buf地址，失败或读到文件结尾将返回NULL，所以不能通过fgets的返回值来判断函数是否出错而终止，应该借助feof函数或者ferror函数来判断。</p></li>
+</ul>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include&lt;stdio.h&gt;</span>
+
+<span class="cp">#define LEN 10</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="n">LEN</span><span class="p">];</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">));</span>
+    <span class="cm">/* fflush(stdin); */</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">LEN</span><span class="p">,</span><span class="n">stdin</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>通过下图中几个测试样例可以看出fgets以上的特点。</p>
+
+<p><img src="/assets/images/fgets.png" alt="fgets">  </p>
+
+<h2>C++中的输入</h2>
+
+<ul>
+<li>cin<br>
+cin是标准输入istream的一个对象，常用的方法&quot;cin&gt;&gt;x&quot;，是将输入缓冲区中对象赋给x对象。其返回值根据&quot;&gt;&gt;&quot;输入操作符的定义知道是返回cin对象。cin会吸收的分隔符有空格，制表符和回车符。</li>
+</ul>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include&lt;iostream&gt;</span>
+
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>在多次执行该代码，发现当正确输入一个整数（90）时，返回&quot;ox601090&quot;，当输入错误（字符k）时，返回0。而且在输入90前敲了空格，制表符，回车发现cin都没有执行，所以它会吃掉那些分隔符。具体见下图：</p>
+
+<p><img src="/assets/images/cin.png" alt="cin"></p>
+
+<ul>
+<li><p>cin.get()/cin.get(char)<br>
+用于读入一个字符，字符中包括空格，制表符，回车等。常用的方法是&quot;while((c=cin.get())!=EOF){}&quot;或&quot;while(cin.get(c)){}&quot;。其中EOF代表文件终止符，在终端中用<ctrl+Z>终止。</p></li>
+<li><p>cin.get(str,len,&#39;\n&#39;)/cin.getline(str,len,&#39;\n&#39;)<br>
+用于读取一串字符，其中str代表字符串存储的地址，len代表最多读取len-1个字符，&#39;\n&#39;代表终止符，即碰到&#39;\n&#39;也停止读取。
+二者也是有区别的，区别就是getline遇到终止字符时结束，会将缓冲区指针移动到终止字符之后，而get遇到终止字符时，缓冲区指针不会动。也就是说getline会吃掉终止符号。验证代码<a href="/assets/attachs/input.cpp.txt">input.cpp</a>执行的结果如下图所示： 
+<img src="/assets/images/get_getline.png" alt="get_getline"><br>
+有两个注意点：</p>
+
+<ol>
+<li>代码中用cin.get()吃掉了4后面的换行符。</li>
+<li>在getline中遇到&#39;e&#39;终止并吃掉了&#39;e&#39;，所以第二次输出时输出的是&quot;ll\nmm&quot;，而get中遇到了&#39;e&#39;终止，却无法吃掉&#39;e&#39;，导致再进行cin.get(str,10,&#39;e&#39;)时无法获取字符就又终止了。</li>
+</ol></li>
+</ul>
+
+<h2>问题&amp;回答</h2>
+
+<ol>
+<li>Q:根据&quot;&gt;&gt;&quot;输入操作符的定义知道返回值是cin对象，所以才可以使用像&quot;cin&gt;&gt;a&gt;&gt;b;&quot;这样的连续输入，但是像&quot;while(cin&gt;&gt;x){}&quot;这样的用法意味着cin&gt;&gt;x会返回0，为什么？<br>
+A: 参见<a href="http://blog.csdn.net/kongbai308416350/article/details/4470914">cin的返回值探究</a>。</li>
+</ol>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="http://blog.csdn.net/kongbai308416350/article/details/4470914">cin的返回值探究</a></li>
+<li><a href="http://baike.baidu.com/link?url=3IuFZpWf27rB7L83gIaDIJUuMMuSSWB-Xdrsy4mb-ml3vyuaEHHr3ceOIT_H8eDDVDh0L_pi2h4UheKYe-Vqda">百科gets</a></li>
+<li><a href="http://baike.baidu.com/link?url=08NOHmRHSYROfmu2O2uvfe3hwOx_Ur2fZlGqPFGV4f-3kL9y4ggUAI4t9l5D64ZmNoL8Cbc7AwuCW-rcCutGJa">百科fgets</a></li>
+</ol>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+						
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CodingCC++" data-title="C家族语言编程之输入" data-url="//2015/10/24/C%E5%AE%B6%E6%97%8F%E8%AF%AD%E8%A8%80%E4%B9%8B%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+							
+						</div>
+					</div>
+				
+				
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
