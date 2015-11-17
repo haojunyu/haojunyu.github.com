@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="canonical" href="/haojunyu/2015/10/26/C%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%8C%87%E9%92%88.html">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+		<!-- Google Analytics -->
+    	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-67273073-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		<!-- Cnzz Analysis 
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256284061'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256284061' type='text/javascript'%3E%3C/script%3E"));
+		</script>		-->
+    	<!-- Baidu Analysis -->
+    	<script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+		
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>    	
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+    	
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+  			
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();    
+  			});
+    	</script>
+    	
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		C语言编程之指针
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+					
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+  		
+        			<div id="contents" class="central-right">  		
+        			<div class="post">
+						<header class="post-header">
+    						<h1>C语言编程之指针</h1>
+    						<p class="meta">Oct 26, 2015 <span class="pause"> - </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> | 
+        						
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=C">C</a>
+            					
+               			 		<a class="label" href="/navigations/archives.html/?label=Coding">Coding</a>
+            					
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							<p>c语言之所以强大，以及其自由性，很大部分体现在其灵活的指针运用上。因此，说指针是c语言的灵魂，一点都不为过。同时，这种说法也让很多人产生误解，似乎只有C语言的指针才能算指针。basic不支持指针，在此不论。其实，pascal语言本身也是支持指针的。从最初的pascal发展至今的object pascal，可以说在指针运用上，丝毫不会逊色于c语言的指针。还有Java语言，虽然任何教程都没有提及指针，但是在我看来任何类对象（基本数据类型不确定）的创建都使用了指针。所以对指针的理解决定了你对编程语言的理解。</p>
+
+<h2>指针基础</h2>
+
+<p><a href="http://baike.baidu.com/link?url=_XybsUjdWr-YTN7SUA8q92EpiskSmO4EvROZLZmJbGals1NhK2sHZSRrsW80vuS-2hcie9Qk5IfP42sXOoC0h_">指针</a>（Pointer）是编程语言中的一个对象，它的值直接指向（points to）存在电脑存储器中另一个地方的值。这里先介绍一下变量的三要素：变量名，存储地址和存储内容。在下图的内存分配表中，<strong>存储变量(b)的地址(1008)</strong>称为指向变量(b)的指针，意思是通过它(1008)能找到以它为地址的内存单元(b)。而<strong>存储这个指针(1008)的变量(a)</strong>叫做指针变量，又因为这个指针是指向b变量的，所以又叫它为指向变量b的指针变量。<br>
+<img src="/assets/images/pointers.png" alt="pointer"></p>
+
+<h2>操作符&amp;*</h2>
+
+<p>操作符&amp;叫取址操作符，其后面常跟变量，用来获取变量的地址的操作符。</p>
+
+<p>操作符*叫取值操作符，其后面常跟地址，用来获取地址所定位内存空间里的值。如*point 是point所指向的存储单元的内容，而对于这个内容的理解有两种，一个是变量本身，另一个是具体的存储内容，特别声明这里的内容是变量本身。换句话说就是存储内容的变化也会导致*point值的变化。对于指针还有另外一点，就是指针的增加$point+i$，这里指针实际移动的距离是i*sizeof(指针的基类型)。下面来说一下这个经典案例*point++，该操作首先考虑优先级，因为这三个操作符都是一元同级操作符，所以按照从右往左的顺序操作。即*point++等价于*(point++)。</p>
+
+<h2>数组和指针</h2>
+
+<p>通常在函数调用中，我们会将数组名当作参数传递给函数，而函数中定义形参却通常定义为指针。对于这二者还是有很多相识点的。</p>
+
+<ul>
+<li>最重要的点：<mark>数组名代表的就是数组首元素的地址</mark>。</li>
+<li>数组名这样的操作(arr++)是不对的,而p却可以（p=arr，p++），因为arr是常量类型。</li>
+<li>数组中的移位记住这样一个等式 *(point+i )= point[i] </li>
+</ul>
+
+<p>这里稍微提一下二维数组的定义。比如</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">arr</span><span class="p">;</span>
+</code></pre></div>
+<p>这里的二维数组指针p是代表包含3个int型元素的一维数组。</p>
+
+<h2>常量&amp;指针</h2>
+
+<h2>指针和字符串</h2>
+
+<h2>section</h2>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">wiki指针</a></li>
+<li><a href="http://baike.baidu.com/link?url=_XybsUjdWr-YTN7SUA8q92EpiskSmO4EvROZLZmJbGals1NhK2sHZSRrsW80vuS-2hcie9Qk5IfP42sXOoC0h_">baike</a></li>
+</ol>
+
+  						</article>
+					
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+						
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CCoding" data-title="C语言编程之指针" data-url="//2015/10/26/C%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%8C%87%E9%92%88.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+							
+						</div>
+					</div>
+				
+				
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
