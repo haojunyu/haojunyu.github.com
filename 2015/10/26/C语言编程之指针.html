@@ -178,7 +178,7 @@
 
 <p>操作符&amp;叫取址操作符，其后面常跟变量，用来获取变量的地址的操作符。</p>
 
-<p>操作符*叫取值操作符，其后面常跟地址，用来获取地址所定位内存空间里的值。如*point 是point所指向的存储单元的内容，而对于这个内容的理解有两种，一个是变量本身，另一个是具体的存储内容，特别声明这里的内容是变量本身。换句话说就是存储内容的变化也会导致*point值的变化。对于指针还有另外一点，就是指针的增加$point+i$，这里指针实际移动的距离是i*sizeof(指针的基类型)。下面来说一下这个经典案例*point++，该操作首先考虑优先级，因为这三个操作符都是一元同级操作符，所以按照从右往左的顺序操作。即*point++等价于*(point++)。</p>
+<p>操作符*叫取值操作符，其后面常跟地址，用来获取地址所定位内存空间里的值。如*point 是point所指向的存储单元的内容，而对于这个内容的理解有两种，一个是变量本身，另一个是具体的存储内容，特别声明这里的内容是变量本身。换句话说就是存储内容的变化也会导致*point值的变化。对于指针还有另外一点，就是指针的增加point+i，这里指针实际移动的距离是i*sizeof(指针的基类型)。下面来说一下这个经典案例*point++，该操作首先考虑优先级，因为这三个操作符都是一元同级操作符，所以按照从右往左的顺序操作。即*point++等价于*(point++)。</p>
 
 <h2>数组和指针</h2>
 
@@ -196,9 +196,13 @@
 </code></pre></div>
 <p>这里的二维数组指针p是代表包含3个int型元素的一维数组。</p>
 
-<h2>常量&amp;指针</h2>
-
 <h2>指针和字符串</h2>
+
+<p>指针和字符串的区别与指针和数组的区别很类似。因为C语言中没有字符型变量，只能用字符数组来存储，唯一的区别是字符串必须以&#39;\0&#39;结尾。不过在面试的时候经常会问这样的一个问题：下面两种定义有什么区别。</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">char</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="o">=</span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h2>常量&amp;指针</h2>
 
 <h2>section</h2>
 
