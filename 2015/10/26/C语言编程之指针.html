@@ -172,17 +172,58 @@
 <h2>指针基础</h2>
 
 <p><a href="http://baike.baidu.com/link?url=_XybsUjdWr-YTN7SUA8q92EpiskSmO4EvROZLZmJbGals1NhK2sHZSRrsW80vuS-2hcie9Qk5IfP42sXOoC0h_">指针</a>（Pointer）是编程语言中的一个对象，它的值直接指向（points to）存在电脑存储器中另一个地方的值。这里先介绍一下变量的三要素：变量名，存储地址和存储内容。在下图的内存分配表中，<strong>存储变量(b)的地址(1008)</strong>称为指向变量(b)的指针，意思是通过它(1008)能找到以它为地址的内存单元(b)。而<strong>存储这个指针(1008)的变量(a)</strong>叫做指针变量，又因为这个指针是指向b变量的，所以又叫它为指向变量b的指针变量。<br>
-<img src="/assets/images/pointers.png" alt="pointer"></p>
+<img src="/assets/images/pointers.png" alt="pointer">  </p>
 
+<p>对于指针变量，我们只要抓在两点就可以了，第一个是它指向的地址是多少，第二是它的基类型是啥。对于指针的基类型，在指针的定义中或者malloc/new申请内存时很容易获得。指向基本数据类型指针的基类型就是基本数据类型，而数组指针基类型的识别有点难，但其实只要抓住一点就能解决了，即去掉定义中的一个*和变量名，剩下的就是指针的基类型。</p>
+<div class="highlight"><pre><code class="language-c++" data-lang="c++">    <span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>     <span class="c1">// 基类型为int，它是管辖范围是一个变量</span>
+    <span class="kt">int</span> <span class="o">**</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// 基类型为int *，它是管辖范围是一个一维数组</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">row</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">);</span>   <span class="c1">// b的类型是int **，其基类型为int*，管辖范围包含row个int*变量的一维数组[C]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">*</span><span class="p">[</span><span class="n">row</span><span class="p">];</span>      <span class="c1">// b的类型是int **，其基类型为int*，管辖范围是包含row个int*变量的一维数组[C++]</span>
+</code></pre></div>
 <h2>操作符&amp;*</h2>
 
 <p>操作符&amp;叫取址操作符，其后面常跟变量，用来获取变量的地址的操作符。</p>
 
 <p>操作符*叫取值操作符，其后面常跟地址，用来获取地址所定位内存空间里的值。如*point 是point所指向的存储单元的内容，而对于这个内容的理解有两种，一个是变量本身，另一个是具体的存储内容，特别声明这里的内容是变量本身。换句话说就是存储内容的变化也会导致*point值的变化。对于指针还有另外一点，就是指针的增加point+i，这里指针实际移动的距离是i*sizeof(指针的基类型)。下面来说一下这个经典案例*point++，该操作首先考虑优先级，因为这三个操作符都是一元同级操作符，所以按照从右往左的顺序操作。即*point++等价于*(point++)。</p>
 
+<p>这两个操作是一个对立的操作。一个是通过地址获取变量值，另一个是通过变量名获取地址。下面从管辖范围的角度来理解这两个操作。这个管辖范围是对指针基类型在内存上的解读，更物理测量里面的精确度概念类似。其层级为高维数组&gt;一维数组&gt;单个基本数据类型。</p>
+
+<ul>
+<li>&amp;E 相当于把E的管辖范围上升了一个级别</li>
+<li>*E 相当于把E的管辖范围下降了一个级别</li>
+<li>数组名相当于指向数组第一个元素的指针，但是其管辖范围根据基类型来定。</li>
+</ul>
+
+<p>样例代码如下所示：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>       <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>     <span class="c1">//x+4</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>      <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">//x+16</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">));</span>   <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//x+4</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},{</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>    <span class="c1">//这里由于jekyll问题，无法在两个一维数组外面添加{}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>       <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>     <span class="c1">//x+12</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>      <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">//x+24</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">));</span>   <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//x+12</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>    <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">//x+4</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>   <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//x+12</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>    <span class="c1">//x</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">//x+4</span>
+</code></pre></div>
+<p>代码中的一维数组a和二维数组b在内存中的表示情况如下图所示，其中红色的弧/圈表示指针的管辖范围（精确度）。
+<img src="/assets/images/pointer_array.png" alt="pointer">  </p>
+
 <h2>数组和指针</h2>
 
-<p>通常在函数调用中，我们会将数组名当作参数传递给函数，而函数中定义形参却通常定义为指针。对于这二者还是有很多相识点的。</p>
+<p>通常在函数调用中，我们会将数组名当作参数传递给函数，而函数中定义形参却通常定义为常量指针（const int* arr）。对于这二者还是有很多相识点的。</p>
 
 <ul>
 <li>最重要的点：<mark>数组名代表的就是数组首元素的地址</mark>。</li>
@@ -202,15 +243,32 @@
 <div class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">char</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
     <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span><span class="o">=</span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
 </code></pre></div>
+<p>对于这个问题，我们得了解这个定义，首先p是字符数组，虽然长度为5,但p[5]一定为&#39;\0&#39;;而cp是这字符指针，是个<strong>常量指针</strong>，二者存储/指向的内容都为&quot;hello&quot;字符串。最关键的一点是两者在内存中存储区不一样。字符数组p是存储在栈区，而常量指针本身也是存储在栈区，但是它指向的字符串&quot;hello&quot;是存储在一个专门放常量的地方，在程序结束后释放。关于程序存储区的详细讨论将在另一片博文<a href="/2015/11/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E5%8C%BA.html">程序中的存储区</a>中讨论。</p>
+
 <h2>常量&amp;指针</h2>
 
-<h2>section</h2>
+<p>常量比较常用来保护实参，限制形参，保证实参在被调函数中的不可改变的特性（const int *）。还有另外一个类似宏定义的功能，又因为常量会被存放在常量区，所以可以节省空间（const int max=100）。不过常量指针（const int *arr）和指针常量（int *const p）是两个非常容易混的概念，这里做一些总结吧。</p>
+
+<p>对于二者的区分，只要记住三句话</p>
+
+<ol>
+<li>*（指针）和const（常量）谁在前先读谁</li>
+<li>*（指针）象征着地址，而const（常量）象征着内容</li>
+<li>谁在前面谁就不允许改变。</li>
+</ol>
+
+<p>常量指针（const int *p）是指向常量的指针，所以指向的内容是不能改变的，但是这个指针可以指向其他常量。</p>
+
+<p>指针常量（int *const p）是指向变量的地址为常量，而指向的内容可以改变，所以<strong>指针常量在声明的时候一定要初始化，不能被再赋值，指向别的地址</strong>。</p>
 
 <h2>参考文献</h2>
 
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">wiki指针</a></li>
 <li><a href="http://baike.baidu.com/link?url=_XybsUjdWr-YTN7SUA8q92EpiskSmO4EvROZLZmJbGals1NhK2sHZSRrsW80vuS-2hcie9Qk5IfP42sXOoC0h_">baike</a></li>
+<li><a href="http://www.cnblogs.com/JCSU/articles/1051579.html">程序如何使用内存区</a></li>
+<li><a href="/2015/11/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E5%8C%BA.html">程序中的存储区</a></li>
+<li><a href="http://blog.csdn.net/beyond0525/article/details/7409305">常量指针和指针常量的区别详解</a></li>
 </ol>
 
   						</article>
