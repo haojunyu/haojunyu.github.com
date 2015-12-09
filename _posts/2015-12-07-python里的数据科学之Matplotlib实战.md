@@ -164,7 +164,7 @@ Matlplotlib是Python的一个可视化模块。该项目是由John D. Hunter发�
     # marker    点的图案
     # label     图例说明中的标签
     # linewidth 线宽
-    plt.plot(x, y1, 'b', label=‘$x^3$’, linewidth=2)
+    plt.ot(x, y1, 'b', label=‘$x^3$’, linewidth=2)
     plt.plot(x, y2, 'r', label=‘$sin(x)$’, linewidth=2)
     ## 设置坐标轴
     ax= plt.gca()       # 获取当前坐标系实例
