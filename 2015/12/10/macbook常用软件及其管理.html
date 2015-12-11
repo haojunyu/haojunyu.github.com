@@ -8,7 +8,7 @@
      	</title>
     	<meta name="viewport" content="width=device-width">
     	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
-    	<link rel="canonical" href="/haojunyu/2015/12/09/macbook%E5%AE%89%E8%A3%85%E6%8E%A8%E8%8D%90.html">
+    	<link rel="canonical" href="/haojunyu/2015/12/10/macbook%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%85%B6%E7%AE%A1%E7%90%86.html">
     	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     	<!-- Custom CSS -->
@@ -109,7 +109,7 @@
 	<header class="site-header">
   		<div class="wrap">
     		<a class="site-title" href="/">
-    		macbook安装推荐
+    		macbook常用软件及其管理
     		</a>
     		<nav class="site-nav">
       	<div class="trigger">
@@ -151,8 +151,8 @@
         			<div id="contents" class="central-right">  		
         			<div class="post">
 						<header class="post-header">
-    						<h1>macbook安装推荐</h1>
-    						<p class="meta">Dec 9, 2015 <span class="pause"> - </span>
+    						<h1>macbook常用软件及其管理</h1>
+    						<p class="meta">Dec 10, 2015 <span class="pause"> - </span>
 								<span id="busuanzi_container_page_pv">
 								浏览量:	<span id="busuanzi_value_page_pv"></span>
 								</span>次 <span class="pause"> | 
@@ -167,45 +167,105 @@
   						</header>
 
   						<article class="post-content">
-  							<p>经过一番货比三家后，终于通过苹果内部员工的85折拿下了这款Macbook Pro MF840。今天怀着激动兴奋的心情，拆了配送包裹，好好把玩了一天，下面对其中的一些软件安装和基本配置作一下记录。</p>
+  							<p>经过一番货比三家后，终于通过苹果内部员工的85折拿下了这款Macbook Pro MF840。今天怀着激动兴奋的心情，拆了配送包裹，好好把玩了一天。本篇博文对OS X系统内置的APP进行一些摸索，最后在系统中安装了VMWare Fusion虚拟机来搭建自己的Ubuntu工作环境。而下篇博文<a href="">macbook常用软件及其管理</a>将详细介绍苹果系统的<a href="http://brew.sh">软件包管理</a>以及常用的软件。</p>
 
-<p>在网上经常会看到<a href="http://www.linuxidc.com/Linux/2014-04/100411.htm">安装ubuntu后必做的n件事</a>,不过这些事情都是大众通用的,并不是完全适合自己的.所以本文就是对自己使用ubuntukylin这些年来的记录总结.</p>
+<h2>OS X系统</h2>
 
-<h2>ubuntukylin简介</h2>
-
-<p>UbuntuKylin是Ubuntu社区中面向中文用户的Ubuntu衍生版本，与麒麟系统没有关系。它是由工信部软件、集成电路促进中心（CSIP）、国防科技大学（NUDT）与国际著名开源社区UBUNTU的支持公司CANONICAL发起的一款开源社区操作系统项目。</p>
-
-<p>发行版本从13.04开始，其有以下特性  </p>
+<p>苹果原生的系统还是很给力的，省电啥的还没有深刻体会，但是界面的美观，操作的流畅还是留下很深的印象。其内置的APP也是挺给力的，详细介绍见<a href="http://www.apple.com/cn/osx/apps/">Mac之妙</a>，下面简要介绍一些。</p>
 
 <ul>
-<li>Dash中的在线音乐搜索: 更加简单、方便的音乐搜索，帮助用户发现最新、最热的中国流行音乐</li>
-<li>农历（中国传统历法）： 便于查询传统假日和节气时令的中文日历，包含公历
-天气插件：提供来自中国气象局的天气预报信息，为用户日常起居和旅行提供参考</li>
-<li>中文输入法：默认使用fctix输入法，支持云拼音输入，更加智能的联想功能</li>
-<li>与WPS合作：提供中国本土办公软件WPS，兼容多种文档格式，具有强大的图形布局功能和丰富的网络资源，文档工作将更加专业和轻松<br></li>
+<li>融入日常类
+
+<ul>
+<li>邮件<br>
+集成iCloud，126和Gmail等常见的电子邮件服务。<strong>赶快使用</strong></li>
+<li>日历<br>
+创建多个单独的日历来跟踪管理看似复杂却简单的日程。<strong>赶快使用</strong></li>
+<li>提醒事项<br>
+相当于一个便笺，在特定的日期和时间提醒你该干什么。<strong>赶快使用</strong></li>
+<li>备忘录<br>
+相当于一个随手笔记，可以随手记下闪现的灵感，还可以和Safari，照片和地图等APP联合使用。功能方面和印象笔记有点类似。<strong>赶快使用</strong></li>
+<li>通讯录<br>
+它可以配合信息/FaceTime/邮件等使用。非常方便。<strong>赶快使用</strong></li>
+<li>信息/FaceTime<br>
+Apple设备之间通信的工具，分别对应文本图片和音频视频。<strong>跟微信/QQ有的一拼</strong></li>
+<li>iBooks<br>
+Mac上用来看书的工具，书的排版没得说，缺陷就是书源少要收费。<strong>可以和iKindle组合使用</strong></li>
+<li>地图<br>
+怎么说呢，甩百度两条街吧，配合它的触摸板，完美。<strong>赶快使用</strong></li>
+</ul></li>
+<li>重点研究类
+
+<ul>
+<li>automator[crontab]/脚本编辑器
+自动执行常用任务，这个是日后重点研究的工具。<strong>重点研究</strong></li>
+<li>照片<br>
+该应用除了让图库的管理更加轻松，可以添加位置信息，还可以批量更改图片信息等。最关键的是可以和强大且易用的编辑工具（PS/Gimp）配合使用。<strong>重点研究</strong></li>
+<li>iMovie<br>
+和照片的的功能类似，不过处理的对象是视频。<strong>等图片摸透再了解吧</strong></li>
+<li>GarageBand<br>
+这次的对象是音频，可以玩转音乐。<strong>目前只想听听歌，码码代码</strong></li>
+</ul></li>
+<li>打入冷宫型
+
+<ul>
+<li>Pages/Numbers/Keynote<br>
+分别对应Office里面的Word/Excel/PowerPoint，但是却兼容它们。<strong>基本被Tex取代，只用来查看Office文档</strong></li>
+<li>App Store<br>
+它的功能和Ubuntu里的软件中心类似，不过作为一个码农，还是打算将软件的管理通过命令来来维护。 <strong>基本被HomeBrew取代</strong></li>
+<li>Safari<br>
+苹果内置的浏览器。<strong>完全被Chrome取代，可以打入冷宫</strong></li>
+<li>iTunes<br>
+Mac上的娱乐大本营，可以听歌看电影。缺陷就是片源少还要钱。<strong>基本被XBMC取代</strong></li>
+</ul></li>
+<li>不常用但实用型
+
+<ul>
+<li>活动监视器[任务管理器]</li>
+<li>数码测色计[取色板]</li>
+<li>迁移助理<br>
+支持Mac-Mac，PC-Mac，TimeMachine-Mac快速迁移文件。</li>
+<li>钥匙串访问<br>
+安全存储你使用的所有密码</li>
+</ul></li>
 </ul>
 
-<h2>事后三件事</h2>
+<h2>更新&amp;设置</h2>
 
 <ol>
-<li>联网<br>
-后面所有的操作都依赖于网络。</li>
-<li>更新语言包以及软件更新器<br>
-安装时建议用英语,一方面安装过程更快一些,另一方面保持通用文件夹为英文名(命令行操作更方便快捷).此时更新时需要安装中文语言包，大概有400M左右的应用需要升级到最新。</li>
+<li><p>系统更新<br>
+可能你当前的系统的并不是最新版本，所以进入系统后第一件事情就是联网，然后到APP Store里把系统和软件更新到最新版本。更新的同时可以了解苹果系统。</p></li>
+<li><p>偏好设置  </p>
+
+<ul>
+<li>触控版[学习触控版的手势]</li>
+<li>鼠标滚轮方向[取消自然的滚动方向]</li>
+</ul></li>
+</ol>
+
+<h2>虚拟机<a href="http://www.iplaysoft.com/vmware-fusion.html">VMware fusion</a></h2>
+
+<p>原因很简单，苹果的硬件+苹果的软件才能组合成最佳的性能，多系统对于Macbook而言就是对硬件资源的浪费。虽说Mac支持Windows，但对于我而言，Windows只剩下游戏值得我流连忘返。我的工作环境现在只有Ubuntu，在熟悉OS X系统的过程中，Ubuntu应该还是主要的工作场所吧。所以虚拟机还是不可以少的。至于为啥用VMware fusion，原因如下：</p>
+
+<ol>
+<li><p>软件管理<a href="http://brew.sh">HomeBrew</a></p></li>
+<li><p>联网<br>
+后面所有的操作都依赖于网络。</p></li>
+<li><p>更新语言包以及软件更新器<br>
+安装时建议用英语,一方面安装过程更快一些,另一方面保持通用文件夹为英文名(命令行操作更方便快捷).此时更新时需要安装中文语言包，大概有400M左右的应用需要升级到最新。</p></li>
 <li><p>安装日常所用软件<br>
 常用软件可以直接在软件中心中查找安装,不过建议是用shell脚本<a href="/assets/attachs/ubuntukylin_install.sh.txt">ubuntukylin_install.sh</a>安装.</p>
-
-<ol>
-<li><p>浏览器 -- chrome</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 安装chrome浏览器</span>
+<div class="highlight"><pre><code class="language-text" data-lang="text">```bash
+# 安装chrome浏览器
 sudo apt-get install chromium-browser
-<span class="c"># 安装在线视频播放插件</span>
+# 安装在线视频播放插件
 sudo apt-get install pepperflashplugin-nonfree
+```
+
+&gt; **注意:**   
+&gt; 安装完成后,需要登陆google帐号,可以同步书签并扩展应用
 </code></pre></div>
-<blockquote>
-<p><strong>注意:</strong><br>
-安装完成后,需要登陆google帐号,可以同步书签并扩展应用</p>
-</blockquote></li>
+<ol>
 <li><p>安装gcc编译环境</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install build-essential
 </code></pre></div></li>
@@ -290,6 +350,14 @@ sudo apt-get install pdf2htmlEX
 
 <h2>待续</h2>
 
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="http://www.apple.com/cn/osx/apps/">Mac之妙，秒在它能帮你做到的一切</a></li>
+<li><a href="http://www.iplaysoft.com/vmware-fusion.html">WMWare Fusion 8 Pro中文版</a></li>
+<li><a href="http://brew.sh">homebrew官网</a></li>
+</ol>
+
   						</article>
 					
 						<p class="copyright">
@@ -299,7 +367,7 @@ sudo apt-get install pdf2htmlEX
 						<div class="comment">
 							
 								<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="MacSoftware" data-title="macbook安装推荐" data-url="//2015/12/09/macbook%E5%AE%89%E8%A3%85%E6%8E%A8%E8%8D%90.html"></div>
+	<div class="ds-thread" data-thread-key="MacSoftware" data-title="macbook常用软件及其管理" data-url="//2015/12/10/macbook%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%85%B6%E7%AE%A1%E7%90%86.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
