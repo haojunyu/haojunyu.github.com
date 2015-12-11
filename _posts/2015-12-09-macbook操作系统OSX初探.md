@@ -41,7 +41,7 @@ comments:	true
     * App Store  
     它的功能和Ubuntu里的软件中心类似，不过作为一个码农，还是打算将软件的管理通过命令来来维护。 **基本被HomeBrew取代**
     * Safari  
-    苹果内置的浏览器。**完全被Chrome取代，可以打入冷宫**
+    苹果内置的浏览器，看视频需要adobe flash player插件。**完全被Chrome取代，可以打入冷宫**
     * iTunes  
     Mac上的娱乐大本营，可以听歌看电影。缺陷就是片源少还要钱。**基本被XBMC取代**
 * 不常用但实用型
@@ -60,8 +60,8 @@ comments:	true
     * 触控版[学习触控版的手势]
     * 鼠标滚轮方向[取消自然的滚动方向]
 
-## 虚拟机[VMware fusion][vmware]
-原因很简单，苹果的硬件+苹果的软件这样的组合才能奉献最佳的性能，多系统对于Macbook而言就是对硬件资源的浪费。虽说Mac支持Windows，但对于我而言，Windows只剩下游戏值得流连忘返，而我的工作环境现在只有Ubuntu。在熟悉OS X系统的过程中，Ubuntu应该还是主要的工作场所，所以虚拟机还是必不可少的。至于为啥用VMware fusion，原因如下：
+## 虚拟机[VirtualBox][virbox]
+原因很简单，苹果的硬件+苹果的软件这样的组合才能奉献最佳的性能，多系统对于Macbook而言就是对硬件资源的浪费。虽说Mac支持Windows，但对于我而言，Windows只剩下游戏值得流连忘返，而我的工作环境现在只有Ubuntu。在熟悉OS X系统的过程中，Ubuntu应该还是主要的工作场所，所以虚拟机还是必不可少的。至于为啥用Virtual Box，而不用VMware fusion，最重要的原因是Virtual Box跨平台，能够完美支持vdi虚拟机文件在不同平台下运行。换句话说如下：
 * 完美支持OS X EI Capitan和Windows 10,并对它们进行了优化。[对我意义不大]
 * 在Mac下虚拟运行Mac OS X EI Capitan[可以独立母系统开发Mac应用程序]
 * 高性能的3D图形加速处理能力[使得在虚拟机里面玩游戏有了点可能]
