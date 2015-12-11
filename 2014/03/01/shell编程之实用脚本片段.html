@@ -170,7 +170,7 @@
 <h2>校验参数</h2>
 
 <ol>
-<li>情景描述
+<li>情景描述<br>
 有些脚本文件需要传入一些参数,那么就需要在脚本里对参数进行预处理,使得用户更好的使用该脚本.</li>
 <li><p>脚本片段</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$#&quot;</span> -ne <span class="m">1</span> <span class="o">]</span>
@@ -182,10 +182,10 @@
 </code></pre></div></li>
 </ol>
 
-<h2>等待后台程序执行</h2>
+<h2>等待程序执行</h2>
 
 <ol>
-<li>情景描述
+<li>情景描述<br>
 编程中有些命令执行需要很耗时间和资源,需要提早运行.但是有时还需要等待该命令,对其结果进行进一步处理,此时就需要这样的代码段.</li>
 <li><p>脚本片段</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">prog1 <span class="p">&amp;</span>
@@ -197,10 +197,10 @@
 </code></pre></div></li>
 </ol>
 
-<h2>提示用户输入参数</h2>
+<h2>提示用户输入</h2>
 
 <ol>
-<li>情景描述
+<li>情景描述<br>
 智能提示,让shell脚本更加人性化.</li>
 <li><p>脚本片段</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash </span>
@@ -209,10 +209,10 @@
 </code></pre></div></li>
 </ol>
 
-<h2>更改登录用户密码</h2>
+<h2>更改用户密码</h2>
 
 <ol>
-<li>情景描述
+<li>情景描述<br>
 更改登录用户密码,懒得每次输入新旧密码</li>
 <li><p>脚本片段</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
@@ -220,10 +220,10 @@
 </code></pre></div></li>
 </ol>
 
-<h2>ACM检验程序</h2>
+<h2>ACM检验</h2>
 
 <ol>
-<li>情景描述
+<li>情景描述<br>
 ACM中需要对代码的测试数据进行验证.</li>
 <li><p>脚本片段</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#！/bin/bash</span>
@@ -239,6 +239,26 @@ ACM中需要对代码的测试数据进行验证.</li>
         <span class="nb">break</span>
 <span class="nb">    </span><span class="k">fi</span>
 <span class="k">done</span>
+</code></pre></div></li>
+</ol>
+
+<h2>跨系统脚本</h2>
+
+<ol>
+<li>情景描述<br>
+对于不同的Linux发行版本，它们的包管理命令是不同的，比如ubuntu用apt-get命令他，centos用yum命令，mac系统用homebrew命令，但是它们都能运行shell脚本，所以shell脚本可以针对不同的发行版本安装不同的软件，以完成系统的配置。</li>
+<li><p>脚本片段</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#！/bin/bash</span>
+<span class="k">if</span> which apt-get &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;You are using Ubuntu!&quot;</span>
+    sudo apt-get install-y git
+<span class="k">elif</span> which yum &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;You are using CentOs!&quot;</span>
+    sudo yum install -y git
+<span class="k">elif</span> which brew &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;You are using Mac OS X!&quot;</span>
+    brew install git
+<span class="k">fi</span>
 </code></pre></div></li>
 </ol>
 
