@@ -69,6 +69,13 @@ comments:	true
 
 安装过程很简单，直接从[官网][vmware_download]下载VMWare Fusion 8 Pro，之后通过激活码`FY7N2-6RGD2-081XZ-UYWQC-ZPKCA`激活即可。
 
+> **Tips: vdi扩容**  
+> 默认情况下，Mac里的VirtualBox会给虚拟机分配8G的磁盘空间，但这是远远不能满足我们的工作需要的，所以当安装虚拟机时不幸分配过小的磁盘空间，可以通过下面简单的方式给虚拟机扩容
+> 
+> ```sh
+> # 20480的单位是MB，所以这里扩容到20G
+> VBoxManage modifyhd xxx.vdi -resize 20480
+> ```
 
 
 ## 参考文献
