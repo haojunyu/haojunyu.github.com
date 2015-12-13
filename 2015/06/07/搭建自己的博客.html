@@ -239,7 +239,7 @@ gem sources list
 <span class="c"># 删除源</span>
 gem sources --remove https://rubygems.org/
 <span class="c"># 添加源</span>
-gem sources -a http://ruby.taobao.org/
+gem sources -a https://ruby.taobao.org/
 </code></pre></div></li>
 <li><p>安装bundler</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem install bundler
@@ -254,15 +254,15 @@ gem sources -a http://ruby.taobao.org/
 <p><strong>Gemfile</strong>   </p>
 
 <blockquote>
-<p>source &#39;http://ruby.taobao.org&#39;<br>
+<p>source &#39;https://ruby.taobao.org&#39;<br>
 gem &#39;github-pages&#39;<br>
 gem &#39;execjs&#39;<br>
 gem &#39;therubyracer&#39;</p>
 </blockquote>
 </blockquote></li>
 <li><p>通过bundler安装</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 依赖的库libxslt-dev libxml2-dev zlib1g-dev </span>
-sudo apt-get install libxslt-dev libxml2-dev zlib1g-dev
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 依赖的库libxslt1-dev libxml2-dev zlib1g-dev </span>
+sudo apt-get install libxslt1-dev libxml2-dev zlib1g-dev
 <span class="c"># bundle读取Gemfile里面的内容,并安装相关的ruby软件</span>
 bundle install 
 </code></pre></div></li>
