@@ -252,6 +252,13 @@ Mac上的娱乐大本营，可以听歌看电影。缺陷就是片源少还要�
 
 <p>安装过程很简单，直接从<a href="http://www.vmware.com/products/fusion/">官网</a>下载VMWare Fusion 8 Pro，之后通过激活码<code>FY7N2-6RGD2-081XZ-UYWQC-ZPKCA</code>激活即可。</p>
 
+<blockquote>
+<p><strong>Tips: vdi扩容</strong><br>
+默认情况下，Mac里的VirtualBox会给虚拟机分配8G的磁盘空间，但这是远远不能满足我们的工作需要的，所以当安装虚拟机时不幸分配过小的磁盘空间，可以通过下面简单的方式给虚拟机扩容</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># 20480的单位是MB，所以这里扩容到20G</span>
+VBoxManage modifyhd xxx.vdi -resize 20480
+</code></pre></div></blockquote>
+
 <h2>参考文献</h2>
 
 <ol>
