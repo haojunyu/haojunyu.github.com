@@ -61,14 +61,15 @@ comments:	true
     * 鼠标滚轮方向[取消自然的滚动方向]
 
 ## 虚拟机[VirtualBox][virbox]
-原因很简单，苹果的硬件+苹果的软件这样的组合才能奉献最佳的性能，多系统对于Macbook而言就是对硬件资源的浪费。虽说Mac支持Windows，但对于我而言，Windows只剩下游戏值得流连忘返，而我的工作环境现在只有Ubuntu。在熟悉OS X系统的过程中，Ubuntu应该还是主要的工作场所，所以虚拟机还是必不可少的。至于为啥用Virtual Box，而不用VMware fusion，最重要的原因是Virtual Box跨平台，能够完美支持vdi虚拟机文件在不同平台下运行。换句话说如下：
+原因很简单，苹果的硬件+苹果的软件这样的组合才能奉献最佳的性能，多系统对于Macbook而言就是对硬件资源的浪费。虽说Mac支持Windows，但对于我而言，Windows只剩下游戏值得流连忘返，而我的工作环境现在只有Ubuntu。在熟悉OS X系统的过程中，Ubuntu应该还是主要的工作场所，所以虚拟机还是必不可少的。之前由于研究的不够仔细，认为VMware fusion无法支持在不同平台下运行着的虚拟机，这是不对的。要通过`文件->打开`的方式运行，通过`导入->选择现有虚拟机`的方式是无法成功的。在这样的情况下，选择Virtual Box还是VMware fusion就纯看各自心情了。我选择VMware fusion，一方面是接触VMware比较早，毕竟“初恋”是难忘的;另一方面是它对Windows和Linux的支持更到位些。优势如下：
 * 完美支持OS X EI Capitan和Windows 10,并对它们进行了优化。[对我意义不大]
 * 在Mac下虚拟运行Mac OS X EI Capitan[可以独立母系统开发Mac应用程序]
 * 高性能的3D图形加速处理能力[使得在虚拟机里面玩游戏有了点可能]
 
-
 安装过程很简单，直接从[官网][vmware_download]下载VMWare Fusion 8 Pro，之后通过激活码`FY7N2-6RGD2-081XZ-UYWQC-ZPKCA`激活即可。
 
+
+Virtual Box的安装也很简单，也是从[官网][virtual_download]下载Virtual Box for mac，因为它是开源的，所以不用激活啥的。
 > **Tips: vdi扩容**  
 > 默认情况下，Mac里的VirtualBox会给虚拟机分配8G的磁盘空间，但这是远远不能满足我们的工作需要的，所以当安装虚拟机时不幸分配过小的磁盘空间，可以通过下面简单的方式给虚拟机扩容
 > 
@@ -83,9 +84,10 @@ comments:	true
 2. [WMWare Fusion 8 pro下载][vmware_download]
 2. [WMWare Fusion 8 Pro简介][vmware]
 3. [homebrew官网][homebrew]
-
+4. [Virtual Box下载][virtual_download]
 
 [mac_app]:  http://www.apple.com/cn/osx/apps/
 [vmware]:   http://www.iplaysoft.com/vmware-fusion.html
 [vmware_download]:  http://www.vmware.com/products/fusion/
 [homebrew]: http://brew.sh
+[virtual_download]: https://www.virtualbox.org/wiki/Downloads
