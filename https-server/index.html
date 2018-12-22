@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<title>
+    		禹过留声
+     	</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="description" content=" 人生到处知何似，应似飞鸿踏雪泥 ">
+    	<link rel="canonical" href="/haojunyu/https-server">
+    	<link href="/themes/cool/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    	<!-- Custom CSS -->
+    	<!-- build:css /release/style.css -->
+    	<link rel="stylesheet" href="/themes/cool/css/normalize.css">
+    	<link rel="stylesheet" href="/themes/cool/css/main.css">
+    	<link rel="stylesheet" href="/themes/cool/css/posts.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pygments.css">
+    	<link rel="stylesheet" href="/themes/cool/css/pages.css">
+    	<link rel="stylesheet" href="/themes/cool/css/duoshuo.css">
+    	<!-- endbuild -->
+
+		<!-- Google Analytics -->
+    	<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-67273073-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
+		<!-- Cnzz Analysis
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cspan id='cnzz_stat_icon_1256284061'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1256284061' type='text/javascript'%3E%3C/script%3E"));
+		</script>		-->
+    	<!-- Baidu Analysis -->
+    	<script>
+			if (window.location.href.substr(7, 9) !== 'localhost') {
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?7e4d2ceadae9d07003cf8a93e067b798";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			}
+		</script>
+
+		<!-- 统计页面访问 不蒜子-->
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    	<!-- handle external js files -->
+    	<script type="text/javascript" src="/themes/cool/js/lib/jquery/jquery.min.js"></script>
+
+    	<!-- help function for jsonp -->
+    	<script>
+        var jsonp = function(url, args) {
+            var head = document.getElementsByTagName('head')[0],
+                    script = document.createElement("script"),
+                    first = true,
+                    value;
+
+            for (var key in args) {
+                if (args.hasOwnProperty(key)) {
+                    value = encodeURIComponent(args[key]);
+                    url += first ? ('?' + key + '=' + value) : ('&' + key + '=' + value);
+                    first = false;
+                }
+            }
+            script.src= url;
+            head.appendChild(script);
+        }
+    	</script>
+
+    	<!-- index -->
+    	<script type="text/javascript" >
+    		$(document).ready(function(){
+    			$("#contents  h2").each(function(){
+    				$("#navleft ul").append("<li class='tag-" + this.nodeName.toLowerCase() + "'><a href='#" + $(this).text().toLowerCase().replace(/ /g, '-') + "'>" + $(this).text().substr(0,8) + "</a></li>");
+    				$(this).attr("id",$(this).text().toLowerCase().replace(/ /g, '-'));
+    				$("#navleft ul li:first-child a").parent().addClass("active");
+    			});
+  			});
+
+  			$("#navleft ul li a").live("click",function(event) {
+    			$("body").animate({scrollTop:$($(this).attr("href")).offset().top-190},400);
+    			$("#navleft ul li a").parent().removeClass("active");
+    			$(this).parent().addClass("active");
+    			event.preventDefault();
+  			});
+    	</script>
+
+    	<!--数学公式用mathjax编辑-->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+			});
+		</script>
+		<script type="text/javascript" src="http://mathjax.josephjctang.com/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</head>
+
+
+	<body>
+
+	<header class="site-header">
+  		<div class="wrap">
+    		<a class="site-title" href="/">
+    		从零开始搭建https服务器
+    		</a>
+    		<nav class="site-nav">
+      	<div class="trigger">
+        			
+          				<a class="page-link" href="/index.html">首页</a>
+						
+        			
+          				<a class="page-link" href="/navigations/archives.html">文章归档</a>
+						
+        			
+          				<a class="page-link" href="/navigations/skills.html">技能图谱</a>
+						
+        			
+          				<a class="page-link" href="/navigations/contact.html">关于我</a>
+						
+        			
+          				<a class="page-link" href="/navigations/links.html">友情链接</a>
+						
+        			
+          				<a class="page-link" href="/navigations/atom.xml">RSS订阅</a>
+						
+        			
+      	</div>
+    		</nav>
+  		</div>
+	</header>
+
+    <div class="page-content">
+      <div class="wrap">
+        	
+				
+
+					<div class="index-part">
+						<nav id="navleft">
+							<ul></ul>
+						</nav>
+					</div>
+
+        			<div id="contents" class="central-right">
+        			<div class="post">
+						<header class="post-header">
+    						<h1>从零开始搭建https服务器</h1>
+    						<p class="meta">Jan 24, 2017 <span class="pause"> - </span>
+								<span id="busuanzi_container_page_pv">
+								浏览量:	<span id="busuanzi_value_page_pv"></span>
+								</span>次 <span class="pause"> |
+        						
+    						</p>
+  						</header>
+
+  						<article class="post-content">
+  							
+    <p>写这篇文章的目的是为了开发微信小程序。因为它要使用wx.request发起https请求，而要进行https网络通信，必须先设置域名。所以需要搭建一个https服务器来存放微信小程序的应用数据。要从零开始搭建一个https的服务需要下面4个要素：域名，备案，云服务器，服务器配置。下面分别介绍着四要素的具体要求。
+&lt;!-- more --&gt;</p>
+
+<h2>域名</h2>
+
+<p><a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D">域名</a>（<code>Domain Name</code>）又叫网域，是由一串用点分隔的名字组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位。例如，www.haojunyu.com是一个域名，可以通过域名名称系统（<code>Domain Name System</code>）将该域名映射成对应的IP地址。该操作可以通过域名解析来实现。</p>
+
+<h3>域名注册和解析</h3>
+
+<p>域名注册前，可以通过<a href="https://who.is/">WHOIS域名查询</a>来查询该域名是否被注册过。目前BAT都提供域名注册，如阿里的[万网],百度的[域名服务][baiduyuming]，腾讯的<a href="https://dnspod.qcloud.com/?from=console">Dnspod</a>。我的域名haojunyu.com是在阿里的万网注册的，之前注册域名的初衷是为了给github上面的个人博客作个性化的域名。并在其中的域名解析中作了设置，这里并不需要做太多的改动，只要将之前为个人博客添加的记录都暂停，并添加如下解析：记录类型为，主机记录为@，解析线路为默认，记录值为欲映射的IP。这样的话，当你在浏览器中输入haojunyu.com时，DNS会自动将其解析为映射的IP地址。</p>
+
+<h2>备案</h2>
+
+<p>这里的备案是针对像个人博客这类非经营性网站所做的备案。守法的网站对促进信息共享、文化繁荣和社会进步产生积极的作用，但有些不良的网站却传递色情，非法盈利的信息，所以备案的目的也就是为了方便网站的管理。</p>
+
+<p>目前网站域名的备案BAT都能提供，不过备案这个流程很长，大概要一个月，我的域名haojunyu.com是在百度云备案的，当时是先提交的资料（主要是身份证正反面照片），然后等百度快递来背景墙，再拍照片上传核实后才可以备案成功。</p>
+
+<h2>云服务器</h2>
+
+<p>服务器就是一台可以运行的电脑，可以是自己家里的电脑，也可以到BAT上买云服务。这里因为腾讯云上面有免费8天的试用，所以就试着在云服务上面搭建个https的服务，以方便微信小程序能成功发起request请求。如果试用体验还不错的话，可以续费（74元/月）。新建云主机时要选一个操作系统，鉴于对Ubutnu的熟悉以及服务器的需要，所以选择了Ubuntu Server 16.04.1 LTS 64的镜像做系统。当新建一个云主机后，百度云会提供一个对外的IP地址，这个IP地址就是域名解析中要填入的记录值。</p>
+
+<h2>服务器配置</h2>
+
+<p>服务器的配置主要有三步个，第一步是应用程序的布置，第二步是Nginx服务器的配置，第三步是http升级为https。前两步的配置是参考这篇博文<a href="https://www.oschina.net/translate/serving-flask-with-nginx-on-ubuntu">在Ubuntu上使用Nginx部署Flask应用</a>，第三步是参考<a href="https://www.qcloud.com/document/product/400/4143#2.-nginx-.E8.AF.81.E4.B9.A6.E9.83.A8.E7.BD.B2">腾讯云上Nginx证书安装</a>。</p>
+
+<h3>应用程序</h3>
+
+<p>考虑到微信小程序主要是用json的数据，所以就想服务器能够提供restful服务，又因为对python语言比较喜欢，所以就挑了python里的Flask这个轻量级的Web框架。服务器选择的是Nginx，而连接服务器和应用程序的是uWSGI。具体的安装步骤如下：
+1. 环境配置
+  <code>bash
+    sudo apt-get update &amp;&amp; sudo apt-get upgrade # 更新所有软件
+    sudo apt-get install build-essential  # 安装编译环境
+    sudo apt-get install  python python-dev python-setuptools # 安装python环境
+    sudo easy_install pip
+    sudo apt-get install nginx  # 安装Nginx
+    sudo apt-get install uwsgi uwsgi-plugin-python  # 安装uwsgi及其插件
+    sudo apt-get install supervisor # 安装进程管理软件
+</code></p>
+
+<blockquote>
+<p><strong>TIPS:常用命令</strong>
+1. nginx服务启动|停止|重启
+<code>bash
+      sudo /etc/init.d/nginx start|stop|restart
+</code>
+2. sdf</p>
+</blockquote>
+
+<ol>
+<li>应用配置
+<code>bash
+sudo mkdir -p /var/www/flaskApp # 创建应用程序文件夹
+sudo chown -R ubuntu：ubuntu /var/www/flaskApp # 更改应用程序文件夹所有权
+sudo pip install virtualenv # 安装python虚拟环境
+# 创建python虚拟环境
+cd /var/www/flaskApp
+virtualenv venv
+. venv/bin/activate # 激活python虚拟环境venv
+pip install flask flask-restful # 在虚拟环境中安装flask Web框架
+</code>
+创建api.py代码
+```python
+#!flask/bin/python
+from flask import Flask, jsonify</li>
+</ol>
+
+<p>app = Flask(<strong>name</strong>)</p>
+
+<p>tasks = [
+      {
+          &#39;id&#39;: 1,
+          &#39;title&#39;: u&#39;Buy groceries&#39;,
+          &#39;description&#39;: u&#39;Milk, Cheese, Pizza, Fruit, Tylenol&#39;,
+          &#39;done&#39;: False
+      },
+      {
+          &#39;id&#39;: 2,
+          &#39;title&#39;: u&#39;Learn Python&#39;,
+          &#39;description&#39;: u&#39;Need to find a good Python tutorial on the web&#39;,
+          &#39;done&#39;: False
+      }
+  ]</p>
+
+<p>@app.route(&#39;/todo/api/v1.0/tasks&#39;, methods=[&#39;GET&#39;])
+  def get_tasks():
+      return jsonify({&#39;tasks&#39;: tasks})</p>
+
+<p>if <strong>name</strong> == &#39;<strong>main</strong>&#39;:
+      app.run(host=&#39;0.0.0.0&#39;, port=8080)
+  ```</p>
+
+<p>执行脚本<code>python api.py</code>后可以通过浏览器来访问http://主机IP:8080/todo/api/v1.0/tasks，以此来获取tasks数据。</p>
+
+<h3>服务器配置</h3>
+
+<h4>Nginx配置</h4>
+
+<ol>
+<li>删除nginx默认配置文件
+<code>bash
+sudo rm /etc/nginx/sites-enabled/default
+</code></li>
+<li><p>创建新的配置文件/var/www/flaskApp/config/flaskApp<em>nginx.conf
+```bash
+server {
+listen      80;
+server</em>name www.haojunyu.com; #此时域名已经映射到主机IP
+charset     utf-8;
+client<em>max</em>body_size 75M;</p>
+
+<p>location / { try<em>files $uri @yourapplication; }
+location @yourapplication {
+    include uwsgi</em>params;
+    uwsgi<em>pass unix:/var/www/flaskApp/config/flaskApp</em>uwsgi.sock;
+}
+}
+```</p></li>
+<li><p>创建配置文件服务，重启服务
+<code>bash
+sudo ln -s /var/www/flaskApp/config/nginx.conf /etc/nginx/conf.d/ #将应用文件夹里的配置文件链接到nginx配置文件处
+sudo /etc/init.d/nginx restart  # 重启nginx
+</code></p></li>
+<li><p>验证
+现在通过浏览器来访问http://haojunyu.com/todo/api/v1.0/tasks，无法获取到数据，因为flaskApp_uwsgi.sock尚未生成，无法让uwsgi在Nginx和python应用程序之间构建一座桥。</p></li>
+</ol>
+
+<h4>uWSGI配置</h4>
+
+<ol>
+<li>创建新的配置文件/var/www/flaskApp/config/flaskApp_uwsgi.ini
+```bash
+[uwsgi]
+#application&#39;s base folder
+base = /var/www/flaskApp</li>
+</ol>
+
+<p>#python module to import
+  app = api
+  module = %(app)</p>
+
+<p>home = %(base)/venv
+  pythonpath = %(base)
+  ## 使用virtualenvwrapper管理virtualenv后用下面的两个参数取代home和pythonpath
+  #chdir = %(base)
+  #virtualenvs = %HOME/.virtualenvs/flaskEnv</p>
+
+<p>#socket file&#39;s location
+  socket = /var/www/flaskApp/%n.sock</p>
+
+<p>#permissions for the socket file
+  chmod-socket    = 666</p>
+
+<p>#the variable that holds a flask application inside the module imported at line #6
+  callable = app</p>
+
+<p>#location of log files
+  logto = /var/log/uwsgi/%n.log
+  <code>
+  2. 创建uWSGI日志文件夹，并更改文件所有权
+</code>bash
+  sudo mkdir -p /var/log/uwsgi # uWSGI日志文件夹
+  sudo chown -R ubuntu:ubuntu /var/log/uwsgi # 更改uWSGI日志文件夹所有权
+  uwsgi --ini /var/www/flaskApp/config/flaskApp_uwsgi.ini --plugin python &amp; # 后台启动uwsgi
+  ```</p>
+
+<h4>supervisor配置</h4>
+
+<p>supervisor是为了方便管理进程而存在的，因为每次开机后，都得重新执行<code>uwsgi --ini /var/www/flaskApp/config/flaskApp_uwsgi.ini</code>命令来启动uwsgi，这个很费神，因为你不可能永远记得清楚这么个应用，这么个配置。所以使用supervisor来管理，而我们只需要在开发这个应用时创建一个flaskApp<em>supervisor.conf配置文件，而重启机器后启动supervisor服务，即执行<code>sudo service supervisor start</code>。
+  1. 安装supervisor
+  <code>bash
+  sudo apt install supervisor
+</code>
+  2. 创建配置文件：
+  ```bash
+  [program:flaskApp]
+  # 启动命令入口
+  command=/usr/local/bin/uwsgi --ini /var/www/flaskApp/flaskApp</em>uwsgi.ini
+  # 运行命令的用户名
+  user=ubuntu
+  autostart=true
+  autorestat=true
+  #日志地址
+  stdout<em>logfile=/var/log/supervisor/flaskApp</em>supervisor.log
+  <code>
+  3. 创建配置文件副本并重启服务
+</code>bash
+  sudo ln -s /var/www/flaskApp/flaskApp_supervisor.conf /etc/supervisor/conf.d/
+  sudo service supervisor restart
+  ```</p>
+
+<h3>http升级https</h3>
+
+<p>升级https需要证书的支持，这里BAT都提供这样的服务，都有相对应的配置安装说明。我这里是按照<a href="https://www.qcloud.com/document/product/400/4143#2.-nginx-.E8.AF.81.E4.B9.A6.E9.83.A8.E7.BD.B2">腾讯云上Nginx证书安装</a>,主要就是将申请的证书保存到config目录中，并将flaskApp<em>nginx.conf修改如下：
+```bash
+server {
+  listen      443;
+  server</em>name www.haojunyu.com; #此时域名已经映射到主机IP</p>
+
+<p>ssl on;
+  ssl<em>certificate /var/www/flaskApp/1</em>haojunyu.com<em>bundle.crt;
+  ssl</em>certificate<em>key /var/www/flaskApp/2</em>haojunyu.com.key;
+  ssl<em>session</em>timeout 5m;
+  ssl<em>protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置
+  ssl</em>ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#按照这个套件配置
+  ssl<em>prefer</em>server_ciphers on;</p>
+
+<p>location / { try<em>files $uri @yourapplication; }
+  location @yourapplication {
+      include uwsgi</em>params;
+      uwsgi<em>pass unix:/var/www/flaskApp/config/flaskApp</em>uwsgi.sock;
+  }
+}
+```</p>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D">wiki-域名</a></li>
+<li><a href="https://who.is/">whois域名查询</a></li>
+<li><a href="https://wanwang.aliyun.com/?spm=5176.8142029.388261.26.C75xLA">万网</a></li>
+<li>[百度域名服务][baiduyuming]</li>
+<li><a href="https://dnspod.qcloud.com/?from=console">Dnspod</a></li>
+<li><a href="https://www.oschina.net/translate/serving-flask-with-nginx-on-ubuntu">在Ubuntu上使用Nginx部署Flask应用</a></li>
+<li><a href="https://www.qcloud.com/document/product/400/4143#2.-nginx-.E8.AF.81.E4.B9.A6.E9.83.A8.E7.BD.B2">腾讯云上Nginx证书安装</a></li>
+</ol>
+
+<p>[baiduyuming]： https://cloud.baidu.com/product/bcd.html</p>
+
+
+
+  						</article>
+
+						<p class="copyright">
+    						本文的版权归作者 <a href="mailto:haojunyu2012@gmail.com">郝俊禹</a> 所有，采用 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution-NonCommercial 3.0 License</a>。任何人可以进行转载、分享，但不可在未经允许的情况下用于商业用途；转载请注明出处。感谢配合！
+  						</p>
+
+						<div class="comment">
+							
+								<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="" data-title="从零开始搭建https服务器" data-url="//https-server"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haojunyu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+							
+						</div>
+					</div>
+				
+
+        	
+      </div>
+    </div>
+
+    <footer class="site-footer">
+    	<div class="wrap">
+        <ul class="friend-links footer-text">
+            <li><a href="http://mindhacks.cn/">刘未鹏</a></li>
+            <li><a href="http://blog.csdn.net/zouxy09/">zouxy09</a></li>
+            <li><a href="http://blog.codinglabs.org/">codinglabs</a></li>
+            <li><a href="http://www.52nlp.cn/">52nlp</a></li>
+            <li><a href="http://jerryzou.com/">jerryzou</a></li>
+            <li><a href="http://www.acmerblog.com/">acmerblog</a></li>
+        </ul>
+        <p class="footer-text">Powered by <a href="http://jekyllrb.com/">Jekyll</a> ， <a href="https://pages.github.com/">Github Pages</a> ， <a href="http://wiki.jikexueyuan.com/project/react/getting-started.html">React</a> and <a href="http://haojunyu.duoshuo.com/admin/">多说</a>.</p>
+    	</div>
+	</footer>
+
+	</body>
+</html>
+
