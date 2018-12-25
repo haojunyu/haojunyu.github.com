@@ -1,0 +1,41 @@
+#####/etc/logstash/conf.d/indexer.conf
+
+input {
+	lumberjack{
+		port => 5000
+		type => "forwarder"
+		ssl_certificate => "/etc/pki/tls/certs/logstash_forwarder.crt"
+		ssl_key => "/etc/pki/tls/private/logstash-forwarder.key"
+	}
+    redis {
+        host => '127.0.0.1'
+        data_type => 'list'
+        port =>  '6379'
+        key => 'logstash:redis'
+        type => 'redis-input'
+	codec => json
+    }
+}
+
+filter{
+	if [type] == "forwarder" {
+		grok {
+			match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+			add_field => [ "received_at", "%{@timestamp}" ]
+			add_field => [ "received_from", "%{host}" ]
+		}
+		syslog_pri { }
+	}
+}
+
+output {
+    stdout {
+	codec => rubydebug
+    }
+    elasticsearch {
+        embedded => false
+        protocol => "http"
+        host => "localhost"
+        port => "9200"
+    }
+}
