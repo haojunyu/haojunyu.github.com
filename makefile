@@ -14,7 +14,7 @@ deploy:
 	git commit -m "deploy blog"
 	git push -u origin master:master
 	echo "=========deploy github succeed=========="
-	git push -u gitcafe master:gitcafe-pages
-	echo "=========deploy gitcafe succeed=========="
+#	git push -u gitcafe master:gitcafe-pages
+#	echo "=========deploy gitcafe succeed=========="
 	git checkout source
 
