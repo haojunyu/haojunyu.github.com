@@ -3,7 +3,7 @@ deploy:
 	jekyll build
 	git add -A
 	git commit -m "update source"
-	cp -r _site/ /tmp/
+	cp -r _site /tmp/
 	git push origin source
 	echo "===========push source==========="
 	git checkout master
